@@ -6243,7 +6243,7 @@ var $;
                 return $.$mol_stub_select_random(Object.keys($my_toys_toy.protos()));
             };
             $my_toys_toy.prototype.image = function (next) {
-                if (next === void 0) { next = "/my/toys/thumbs/" + this.proto() + ".jpg"; }
+                if (next === void 0) { next = "-/my/toys/thumbs/" + this.proto() + ".jpg"; }
                 return next;
             };
             $my_toys_toy.prototype.title = function (next) {
