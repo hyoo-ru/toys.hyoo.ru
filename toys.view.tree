@@ -1,0 +1,57 @@
+$my_toys_toy $mol_object
+	image \
+	title \
+	popularity 0
+	count 0
+	id \
+
+$my_toys $mol_book
+	pages /
+		<= Catalog $mol_page
+			title <= catalog_title @ \Toys
+			minimal_width 600
+			tools /
+				- <= Catalog_close $mol_link
+					sub /
+						<= Catalog_close_icon $mol_icon_cross
+					arg *
+						catalog \hide
+			body /
+				<= Tools $mol_float
+					sub /
+						<= Tools_card $mol_card
+							sub /
+								<= Tools_row $mol_row
+									sub /
+										<= Filter_labeler $mol_labeler
+											title <= filter_label @ \Filter
+											Content <= Filter $mol_select
+												value \Популярное
+										<= Sort_labeler $mol_labeler
+											title <= sort_label @ \Sort
+											Content <= Sort $mol_select
+												value \По релевантности
+				<= Goods $mol_row
+					sub <= toy_cards /
+	Toy_card!id $mol_link
+		minimal_width 256
+		minimal_height 256
+		arg <= toy_arg!id *
+		sub /
+			<= Toy_image!id $mol_image
+				uri <= toy_image!id \
+				- style *
+					filter \hue-rotate(50deg)
+			<= Toy_title!id $mol_view
+				sub /
+					<= toy_title!id \
+			<= Toy_popularity!id $mol_view
+				sub /
+					<= toy_popularity_prefix @ \Popularity: 
+					<= toy_popularity!id 0
+			<= Toy_count!id $mol_view
+				sub /
+					<= toy_count_prefix @ \Selled: 
+					<= toy_count!id 0
+	toy!id $my_toys_toy
+		id <= toy_id!id \

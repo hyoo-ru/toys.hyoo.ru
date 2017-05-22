@@ -1,0 +1,10 @@
+{
+	"$mol_select_no_options_message": "No options",
+	"$mol_select_clear_option_message": "Clear",
+	"$mol_select_filter_hint": "Filter..",
+	"$my_toys_catalog_title": "Toys",
+	"$my_toys_filter_label": "Filter",
+	"$my_toys_sort_label": "Sort",
+	"$my_toys_toy_popularity_prefix": "Popularity: ",
+	"$my_toys_toy_count_prefix": "Selled: "
+}

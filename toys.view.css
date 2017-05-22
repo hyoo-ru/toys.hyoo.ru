@@ -1,0 +1,41 @@
+:root {
+	--mol_skin_base: hsl( 320 , 50% , 60% );
+}
+
+[my_toys_menu] {
+	flex: 1 1 400px;
+}
+
+[my_toys_question_card] {
+	min-height: 70px;
+}
+
+[my_toys_details] {
+	flex: 1000 1 600px;
+}
+
+[my_toys_catalog_close] {
+	color: inherit;
+	padding: 1rem;
+}
+
+[my_toys_goods] {
+	align-items: stretch;
+}
+
+[my_toys_toy_card] {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 16rem;
+	margin: 0;
+}
+
+[my_toys_toy_image] {
+	width: 100%;
+}
+
+[my_toys_toy_title] ,
+[my_toys_toy_popularity] ,
+[my_toys_toy_count] {
+	margin: .25rem 0 0;
+}
