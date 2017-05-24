@@ -6135,7 +6135,6 @@ var $;
             var _this = this;
             return new $.$mol_link().setup(function (obj) {
                 obj.minimal_width = function () { return 256; };
-                obj.minimal_height = function () { return 256; };
                 obj.arg = function () { return _this.toy_arg(id); };
                 obj.sub = function () { return [].concat(_this.Toy_image(id), _this.Toy_title(id), _this.Toy_popularity(id), _this.Toy_count(id)); };
             });

@@ -35,7 +35,6 @@ $my_toys $mol_book
 					sub <= toy_cards /
 	Toy_card!id $mol_link
 		minimal_width 256
-		minimal_height 256
 		arg <= toy_arg!id *
 		sub /
 			<= Toy_image!id $mol_image

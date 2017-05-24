@@ -1,6 +1,6 @@
 [mol_view] {
     transition-property: background-color, height, width, min-height, min-width, max-width, max-height, transform;
-    transition-duration: .1s;
+    transition-duration: .2s;
     -webkit-appearance: none;
     word-break: break-word
 }
@@ -534,17 +534,19 @@
 }
 [my_toys_toy_card] {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
     flex: 1 1 16rem;
     margin: 0
 }
 [my_toys_toy_image] {
-    width: 100%
+    width: 10%
 }
 [my_toys_toy_title] ,
 [my_toys_toy_popularity] ,
 [my_toys_toy_count] {
-    margin: .25rem 0 0
+    margin: .25rem 0 0;
+    display: block
 }
 
 /*# sourceMappingURL=web.css.map */

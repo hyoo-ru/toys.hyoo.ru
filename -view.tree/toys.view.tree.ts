@@ -218,8 +218,7 @@ namespace $ { export class $my_toys extends $mol_book {
 	}
 
 	/// Toy_card!id $mol_link 
-	/// 	minimal_width 256 
-	/// 	minimal_height 256 
+	/// 	minimal_width 256
 	/// 	arg <= toy_arg!id 
 	/// 	sub / 
 	/// 		<= Toy_image!id 
@@ -230,7 +229,6 @@ namespace $ { export class $my_toys extends $mol_book {
 	Toy_card( id : any ) {
 		return new $mol_link().setup( obj => { 
 			obj.minimal_width = () => 256
-			obj.minimal_height = () => 256
 			obj.arg = () => this.toy_arg(id)
 			obj.sub = () => [].concat( this.Toy_image(id) , this.Toy_title(id) , this.Toy_popularity(id) , this.Toy_count(id) )
 		} )
