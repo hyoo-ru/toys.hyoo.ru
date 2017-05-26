@@ -3,8 +3,9 @@
 	"$mol_select_clear_option_message": "Стереть",
 	"$mol_select_filter_hint": "Фильтрация..",
 	"$my_toys_catalog_title": "Игрушки для всей семьи",
-	"$my_toys_toy_popularity_prefix": "Популярность: ",
-	"$my_toys_toy_count_prefix": "Продано: ",
+	"$my_toys_toy_size_prefix": "Размер: ",
+	"$my_toys_toy_count_prefix": "Отзывы: ",
 	"$my_toys_filter_label": "Фильтрация",
-	"$my_toys_sort_label": "Сортировка"
+	"$my_toys_sort_label": "Сортировка",
+	"$my_toys_toy_price_suffix": "₽"
 }

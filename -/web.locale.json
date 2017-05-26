@@ -5,6 +5,7 @@
 	"$my_toys_catalog_title": "Toys",
 	"$my_toys_filter_label": "Filter",
 	"$my_toys_sort_label": "Sort",
-	"$my_toys_toy_popularity_prefix": "Popularity: ",
+	"$my_toys_toy_price_suffix": "₽",
+	"$my_toys_toy_size_prefix": "Size: ",
 	"$my_toys_toy_count_prefix": "Selled: "
 }

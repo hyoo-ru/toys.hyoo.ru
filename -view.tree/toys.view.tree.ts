@@ -10,8 +10,13 @@ namespace $ { export class $my_toys_toy extends $mol_object {
 		return ""
 	}
 
-	/// popularity 0
-	popularity() {
+	/// size \
+	size() {
+		return ""
+	}
+
+	/// price 0
+	price() {
 		return 0
 	}
 
@@ -149,6 +154,19 @@ namespace $ { export class $my_toys extends $mol_book {
 		})
 	}
 
+	/// toy_title!id \
+	toy_title( id : any ) {
+		return ""
+	}
+
+	/// Toy_title!id $mol_view sub / <= toy_title!id
+	@ $mol_mem_key()
+	Toy_title( id : any ) {
+		return new $mol_view().setup( obj => {
+			obj.sub = () => [].concat( this.toy_title(id) )
+		} )
+	}
+
 	/// toy_image!id \
 	toy_image( id : any ) {
 		return ""
@@ -164,36 +182,43 @@ namespace $ { export class $my_toys extends $mol_book {
 		} )
 	}
 
-	/// toy_title!id \
-	toy_title( id : any ) {
-		return ""
-	}
-
-	/// Toy_title!id $mol_view sub / <= toy_title!id
-	@ $mol_mem_key()
-	Toy_title( id : any ) {
-		return new $mol_view().setup( obj => { 
-			obj.sub = () => [].concat( this.toy_title(id) )
-		} )
-	}
-
-	/// toy_popularity_prefix @ \Popularity:
-	toy_popularity_prefix() {
-		return $mol_locale.text( this.locale_contexts() , "toy_popularity_prefix" )
-	}
-
-	/// toy_popularity!id 0
-	toy_popularity( id : any ) {
+	/// toy_price!id 0
+	toy_price( id : any ) {
 		return 0
 	}
 
-	/// Toy_popularity!id $mol_view sub / 
-	/// 	<= toy_popularity_prefix 
-	/// 	<= toy_popularity!id
+	/// toy_price_suffix @ \₽
+	toy_price_suffix() {
+		return $mol_locale.text( this.locale_contexts() , "toy_price_suffix" )
+	}
+
+	/// Toy_price!id $mol_view sub /
+	/// 	<= toy_price!id
+	/// 	<= toy_price_suffix
 	@ $mol_mem_key()
-	Toy_popularity( id : any ) {
+	Toy_price( id : any ) {
 		return new $mol_view().setup( obj => { 
-			obj.sub = () => [].concat( this.toy_popularity_prefix() , this.toy_popularity(id) )
+			obj.sub = () => [].concat( this.toy_price(id) , this.toy_price_suffix() )
+		} )
+	}
+
+	/// toy_size_prefix @ \Size:
+	toy_size_prefix() {
+		return $mol_locale.text( this.locale_contexts() , "toy_size_prefix" )
+	}
+
+	/// toy_size!id \
+	toy_size( id : any ) {
+		return ""
+	}
+
+	/// Toy_size!id $mol_view sub /
+	/// 	<= toy_size_prefix
+	/// 	<= toy_size!id
+	@ $mol_mem_key()
+	Toy_size( id : any ) {
+		return new $mol_view().setup( obj => { 
+			obj.sub = () => [].concat( this.toy_size_prefix() , this.toy_size(id) )
 		} )
 	}
 
@@ -217,22 +242,32 @@ namespace $ { export class $my_toys extends $mol_book {
 		} )
 	}
 
+	/// Toy_option!id $mol_view sub /
+	/// 	<= Toy_price!id
+	/// 	<= Toy_size!id
+	/// 	<= Toy_count!id
+	@ $mol_mem_key()
+	Toy_option( id : any ) {
+		return new $mol_view().setup( obj => {
+			obj.sub = () => [].concat( this.Toy_price(id) , this.Toy_size(id) , this.Toy_count(id) )
+		} )
+	}
+
 	/// Toy_card!id $mol_link 
-	/// 	minimal_width 256 
-	/// 	minimal_height 256 
+	/// 	minimal_width 156
+	/// 	minimal_height 156
 	/// 	arg <= toy_arg!id 
-	/// 	sub / 
-	/// 		<= Toy_image!id 
+	/// 	sub /
 	/// 		<= Toy_title!id 
-	/// 		<= Toy_popularity!id 
-	/// 		<= Toy_count!id
+	/// 		<= Toy_image!id
+	/// 		<= Toy_option!id
 	@ $mol_mem_key()
 	Toy_card( id : any ) {
 		return new $mol_link().setup( obj => { 
-			obj.minimal_width = () => 256
-			obj.minimal_height = () => 256
+			obj.minimal_width = () => 156
+			obj.minimal_height = () => 156
 			obj.arg = () => this.toy_arg(id)
-			obj.sub = () => [].concat( this.Toy_image(id) , this.Toy_title(id) , this.Toy_popularity(id) , this.Toy_count(id) )
+			obj.sub = () => [].concat( this.Toy_title(id) , this.Toy_image(id) , this.Toy_option(id) )
 		} )
 	}
 

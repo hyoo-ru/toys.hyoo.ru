@@ -5995,7 +5995,10 @@ var $;
         $my_toys_toy.prototype.title = function () {
             return "";
         };
-        $my_toys_toy.prototype.popularity = function () {
+        $my_toys_toy.prototype.size = function () {
+            return "";
+        };
+        $my_toys_toy.prototype.price = function () {
             return 0;
         };
         $my_toys_toy.prototype.count = function () {
@@ -6089,15 +6092,6 @@ var $;
         $my_toys.prototype.toy_arg = function (id) {
             return ({});
         };
-        $my_toys.prototype.toy_image = function (id) {
-            return "";
-        };
-        $my_toys.prototype.Toy_image = function (id) {
-            var _this = this;
-            return new $.$mol_image().setup(function (obj) {
-                obj.uri = function () { return _this.toy_image(id); };
-            });
-        };
         $my_toys.prototype.toy_title = function (id) {
             return "";
         };
@@ -6107,16 +6101,37 @@ var $;
                 obj.sub = function () { return [].concat(_this.toy_title(id)); };
             });
         };
-        $my_toys.prototype.toy_popularity_prefix = function () {
-            return $.$mol_locale.text(this.locale_contexts(), "toy_popularity_prefix");
+        $my_toys.prototype.toy_image = function (id) {
+            return "";
         };
-        $my_toys.prototype.toy_popularity = function (id) {
+        $my_toys.prototype.Toy_image = function (id) {
+            var _this = this;
+            return new $.$mol_image().setup(function (obj) {
+                obj.uri = function () { return _this.toy_image(id); };
+            });
+        };
+        $my_toys.prototype.toy_price = function (id) {
             return 0;
         };
-        $my_toys.prototype.Toy_popularity = function (id) {
+        $my_toys.prototype.toy_price_suffix = function () {
+            return $.$mol_locale.text(this.locale_contexts(), "toy_price_suffix");
+        };
+        $my_toys.prototype.Toy_price = function (id) {
             var _this = this;
             return new $.$mol_view().setup(function (obj) {
-                obj.sub = function () { return [].concat(_this.toy_popularity_prefix(), _this.toy_popularity(id)); };
+                obj.sub = function () { return [].concat(_this.toy_price(id), _this.toy_price_suffix()); };
+            });
+        };
+        $my_toys.prototype.toy_size_prefix = function () {
+            return $.$mol_locale.text(this.locale_contexts(), "toy_size_prefix");
+        };
+        $my_toys.prototype.toy_size = function (id) {
+            return "";
+        };
+        $my_toys.prototype.Toy_size = function (id) {
+            var _this = this;
+            return new $.$mol_view().setup(function (obj) {
+                obj.sub = function () { return [].concat(_this.toy_size_prefix(), _this.toy_size(id)); };
             });
         };
         $my_toys.prototype.toy_count_prefix = function () {
@@ -6131,13 +6146,19 @@ var $;
                 obj.sub = function () { return [].concat(_this.toy_count_prefix(), _this.toy_count(id)); };
             });
         };
+        $my_toys.prototype.Toy_option = function (id) {
+            var _this = this;
+            return new $.$mol_view().setup(function (obj) {
+                obj.sub = function () { return [].concat(_this.Toy_price(id), _this.Toy_size(id), _this.Toy_count(id)); };
+            });
+        };
         $my_toys.prototype.Toy_card = function (id) {
             var _this = this;
             return new $.$mol_link().setup(function (obj) {
-                obj.minimal_width = function () { return 256; };
-                obj.minimal_height = function () { return 256; };
+                obj.minimal_width = function () { return 156; };
+                obj.minimal_height = function () { return 156; };
                 obj.arg = function () { return _this.toy_arg(id); };
-                obj.sub = function () { return [].concat(_this.Toy_image(id), _this.Toy_title(id), _this.Toy_popularity(id), _this.Toy_count(id)); };
+                obj.sub = function () { return [].concat(_this.Toy_title(id), _this.Toy_image(id), _this.Toy_option(id)); };
             });
         };
         $my_toys.prototype.toy_id = function (id) {
@@ -6180,16 +6201,22 @@ var $;
     ], $my_toys.prototype, "Catalog", null);
     __decorate([
         $.$mol_mem_key()
-    ], $my_toys.prototype, "Toy_image", null);
-    __decorate([
-        $.$mol_mem_key()
     ], $my_toys.prototype, "Toy_title", null);
     __decorate([
         $.$mol_mem_key()
-    ], $my_toys.prototype, "Toy_popularity", null);
+    ], $my_toys.prototype, "Toy_image", null);
+    __decorate([
+        $.$mol_mem_key()
+    ], $my_toys.prototype, "Toy_price", null);
+    __decorate([
+        $.$mol_mem_key()
+    ], $my_toys.prototype, "Toy_size", null);
     __decorate([
         $.$mol_mem_key()
     ], $my_toys.prototype, "Toy_count", null);
+    __decorate([
+        $.$mol_mem_key()
+    ], $my_toys.prototype, "Toy_option", null);
     __decorate([
         $.$mol_mem_key()
     ], $my_toys.prototype, "Toy_card", null);
@@ -6230,13 +6257,12 @@ var $;
                     'espander': 'Эспандер "Могучее кольцо"',
                     'fan': 'Карманный вентилятор "Свежий бриз"',
                     'fan2': 'Карманный вентилятор "Быстрые лапки"',
-                    'blue-eli': 'Фигурки "Голубые ели"',
                     'cat-yeys': 'Мешочек "Кошачьи глазки"',
                     'lamp': 'Ночная лампа "Водоворот"',
                     'leg-massage': 'Массажёр для стоп "Ёжик"',
                     'pump': 'Велосипедный насос "Ручной мастер"',
                     'sleep-mask': 'Маска для сна "Глубойкий сон"',
-                    'vibre-phone': 'Виброколонка "Ко-ко-ко"',
+                    'vibre-phone': 'Виброколонка "Ко-ко-ко"'
                 };
             };
             $my_toys_toy.prototype.proto = function () {
@@ -6250,8 +6276,13 @@ var $;
                 if (next === void 0) { next = $my_toys_toy.protos()[this.proto()]; }
                 return next;
             };
-            $my_toys_toy.prototype.popularity = function () {
-                return Math.ceil(Math.random() * 100);
+            $my_toys_toy.prototype.size = function () {
+                var arr = ["XS", "S", "M", "L", "XL"];
+                var rang = Math.floor(Math.random() * arr.length);
+                return arr[rang];
+            };
+            $my_toys_toy.prototype.price = function () {
+                return Math.ceil(Math.random() * (5000 - 300) + 300);
             };
             $my_toys_toy.prototype.seed = function () {
                 return Math.ceil(1495357170 - Math.random() * 1000);
@@ -6272,7 +6303,7 @@ var $;
         ], $my_toys_toy.prototype, "title", null);
         __decorate([
             $.$mol_mem()
-        ], $my_toys_toy.prototype, "popularity", null);
+        ], $my_toys_toy.prototype, "price", null);
         __decorate([
             $.$mol_mem()
         ], $my_toys_toy.prototype, "seed", null);
@@ -6295,14 +6326,14 @@ var $;
                     length: this.toys_count(),
                 }).valueOf();
             };
-            $my_toys.prototype.popularity_average = function () {
+            $my_toys.prototype.size_average = function () {
                 var toys = this.toys();
-                var average = toys.reduce(function (average, toy) { return average + toy.popularity(); }, 0) / toys.length;
+                var average = toys.reduce(function (average, toy) { return average + toy.price(); }, 0) / toys.length;
                 return average;
             };
             $my_toys.prototype.toys_filtered = function () {
-                var average = this.popularity_average();
-                return this.toys().filter(function (toy) { return toy.popularity() >= average; });
+                var average = this.size_average();
+                return this.toys().filter(function (toy) { return toy.price() >= average; });
             };
             $my_toys.prototype.toy_cards = function () {
                 var _this = this;
@@ -6314,8 +6345,11 @@ var $;
             $my_toys.prototype.toy_title = function (id) {
                 return this.toy(id).title();
             };
-            $my_toys.prototype.toy_popularity = function (id) {
-                return this.toy(id).popularity();
+            $my_toys.prototype.toy_size = function (id) {
+                return this.toy(id).size();
+            };
+            $my_toys.prototype.toy_price = function (id) {
+                return this.toy(id).price();
             };
             $my_toys.prototype.toy_count = function (id) {
                 return this.toy(id).count();
@@ -6333,7 +6367,7 @@ var $;
         ], $my_toys.prototype, "toys", null);
         __decorate([
             $.$mol_mem()
-        ], $my_toys.prototype, "popularity_average", null);
+        ], $my_toys.prototype, "size_average", null);
         $mol.$my_toys = $my_toys;
     })($mol = $.$mol || ($.$mol = {}));
 })($ || ($ = {}));
