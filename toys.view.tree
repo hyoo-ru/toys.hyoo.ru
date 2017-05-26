@@ -1,7 +1,8 @@
 $my_toys_toy $mol_object
 	image \
 	title \
-	popularity 0
+	size \
+	price 0
 	count 0
 	id \
 
@@ -34,23 +35,30 @@ $my_toys $mol_book
 				<= Goods $mol_row
 					sub <= toy_cards /
 	Toy_card!id $mol_link
-		minimal_width 256
+		minimal_width 156
+		minimal_height 156
 		arg <= toy_arg!id *
 		sub /
+			<= Toy_title!id $mol_view
+				sub /
+					<= toy_title!id \
 			<= Toy_image!id $mol_image
 				uri <= toy_image!id \
 				- style *
 					filter \hue-rotate(50deg)
-			<= Toy_title!id $mol_view
-				sub /
-					<= toy_title!id \
-			<= Toy_popularity!id $mol_view
-				sub /
-					<= toy_popularity_prefix @ \Popularity: 
-					<= toy_popularity!id 0
-			<= Toy_count!id $mol_view
-				sub /
-					<= toy_count_prefix @ \Selled: 
-					<= toy_count!id 0
+			<= Toy_option!id $mol_view
+				sub /				
+					<= Toy_price!id $mol_view
+						sub /
+							<= toy_price!id 0
+							<= toy_price_suffix @ \₽
+					<= Toy_size!id $mol_view
+						sub /
+							<= toy_size_prefix @ \Size: 
+							<= toy_size!id \
+					<= Toy_count!id $mol_view
+						sub /
+							<= toy_count_prefix @ \Selled: 
+							<= toy_count!id 0
 	toy!id $my_toys_toy
 		id <= toy_id!id \

@@ -44,8 +44,8 @@
 [mol_view][mol_view_error="$mol_atom_wait"] {
     background-image: repeating-linear-gradient(
 		45deg,
-		rgba(204, 102, 170, 0.025),
-		rgba(204, 102, 170, 0.025) 9px,
+		rgba(102, 144, 204, 0.025),
+		rgba(102, 144, 204, 0.025) 9px,
 		rgba(255, 255, 255, .015) 10px,
 		rgba(255, 255, 255, .015) 20px
 	);
@@ -230,8 +230,8 @@
     color: rgba(0, 0, 0, .9)
 }
 [mol_button_major] {
-    background-color: rgb(133, 214, 92);
-    color: rgb(253, 251, 254);
+    background-color: rgb(214, 92, 102);
+    color: rgb(251, 254, 254);
     box-shadow: 0 0 0 1px rgba(230, 230, 230, .75)
 }
 [mol_button_danger] {
@@ -253,7 +253,7 @@
     box-shadow: 0 0 0 1px rgba(0, 0, 0, .2)
 }
 [mol_button_major]:hover {
-    background-color: rgb(117, 209, 71)
+    background-color: rgb(209, 71, 83)
 }
 [mol_button_danger]:hover {
     background-color: rgba(255, 26, 26, 0.75)
@@ -461,8 +461,8 @@
     color: rgba(0, 0, 0, .9)
 }
 [mol_page_head] {
-    background: hsl(320, 50%, 60%);
-    color: rgb(254, 251, 253);
+    background: hsl(215, 50%, 60%);
+    color: rgb(251, 252, 254);
     display: flex;
     justify-content: space-between;
     flex: 0 0 auto;
@@ -479,8 +479,8 @@
     margin: 0
 }
 [mol_page_foot] {
-    background: hsl(320, 50%, 60%);
-    color: rgb(254, 251, 253);
+    background: hsl(215, 50%, 60%);
+    color: rgb(251, 252, 254);
     display: flex;
     justify-content: space-between;
     flex: 0 0 auto;
@@ -496,7 +496,7 @@
 }
 [mol_link] {
     text-decoration: none;
-    color: hsl(320, 50%, 60%);
+    color: hsl(215, 50%, 60%);
     cursor: pointer;
     border-radius: 2px;
     padding: .5rem;
@@ -510,7 +510,7 @@
     box-shadow: 0 0 0 1px var(--mol_skin_hover_line)
 }
 [mol_link_current] {
-    background-color: rgb(209, 71, 163);
+    background-color: rgb(71, 129, 209);
     color: white
 }
 [mol_link]:focus {
@@ -535,18 +535,39 @@
 [my_toys_toy_card] {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-end;
     flex: 1 1 16rem;
-    margin: 0
+    margin: .5rem 0
 }
 [my_toys_toy_image] {
-    width: 10%
+    width: 8rem;
+    margin-right: 1rem
 }
-[my_toys_toy_title] ,
-[my_toys_toy_popularity] ,
+[my_toys_toy_title] {
+    width: 100%;
+    margin-bottom: .2rem
+}
+[my_toys_toy_option] {
+    display: flex;
+    flex-direction: column
+}
+[my_toys_toy_buy_button] {
+    width: 8rem;
+    padding: .2rem 0;
+    margin: .5rem 0
+}
+[my_toys_toy_price] {
+    font-size: 1.4em;
+    margin: 1rem 0
+}
 [my_toys_toy_count] {
-    margin: .25rem 0 0;
-    display: block
+    font-size: .8em
+}
+[my_toys_toy_size],
+[my_toys_toy_count] {
+    margin: .2rem 0
 }
 
 /*# sourceMappingURL=web.css.map */

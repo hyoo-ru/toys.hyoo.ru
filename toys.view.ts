@@ -6,14 +6,13 @@ namespace $.$mol {
 			return {
 				'espander' : 'Эспандер "Могучее кольцо"' , 
 				'fan' : 'Карманный вентилятор "Свежий бриз"' , 
-				'fan2' : 'Карманный вентилятор "Быстрые лапки"' , 
-				'blue-eli' : 'Фигурки "Голубые ели"' , 
+				'fan2' : 'Карманный вентилятор "Быстрые лапки"' ,
 				'cat-yeys' : 'Мешочек "Кошачьи глазки"' ,
 				'lamp' : 'Ночная лампа "Водоворот"' ,
 				'leg-massage' : 'Массажёр для стоп "Ёжик"' ,
 				'pump' : 'Велосипедный насос "Ручной мастер"' ,
 				'sleep-mask' : 'Маска для сна "Глубойкий сон"' ,
-				'vibre-phone' : 'Виброколонка "Ко-ко-ко"' ,
+				'vibre-phone' : 'Виброколонка "Ко-ко-ко"'
 			}
 		}
 		
@@ -32,9 +31,15 @@ namespace $.$mol {
 			return next
 		}
 		
+		size() {
+			var arr = ["XS","S","M","L","XL"]
+			var rang = Math.floor(Math.random() * arr.length)
+			return arr[rang]
+		}
+
 		@ $mol_mem()
-		popularity() {
-			return Math.ceil( Math.random() * 100 )
+		price() {
+			return Math.ceil( Math.random() * (5000 - 300 ) + 300 )
 		}
 		
 		@ $mol_mem()
@@ -64,17 +69,17 @@ namespace $.$mol {
 		}
 		
 		@ $mol_mem()
-		popularity_average() {
+		size_average() {
 			const toys = this.toys()
 			
-			const average = toys.reduce( ( average , toy )=> average + toy.popularity() , 0 ) / toys.length
+			const average = toys.reduce( ( average , toy )=> average + toy.price() , 0 ) / toys.length
 			
 			return average
 		}
 		
 		toys_filtered() {
-			const average = this.popularity_average()
-			return this.toys().filter( toy => toy.popularity() >= average )
+			const average = this.size_average()
+			return this.toys().filter( toy => toy.price() >= average )
 		}
 		
 		toy_cards() {
@@ -89,8 +94,12 @@ namespace $.$mol {
 			return this.toy( id ).title()
 		}
 		
-		toy_popularity( id : string ) {
-			return this.toy( id ).popularity()
+		toy_size( id : string ) {
+			return this.toy( id ).size()
+		}
+
+		toy_price( id : string ) {
+			return this.toy( id ).price()
 		}
 		
 		toy_count( id : string ) {
