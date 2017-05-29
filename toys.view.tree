@@ -39,26 +39,28 @@ $my_toys $mol_book
 		minimal_height 156
 		arg <= toy_arg!id *
 		sub /
+			<= Toy_option!id $mol_view
+				sub /
+					<= Toy_image!id $mol_image
+						uri <= toy_image!id \
+						- style *
+							filter \hue-rotate(50deg)
+					<= Toy_detail!id $mol_view
+						sub /
+							<= Toy_price!id $mol_view
+								sub /
+									<= toy_price!id 0
+									<= toy_price_suffix @ \₽
+							<= Toy_size!id $mol_view
+								sub /
+									<= toy_size_prefix @ \Size: 
+									<= toy_size!id \
+							<= Toy_count!id $mol_view
+								sub /
+									<= toy_count_prefix @ \Selled: 
+									<= toy_count!id 0
 			<= Toy_title!id $mol_view
 				sub /
 					<= toy_title!id \
-			<= Toy_image!id $mol_image
-				uri <= toy_image!id \
-				- style *
-					filter \hue-rotate(50deg)
-			<= Toy_option!id $mol_view
-				sub /				
-					<= Toy_price!id $mol_view
-						sub /
-							<= toy_price!id 0
-							<= toy_price_suffix @ \₽
-					<= Toy_size!id $mol_view
-						sub /
-							<= toy_size_prefix @ \Size: 
-							<= toy_size!id \
-					<= Toy_count!id $mol_view
-						sub /
-							<= toy_count_prefix @ \Selled: 
-							<= toy_count!id 0
 	toy!id $my_toys_toy
 		id <= toy_id!id \
