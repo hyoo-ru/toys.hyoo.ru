@@ -6137,10 +6137,16 @@ var $;
                 obj.sub = function () { return [].concat(_this.toy_count_prefix(), _this.toy_count(id)); };
             });
         };
-        $my_toys.prototype.Toy_option = function (id) {
+        $my_toys.prototype.Toy_detail = function (id) {
             var _this = this;
             return new $.$mol_view().setup(function (obj) {
                 obj.sub = function () { return [].concat(_this.Toy_price(id), _this.Toy_size(id), _this.Toy_count(id)); };
+            });
+        };
+        $my_toys.prototype.Toy_option = function (id) {
+            var _this = this;
+            return new $.$mol_view().setup(function (obj) {
+                obj.sub = function () { return [].concat(_this.Toy_image(id), _this.Toy_detail(id)); };
             });
         };
         $my_toys.prototype.toy_title = function (id) {
@@ -6158,7 +6164,7 @@ var $;
                 obj.minimal_width = function () { return 156; };
                 obj.minimal_height = function () { return 156; };
                 obj.arg = function () { return _this.toy_arg(id); };
-                obj.sub = function () { return [].concat(_this.Toy_image(id), _this.Toy_option(id), _this.Toy_title(id)); };
+                obj.sub = function () { return [].concat(_this.Toy_option(id), _this.Toy_title(id)); };
             });
         };
         $my_toys.prototype.toy_id = function (id) {
@@ -6211,6 +6217,9 @@ var $;
     __decorate([
         $.$mol_mem_key()
     ], $my_toys.prototype, "Toy_count", null);
+    __decorate([
+        $.$mol_mem_key()
+    ], $my_toys.prototype, "Toy_detail", null);
     __decorate([
         $.$mol_mem_key()
     ], $my_toys.prototype, "Toy_option", null);
