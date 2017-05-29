@@ -2,18 +2,11 @@ namespace $.$mol {
 
 	export class $my_toys_toy extends  $.$my_toys_toy {
 		
+		@ $mol_mem()
 		static protos() {
-			return {
-				'espander' : 'Эспандер "Могучее кольцо"' , 
-				'fan' : 'Карманный вентилятор "Свежий бриз"' , 
-				'fan2' : 'Карманный вентилятор "Быстрые лапки"' ,
-				'cat-yeys' : 'Мешочек "Кошачьи глазки"' ,
-				'lamp' : 'Ночная лампа "Водоворот"' ,
-				'leg-massage' : 'Массажёр для стоп "Ёжик"' ,
-				'pump' : 'Велосипедный насос "Ручной мастер"' ,
-				'sleep-mask' : 'Маска для сна "Глубойкий сон"' ,
-				'vibre-phone' : 'Виброколонка "Ко-ко-ко"'
-			}
+			var prod_date = $mol_http_resource.item( 'toys.json' ).text()
+			var prod = JSON.parse(prod_date)
+			return prod
 		}
 		
 		@ $mol_mem()
@@ -22,12 +15,17 @@ namespace $.$mol {
 		}
 		
 		@ $mol_mem()
-		image( next = `-/my/toys/thumbs/${ this.proto() }.jpg` ) {
+			image( next = `/my/toys/thumbs/${ this.proto() }.jpg` ) {
 			return next
 		}
 		
 		@ $mol_mem()
-		title( next = $my_toys_toy.protos()[ this.proto() ] ) {
+			title( next = $my_toys_toy.protos()[ this.proto() ].title ) {
+			return next
+		}
+
+		@ $mol_mem()
+			type( next = $my_toys_toy.protos()[ this.proto() ].type ) {
 			return next
 		}
 		
@@ -94,6 +92,10 @@ namespace $.$mol {
 			return this.toy( id ).title()
 		}
 		
+		toy_type( id : string ) {
+			return this.toy( id ).type()
+		}
+
 		toy_size( id : string ) {
 			return this.toy( id ).size()
 		}

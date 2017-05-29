@@ -1,6 +1,7 @@
 $my_toys_toy $mol_object
 	image \
 	title \
+	type \
 	size \
 	price 0
 	count 0
@@ -62,5 +63,9 @@ $my_toys $mol_book
 			<= Toy_title!id $mol_view
 				sub /
 					<= toy_title!id \
+			<= Toy_type!id $mol_view
+				sub /
+					<= toy_type!id \
+					
 	toy!id $my_toys_toy
 		id <= toy_id!id \

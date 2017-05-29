@@ -10,6 +10,11 @@ namespace $ { export class $my_toys_toy extends $mol_object {
 		return ""
 	}
 
+	/// type \
+	type() {
+		return ""
+	}
+
 	/// size \
 	size() {
 		return ""
@@ -263,6 +268,19 @@ namespace $ { export class $my_toys extends $mol_book {
 		} )
 	}
 
+	/// toy_type!id \
+	toy_type( id : any ) {
+		return ""
+	}
+
+	/// Toy_type!id $mol_view sub / <= toy_type!id
+	@ $mol_mem_key()
+	Toy_type( id : any ) {
+		return new $mol_view().setup( obj => {
+			obj.sub = () => [].concat( this.toy_type(id) )
+		} )
+	}
+
 	/// Toy_card!id $mol_link 
 	/// 	minimal_width 156
 	/// 	minimal_height 156
@@ -270,13 +288,14 @@ namespace $ { export class $my_toys extends $mol_book {
 	/// 	sub /
 	/// 		<= Toy_option!id
 	/// 		<= Toy_title!id
+	/// 		<= Toy_type!id
 	@ $mol_mem_key()
 	Toy_card( id : any ) {
 		return new $mol_link().setup( obj => { 
 			obj.minimal_width = () => 156
 			obj.minimal_height = () => 156
 			obj.arg = () => this.toy_arg(id)
-			obj.sub = () => [].concat( this.Toy_option(id) , this.Toy_title(id) )
+			obj.sub = () => [].concat( this.Toy_option(id) , this.Toy_title(id) , this.Toy_type(id) )
 		} )
 	}
 

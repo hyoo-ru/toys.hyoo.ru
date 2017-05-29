@@ -5995,6 +5995,9 @@ var $;
         $my_toys_toy.prototype.title = function () {
             return "";
         };
+        $my_toys_toy.prototype.type = function () {
+            return "";
+        };
         $my_toys_toy.prototype.size = function () {
             return "";
         };
@@ -6158,13 +6161,22 @@ var $;
                 obj.sub = function () { return [].concat(_this.toy_title(id)); };
             });
         };
+        $my_toys.prototype.toy_type = function (id) {
+            return "";
+        };
+        $my_toys.prototype.Toy_type = function (id) {
+            var _this = this;
+            return new $.$mol_view().setup(function (obj) {
+                obj.sub = function () { return [].concat(_this.toy_type(id)); };
+            });
+        };
         $my_toys.prototype.Toy_card = function (id) {
             var _this = this;
             return new $.$mol_link().setup(function (obj) {
                 obj.minimal_width = function () { return 156; };
                 obj.minimal_height = function () { return 156; };
                 obj.arg = function () { return _this.toy_arg(id); };
-                obj.sub = function () { return [].concat(_this.Toy_option(id), _this.Toy_title(id)); };
+                obj.sub = function () { return [].concat(_this.Toy_option(id), _this.Toy_title(id), _this.Toy_type(id)); };
             });
         };
         $my_toys.prototype.toy_id = function (id) {
@@ -6228,6 +6240,9 @@ var $;
     ], $my_toys.prototype, "Toy_title", null);
     __decorate([
         $.$mol_mem_key()
+    ], $my_toys.prototype, "Toy_type", null);
+    __decorate([
+        $.$mol_mem_key()
     ], $my_toys.prototype, "Toy_card", null);
     __decorate([
         $.$mol_mem_key()
@@ -6262,27 +6277,23 @@ var $;
                 return _super !== null && _super.apply(this, arguments) || this;
             }
             $my_toys_toy.protos = function () {
-                return {
-                    'espander': 'Эспандер "Могучее кольцо"',
-                    'fan': 'Карманный вентилятор "Свежий бриз"',
-                    'fan2': 'Карманный вентилятор "Быстрые лапки"',
-                    'cat-yeys': 'Мешочек "Кошачьи глазки"',
-                    'lamp': 'Ночная лампа "Водоворот"',
-                    'leg-massage': 'Массажёр для стоп "Ёжик"',
-                    'pump': 'Велосипедный насос "Ручной мастер"',
-                    'sleep-mask': 'Маска для сна "Глубойкий сон"',
-                    'vibre-phone': 'Виброколонка "Ко-ко-ко"'
-                };
+                var prod_date = $.$mol_http_resource.item('toys.json').text();
+                var prod = JSON.parse(prod_date);
+                return prod;
             };
             $my_toys_toy.prototype.proto = function () {
                 return $.$mol_stub_select_random(Object.keys($my_toys_toy.protos()));
             };
             $my_toys_toy.prototype.image = function (next) {
-                if (next === void 0) { next = "-/my/toys/thumbs/" + this.proto() + ".jpg"; }
+                if (next === void 0) { next = "/my/toys/thumbs/" + this.proto() + ".jpg"; }
                 return next;
             };
             $my_toys_toy.prototype.title = function (next) {
-                if (next === void 0) { next = $my_toys_toy.protos()[this.proto()]; }
+                if (next === void 0) { next = $my_toys_toy.protos()[this.proto()].title; }
+                return next;
+            };
+            $my_toys_toy.prototype.type = function (next) {
+                if (next === void 0) { next = $my_toys_toy.protos()[this.proto()].type; }
                 return next;
             };
             $my_toys_toy.prototype.size = function () {
@@ -6312,6 +6323,9 @@ var $;
         ], $my_toys_toy.prototype, "title", null);
         __decorate([
             $.$mol_mem()
+        ], $my_toys_toy.prototype, "type", null);
+        __decorate([
+            $.$mol_mem()
         ], $my_toys_toy.prototype, "price", null);
         __decorate([
             $.$mol_mem()
@@ -6319,6 +6333,9 @@ var $;
         __decorate([
             $.$mol_mem()
         ], $my_toys_toy.prototype, "count", null);
+        __decorate([
+            $.$mol_mem()
+        ], $my_toys_toy, "protos", null);
         $mol.$my_toys_toy = $my_toys_toy;
         var $my_toys = (function (_super) {
             __extends($my_toys, _super);
@@ -6353,6 +6370,9 @@ var $;
             };
             $my_toys.prototype.toy_title = function (id) {
                 return this.toy(id).title();
+            };
+            $my_toys.prototype.toy_type = function (id) {
+                return this.toy(id).type();
             };
             $my_toys.prototype.toy_size = function (id) {
                 return this.toy(id).size();
