@@ -6092,15 +6092,6 @@ var $;
         $my_toys.prototype.toy_arg = function (id) {
             return ({});
         };
-        $my_toys.prototype.toy_title = function (id) {
-            return "";
-        };
-        $my_toys.prototype.Toy_title = function (id) {
-            var _this = this;
-            return new $.$mol_view().setup(function (obj) {
-                obj.sub = function () { return [].concat(_this.toy_title(id)); };
-            });
-        };
         $my_toys.prototype.toy_image = function (id) {
             return "";
         };
@@ -6152,13 +6143,22 @@ var $;
                 obj.sub = function () { return [].concat(_this.Toy_price(id), _this.Toy_size(id), _this.Toy_count(id)); };
             });
         };
+        $my_toys.prototype.toy_title = function (id) {
+            return "";
+        };
+        $my_toys.prototype.Toy_title = function (id) {
+            var _this = this;
+            return new $.$mol_view().setup(function (obj) {
+                obj.sub = function () { return [].concat(_this.toy_title(id)); };
+            });
+        };
         $my_toys.prototype.Toy_card = function (id) {
             var _this = this;
             return new $.$mol_link().setup(function (obj) {
                 obj.minimal_width = function () { return 156; };
                 obj.minimal_height = function () { return 156; };
                 obj.arg = function () { return _this.toy_arg(id); };
-                obj.sub = function () { return [].concat(_this.Toy_title(id), _this.Toy_image(id), _this.Toy_option(id)); };
+                obj.sub = function () { return [].concat(_this.Toy_image(id), _this.Toy_option(id), _this.Toy_title(id)); };
             });
         };
         $my_toys.prototype.toy_id = function (id) {
@@ -6201,9 +6201,6 @@ var $;
     ], $my_toys.prototype, "Catalog", null);
     __decorate([
         $.$mol_mem_key()
-    ], $my_toys.prototype, "Toy_title", null);
-    __decorate([
-        $.$mol_mem_key()
     ], $my_toys.prototype, "Toy_image", null);
     __decorate([
         $.$mol_mem_key()
@@ -6217,6 +6214,9 @@ var $;
     __decorate([
         $.$mol_mem_key()
     ], $my_toys.prototype, "Toy_option", null);
+    __decorate([
+        $.$mol_mem_key()
+    ], $my_toys.prototype, "Toy_title", null);
     __decorate([
         $.$mol_mem_key()
     ], $my_toys.prototype, "Toy_card", null);

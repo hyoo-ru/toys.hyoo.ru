@@ -154,19 +154,6 @@ namespace $ { export class $my_toys extends $mol_book {
 		})
 	}
 
-	/// toy_title!id \
-	toy_title( id : any ) {
-		return ""
-	}
-
-	/// Toy_title!id $mol_view sub / <= toy_title!id
-	@ $mol_mem_key()
-	Toy_title( id : any ) {
-		return new $mol_view().setup( obj => {
-			obj.sub = () => [].concat( this.toy_title(id) )
-		} )
-	}
-
 	/// toy_image!id \
 	toy_image( id : any ) {
 		return ""
@@ -253,21 +240,34 @@ namespace $ { export class $my_toys extends $mol_book {
 		} )
 	}
 
+	/// toy_title!id \
+	toy_title( id : any ) {
+		return ""
+	}
+
+	/// Toy_title!id $mol_view sub / <= toy_title!id
+	@ $mol_mem_key()
+	Toy_title( id : any ) {
+		return new $mol_view().setup( obj => {
+			obj.sub = () => [].concat( this.toy_title(id) )
+		} )
+	}
+
 	/// Toy_card!id $mol_link 
 	/// 	minimal_width 156
 	/// 	minimal_height 156
 	/// 	arg <= toy_arg!id 
 	/// 	sub /
-	/// 		<= Toy_title!id 
 	/// 		<= Toy_image!id
 	/// 		<= Toy_option!id
+	/// 		<= Toy_title!id
 	@ $mol_mem_key()
 	Toy_card( id : any ) {
 		return new $mol_link().setup( obj => { 
 			obj.minimal_width = () => 156
 			obj.minimal_height = () => 156
 			obj.arg = () => this.toy_arg(id)
-			obj.sub = () => [].concat( this.Toy_title(id) , this.Toy_image(id) , this.Toy_option(id) )
+			obj.sub = () => [].concat( this.Toy_image(id) , this.Toy_option(id) , this.Toy_title(id) )
 		} )
 	}
 
