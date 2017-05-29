@@ -101,7 +101,7 @@ namespace $.$mol {
 		}
 
 		toy_price( id : string ) {
-			return this.toy( id ).price()
+			return this.toy( id ).price().toLocaleString() + ' ₽'
 		}
 		
 		toy_count( id : string ) {

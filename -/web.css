@@ -539,13 +539,17 @@
     align-content: flex-start;
     flex: 1 1 16rem;
     margin: .5rem 0;
-    padding: .75rem
+    padding: .75rem;
+    flex-direction: column-reverse
 }
 [my_toys_toy_image] {
-    width: 5rem;
-    margin: .5rem 1rem 0 0
+    width: 4.5rem;
+    margin: 0px 1rem 0 0
 }
-[my_toys_toy_title] {}
+[my_toys_toy_title] {
+    width: 100%;
+    font-size: .8em
+}
 [my_toys_toy_option] {
     display: flex;
     flex-direction: row;
@@ -562,8 +566,6 @@
     font-size: .8em
 }
 [my_toys_toy_size],
-[my_toys_toy_count] {
-    margin: .2rem 0
-}
+[my_toys_toy_count] {}
 
 /*# sourceMappingURL=web.css.map */
