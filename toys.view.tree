@@ -1,6 +1,7 @@
 $my_toys_toy $mol_object
 	image \
 	title \
+	type \
 	size \
 	price 0
 	count 0
@@ -12,26 +13,57 @@ $my_toys $mol_book
 			title <= catalog_title @ \Toys
 			minimal_width 600
 			tools /
+				<= Show_tools $mol_check
+					sub /
+						<= Icon_chevron $mol_icon_chevron
 				- <= Catalog_close $mol_link
 					sub /
 						<= Catalog_close_icon $mol_icon_cross
 					arg *
 						catalog \hide
 			body /
-				<= Tools $mol_float
+				<= Tools_filter $mol_float
 					sub /
-						<= Tools_card $mol_card
+						<= Tools_cards $mol_card
 							sub /
 								<= Tools_row $mol_row
 									sub /
-										<= Filter_labeler $mol_labeler
-											title <= filter_label @ \Filter
-											Content <= Filter $mol_select
-												value \Популярное
-										<= Sort_labeler $mol_labeler
-											title <= sort_label @ \Sort
-											Content <= Sort $mol_select
-												value \По релевантности
+										<= Search $mol_search
+											query?val <=> filter?val \
+										<= Type $mol_select
+											value \Все типы
+											dictionary <= filter_type *
+												mass \Массажер
+												vibr \Виброколонка
+												vint \Винтилятор
+												shoes \Обувь
+												suit \Костюмы
+												lamp \Лампа
+												mesh \Мешок
+										<= Filter $mol_select
+											value \Размеры
+											dictionary <= filter_size *
+												xs \XS
+												s \S
+												m \M
+												l \L
+												xl \XL
+										<= Popular $mol_check_box
+											label / <= spam_label @ \Только популярное
+								<= Tools_sort $mol_row
+									sub /
+										<= Bar_sort $mol_bar
+											sub /
+												<= Sort_labeler $mol_select
+													value \По цене
+													dictionary <= sort_items *
+														price \По цене
+														size \По размеру
+														popular \По популярности
+														alphabet \По алфавиту
+												<= Sort_checkbox $mol_check
+													sub /
+														<= Icon $mol_icon_sort_asc
 				<= Goods $mol_row
 					sub <= toy_cards /
 	Toy_card!id $mol_link
@@ -39,6 +71,12 @@ $my_toys $mol_book
 		minimal_height 156
 		arg <= toy_arg!id *
 		sub /
+			<= Toy_title!id $mol_view
+				sub /
+					<= toy_title!id \
+			<= Toy_type!id $mol_view
+				sub /
+					<= toy_type!id \
 			<= Toy_option!id $mol_view
 				sub /
 					<= Toy_image!id $mol_image
@@ -49,8 +87,7 @@ $my_toys $mol_book
 						sub /
 							<= Toy_price!id $mol_view
 								sub /
-									<= toy_price!id 0
-									<= toy_price_suffix @ \₽
+									<= toy_price!id \
 							<= Toy_size!id $mol_view
 								sub /
 									<= toy_size_prefix @ \Size: 
@@ -59,8 +96,6 @@ $my_toys $mol_book
 								sub /
 									<= toy_count_prefix @ \Selled: 
 									<= toy_count!id 0
-			<= Toy_title!id $mol_view
-				sub /
-					<= toy_title!id \
+					
 	toy!id $my_toys_toy
 		id <= toy_id!id \

@@ -2,18 +2,11 @@ namespace $.$mol {
 
 	export class $my_toys_toy extends  $.$my_toys_toy {
 		
+		@ $mol_mem()
 		static protos() {
-			return {
-				'espander' : 'Эспандер "Могучее кольцо"' , 
-				'fan' : 'Карманный вентилятор "Свежий бриз"' , 
-				'fan2' : 'Карманный вентилятор "Быстрые лапки"' ,
-				'cat-yeys' : 'Мешочек "Кошачьи глазки"' ,
-				'lamp' : 'Ночная лампа "Водоворот"' ,
-				'leg-massage' : 'Массажёр для стоп "Ёжик"' ,
-				'pump' : 'Велосипедный насос "Ручной мастер"' ,
-				'sleep-mask' : 'Маска для сна "Глубойкий сон"' ,
-				'vibre-phone' : 'Виброколонка "Ко-ко-ко"'
-			}
+			var prod_date = $mol_http_resource.item( 'toys.json' ).text()
+			var prod = JSON.parse(prod_date)
+			return prod
 		}
 		
 		@ $mol_mem()
@@ -22,12 +15,17 @@ namespace $.$mol {
 		}
 		
 		@ $mol_mem()
-		image( next = `-/my/toys/thumbs/${ this.proto() }.jpg` ) {
+			image( next = `/my/toys/thumbs/${ this.proto() }.jpg` ) {
 			return next
 		}
 		
 		@ $mol_mem()
-		title( next = $my_toys_toy.protos()[ this.proto() ] ) {
+			title( next = $my_toys_toy.protos()[ this.proto() ].title ) {
+			return next
+		}
+
+		@ $mol_mem()
+			type( next = $my_toys_toy.protos()[ this.proto() ].type ) {
 			return next
 		}
 		
@@ -77,9 +75,37 @@ namespace $.$mol {
 			return average
 		}
 		
+//		@ $mol_mem()
+//		search() {
+//			const name_items = this.toys().type + this.toys().type
+//		}
+//
+//		@ $mol_mem()
+//		filter_price() {
+//			filter( next = (toy)=> {
+//			return toy.count() > 0
+//		}) {return next}
+//		}
+//
+//		price_up() {
+//			let price_up = this.toys().filter()
+//			return price_up
+//		}
+//
+//		price_down() {
+//
+//		}
+//
+//		price_popular() {
+//
+//		}
+
 		toys_filtered() {
-			const average = this.size_average()
-			return this.toys().filter( toy => toy.price() >= average )
+//			const average = this.size_average()
+//			return this.toys().filter( toy => toy.price() >= average )
+
+			let price_up = this.toys().sort()
+			return price_up
 		}
 		
 		toy_cards() {
@@ -94,12 +120,16 @@ namespace $.$mol {
 			return this.toy( id ).title()
 		}
 		
+		toy_type( id : string ) {
+			return this.toy( id ).type()
+		}
+
 		toy_size( id : string ) {
 			return this.toy( id ).size()
 		}
 
 		toy_price( id : string ) {
-			return this.toy( id ).price()
+			return this.toy( id ).price().toLocaleString() + ' ₽'
 		}
 		
 		toy_count( id : string ) {
