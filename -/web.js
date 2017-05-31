@@ -1599,10 +1599,10 @@ var $;
                 var rect = elem.getBoundingClientRect();
                 this.width(Math.round(rect.width));
                 this.height(Math.round(rect.height));
-                this.top(rect.top);
-                this.bottom(rect.bottom);
-                this.left(rect.left);
-                this.right(rect.right);
+                this.top(Math.round(rect.top));
+                this.bottom(Math.round(rect.bottom));
+                this.left(Math.round(rect.left));
+                this.right(Math.round(rect.right));
                 this.defer_task();
             };
             $mol_meter.prototype.destroyed = function (next) {
@@ -2901,13 +2901,16 @@ var $;
         $mol_check.prototype.Icon = function () {
             return null;
         };
+        $mol_check.prototype.title = function () {
+            return "";
+        };
         $mol_check.prototype.label = function () {
-            return [];
+            return [].concat(this.title());
         };
         $mol_check.prototype.Label = function () {
             var _this = this;
             return new $.$mol_view().setup(function (obj) {
-                obj.sub = function () { return [].concat(_this.label()); };
+                obj.sub = function () { return _this.label(); };
             });
         };
         $mol_check.prototype.sub = function () {
@@ -2947,6 +2950,12 @@ var $;
             $mol_check.prototype.event_click = function (next) {
                 this.checked(!this.checked());
                 next.preventDefault();
+            };
+            $mol_check.prototype.sub = function () {
+                return [
+                    this.Icon(),
+                    this.label().some(function (item) { return item; }) ? this.Label() : null,
+                ];
             };
             return $mol_check;
         }($.$mol_check));
@@ -3183,8 +3192,8 @@ var $;
                 this.moving_task_stop();
                 new $.$mol_defer(function () {
                     var el = _this.dom_node();
-                    var top = Math.max(0, el.scrollTop);
-                    var left = Math.max(0, el.scrollLeft);
+                    var top = Math.max(0, Math.round(el.scrollTop));
+                    var left = Math.max(0, Math.round(el.scrollLeft));
                     _this.scroll_top(top);
                     _this.scroll_left(left);
                     _this.scroll_bottom(Math.max(0, el.scrollHeight - top - el.offsetHeight));
@@ -4897,8 +4906,14 @@ var $;
         $mol_page.prototype.tools = function () {
             return [];
         };
+        $mol_page.prototype.Tools = function () {
+            var _this = this;
+            return new $.$mol_view().setup(function (obj) {
+                obj.sub = function () { return _this.tools(); };
+            });
+        };
         $mol_page.prototype.head = function () {
-            return [].concat(this.Title(), this.tools());
+            return [].concat(this.Title(), this.Tools());
         };
         $mol_page.prototype.Head = function () {
             var _this = this;
@@ -4938,6 +4953,9 @@ var $;
     ], $mol_page.prototype, "Title", null);
     __decorate([
         $.$mol_mem()
+    ], $mol_page.prototype, "Tools", null);
+    __decorate([
+        $.$mol_mem()
     ], $mol_page.prototype, "Head", null);
     __decorate([
         $.$mol_mem()
@@ -4973,6 +4991,12 @@ var $;
             }
             $mol_page.prototype.body_scroll_top = function (next) {
                 return $.$mol_state_session.value(this + ".body_scroll_top()", next) || 0;
+            };
+            $mol_page.prototype.head = function () {
+                return [
+                    this.title() ? this.Title() : null,
+                    this.tools().length > 0 ? this.Tools() : null,
+                ];
             };
             return $mol_page;
         }($.$mol_page));
@@ -6670,7 +6694,7 @@ var $;
                 return $.$mol_stub_select_random(Object.keys($my_toys_toy.protos()));
             };
             $my_toys_toy.prototype.image = function (next) {
-                if (next === void 0) { next = "/my/toys/thumbs/" + this.proto() + ".jpg"; }
+                if (next === void 0) { next = "-/my/toys/thumbs/" + this.proto() + ".jpg"; }
                 return next;
             };
             $my_toys_toy.prototype.title = function (next) {
