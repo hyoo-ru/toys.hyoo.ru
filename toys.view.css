@@ -65,7 +65,6 @@
 
 [my_toys_show_tools] {
 	transform: rotate(90deg);
-	padding: 1rem;
 }
 
 [my_toys_tools_row] {
@@ -88,7 +87,4 @@
 	margin: 0;
 }
 
-[my_toys_popular] {
-	margin: 0;
-}
 
