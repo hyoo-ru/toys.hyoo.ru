@@ -75,9 +75,37 @@ namespace $.$mol {
 			return average
 		}
 		
+//		@ $mol_mem()
+//		search() {
+//			const name_items = this.toys().type + this.toys().type
+//		}
+//
+//		@ $mol_mem()
+//		filter_price() {
+//			filter( next = (toy)=> {
+//			return toy.count() > 0
+//		}) {return next}
+//		}
+//
+//		price_up() {
+//			let price_up = this.toys().filter()
+//			return price_up
+//		}
+//
+//		price_down() {
+//
+//		}
+//
+//		price_popular() {
+//
+//		}
+
 		toys_filtered() {
-			const average = this.size_average()
-			return this.toys().filter( toy => toy.price() >= average )
+//			const average = this.size_average()
+//			return this.toys().filter( toy => toy.price() >= average )
+
+			let price_up = this.toys().sort()
+			return price_up
 		}
 		
 		toy_cards() {

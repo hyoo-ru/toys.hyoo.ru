@@ -44,77 +44,189 @@ namespace $ { export class $my_toys extends $mol_book {
 		return $mol_locale.text( this.locale_contexts() , "catalog_title" )
 	}
 
-	/// filter_label @ \Filter
-	filter_label() {
-		return $mol_locale.text( this.locale_contexts() , "filter_label" )
+	/// Icon_chevron $mol_icon_chevron
+	@ $mol_mem()
+	Icon_chevron() {
+		return new $mol_icon_chevron()
 	}
 
-	/// Filter $mol_select value \Популярное
+	/// Show_tools $mol_check sub / <= Icon_chevron
+	@ $mol_mem()
+	Show_tools() {
+		return new $mol_check().setup( obj => {
+			obj.sub = () => [].concat( this.Icon_chevron() )
+		} )
+	}
+
+	/// filter?val \
+	@ $mol_mem()
+	filter( val? : any , force? : $mol_atom_force ) {
+		return ( val !== void 0 ) ? val : ""
+	}
+
+	/// Search $mol_search query?val <=> filter?val
+	@ $mol_mem()
+	Search() {
+		return new $mol_search().setup( obj => {
+			obj.query = ( val? : any ) => this.filter( val )
+		} )
+	}
+
+	/// filter_type *
+	/// 	mass \Массажер
+	/// 	vibr \Виброколонка
+	/// 	vint \Винтилятор
+	/// 	shoes \Обувь
+	/// 	suit \Костюмы
+	/// 	lamp \Лампа
+	/// 	mesh \Мешок
+	filter_type() {
+		return ({
+			"mass" :  "Массажер" ,
+			"vibr" :  "Виброколонка" ,
+			"vint" :  "Винтилятор" ,
+			"shoes" :  "Обувь" ,
+			"suit" :  "Костюмы" ,
+			"lamp" :  "Лампа" ,
+			"mesh" :  "Мешок" ,
+		})
+	}
+
+	/// Type $mol_select
+	/// 	value \Все типы
+	/// 	dictionary <= filter_type
+	@ $mol_mem()
+	Type() {
+		return new $mol_select().setup( obj => { 
+			obj.value = () => "Все типы"
+			obj.dictionary = () => this.filter_type()
+		} )
+	}
+
+	/// filter_size *
+	/// 	xs \XS
+	/// 	s \S
+	/// 	m \M
+	/// 	l \L
+	/// 	xl \XL
+	filter_size() {
+		return ({
+			"xs" :  "XS" ,
+			"s" :  "S" ,
+			"m" :  "M" ,
+			"l" :  "L" ,
+			"xl" :  "XL" ,
+		})
+	}
+
+	/// Filter $mol_select
+	/// 	value \Размеры
+	/// 	dictionary <= filter_size
 	@ $mol_mem()
 	Filter() {
-		return new $mol_select().setup( obj => { 
-			obj.value = () => "Популярное"
+		return new $mol_select().setup( obj => {
+			obj.value = () => "Размеры"
+			obj.dictionary = () => this.filter_size()
 		} )
 	}
 
-	/// Filter_labeler $mol_labeler 
-	/// 	title <= filter_label 
-	/// 	Content <= Filter
-	@ $mol_mem()
-	Filter_labeler() {
-		return new $mol_labeler().setup( obj => { 
-			obj.title = () => this.filter_label()
-			obj.Content = () => this.Filter()
-		} )
+	/// spam_label @ \Только популярное
+	spam_label() {
+		return $mol_locale.text( this.locale_contexts() , "spam_label" )
 	}
 
-	/// sort_label @ \Sort
-	sort_label() {
-		return $mol_locale.text( this.locale_contexts() , "sort_label" )
-	}
-
-	/// Sort $mol_select value \По релевантности
+	/// Popular $mol_check_box label / <= spam_label
 	@ $mol_mem()
-	Sort() {
-		return new $mol_select().setup( obj => { 
-			obj.value = () => "По релевантности"
-		} )
-	}
-
-	/// Sort_labeler $mol_labeler 
-	/// 	title <= sort_label 
-	/// 	Content <= Sort
-	@ $mol_mem()
-	Sort_labeler() {
-		return new $mol_labeler().setup( obj => { 
-			obj.title = () => this.sort_label()
-			obj.Content = () => this.Sort()
+	Popular() {
+		return new $mol_check_box().setup( obj => {
+			obj.label = () => [].concat( this.spam_label() )
 		} )
 	}
 
 	/// Tools_row $mol_row sub / 
-	/// 	<= Filter_labeler 
-	/// 	<= Sort_labeler
+	/// 	<= Search
+	/// 	<= Type
+	/// 	<= Filter
+	/// 	<= Popular
 	@ $mol_mem()
 	Tools_row() {
 		return new $mol_row().setup( obj => { 
-			obj.sub = () => [].concat( this.Filter_labeler() , this.Sort_labeler() )
+			obj.sub = () => [].concat( this.Search() , this.Type() , this.Filter() , this.Popular() )
 		} )
 	}
 
-	/// Tools_card $mol_card sub / <= Tools_row
+	/// sort_items *
+	/// 	price \По цене
+	/// 	size \По размеру
+	/// 	popular \По популярности
+	/// 	alphabet \По алфавиту
+	sort_items() {
+		return ({
+			"price" :  "По цене" ,
+			"size" :  "По размеру" ,
+			"popular" :  "По популярности" ,
+			"alphabet" :  "По алфавиту" ,
+		})
+	}
+
+	/// Sort_labeler $mol_select
+	/// 	value \По цене
+	/// 	dictionary <= sort_items
 	@ $mol_mem()
-	Tools_card() {
+	Sort_labeler() {
+		return new $mol_select().setup( obj => {
+			obj.value = () => "По цене"
+			obj.dictionary = () => this.sort_items()
+		} )
+	}
+
+	/// Icon $mol_icon_sort_asc
+	@ $mol_mem()
+	Icon() {
+		return new $mol_icon_sort_asc()
+	}
+
+	/// Sort_checkbox $mol_check sub / <= Icon
+	@ $mol_mem()
+	Sort_checkbox() {
+		return new $mol_check().setup( obj => {
+			obj.sub = () => [].concat( this.Icon() )
+		} )
+	}
+
+	/// Bar_sort $mol_bar sub /
+	/// 	<= Sort_labeler
+	/// 	<= Sort_checkbox
+	@ $mol_mem()
+	Bar_sort() {
+		return new $mol_bar().setup( obj => {
+			obj.sub = () => [].concat( this.Sort_labeler() , this.Sort_checkbox() )
+		} )
+	}
+
+	/// Tools_sort $mol_row sub / <= Bar_sort
+	@ $mol_mem()
+	Tools_sort() {
+		return new $mol_row().setup( obj => {
+			obj.sub = () => [].concat( this.Bar_sort() )
+		} )
+	}
+
+	/// Tools_cards $mol_card sub /
+	/// 	<= Tools_row
+	/// 	<= Tools_sort
+	@ $mol_mem()
+	Tools_cards() {
 		return new $mol_card().setup( obj => { 
-			obj.sub = () => [].concat( this.Tools_row() )
+			obj.sub = () => [].concat( this.Tools_row() , this.Tools_sort() )
 		} )
 	}
 
-	/// Tools $mol_float sub / <= Tools_card
+	/// Tools_filter $mol_float sub / <= Tools_cards
 	@ $mol_mem()
-	Tools() {
+	Tools_filter() {
 		return new $mol_float().setup( obj => { 
-			obj.sub = () => [].concat( this.Tools_card() )
+			obj.sub = () => [].concat( this.Tools_cards() )
 		} )
 	}
 
@@ -134,17 +246,19 @@ namespace $ { export class $my_toys extends $mol_book {
 	/// Catalog $mol_page 
 	/// 	title <= catalog_title 
 	/// 	minimal_width 600 
-	/// 	tools / - <= Catalog_close 
+	/// 	tools /
+	/// 		<= Show_tools
+	/// 		- <= Catalog_close
 	/// 	body / 
-	/// 		<= Tools 
+	/// 		<= Tools_filter
 	/// 		<= Goods
 	@ $mol_mem()
 	Catalog() {
 		return new $mol_page().setup( obj => { 
 			obj.title = () => this.catalog_title()
 			obj.minimal_width = () => 600
-			obj.tools = () => [] as any[]
-			obj.body = () => [].concat( this.Tools() , this.Goods() )
+			obj.tools = () => [].concat( this.Show_tools() )
+			obj.body = () => [].concat( this.Tools_filter() , this.Goods() )
 		} )
 	}
 
