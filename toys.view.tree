@@ -50,8 +50,6 @@ $my_toys $mol_book
 												xl \XL
 										<= Popular $mol_check_box
 											label / <= spam_label @ \Только популярное
-								<= Tools_sort $mol_row
-									sub /
 										<= Bar_sort $mol_bar
 											sub /
 												<= Sort_labeler $mol_select

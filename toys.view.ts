@@ -4,7 +4,7 @@ namespace $.$mol {
 		
 		@ $mol_mem()
 		static protos() {
-			var prod_date = $mol_http_resource.item( 'toys.json' ).text()
+			var prod_date = $mol_http.resource( '-/my/toys/toys.json' ).json()
 			var prod = JSON.parse(prod_date)
 			return prod
 		}
@@ -15,17 +15,17 @@ namespace $.$mol {
 		}
 		
 		@ $mol_mem()
-			image( next = `-/my/toys/thumbs/${ this.proto() }.jpg` ) {
+		image( next = `-/my/toys/thumbs/${ this.proto() }.jpg` ) {
 			return next
 		}
 		
 		@ $mol_mem()
-			title( next = $my_toys_toy.protos()[ this.proto() ].title ) {
+		title( next = $my_toys_toy.protos()[ this.proto() ].title ) {
 			return next
 		}
 
 		@ $mol_mem()
-			type( next = $my_toys_toy.protos()[ this.proto() ].type ) {
+		type( next = $my_toys_toy.protos()[ this.proto() ].type ) {
 			return next
 		}
 		

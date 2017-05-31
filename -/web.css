@@ -611,6 +611,7 @@
 }
 [my_toys_toy_image] {
     width: 4.5rem;
+    width: 50%;
     margin: 0px 1rem 0 0
 }
 [my_toys_toy_title] {
@@ -641,15 +642,17 @@
 [my_toys_tools_row] {
     flex: 1 1 auto;
     margin: 0;
-    box-shadow: none
+    box-shadow: none;
+    display: flex
 }
-[my_toys_tools_sort] {
+[my_toys_bar_sort] {
     flex: 0 0 auto;
-    margin: 0;
-    box-shadow: none
+    margin-left: auto;
+    box-shadow: none;
+    display: flex
 }
 [my_toys_tools_cards] {
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
     padding: 0;

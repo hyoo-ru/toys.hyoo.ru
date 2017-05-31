@@ -143,18 +143,6 @@ namespace $ { export class $my_toys extends $mol_book {
 		} )
 	}
 
-	/// Tools_row $mol_row sub / 
-	/// 	<= Search
-	/// 	<= Type
-	/// 	<= Filter
-	/// 	<= Popular
-	@ $mol_mem()
-	Tools_row() {
-		return new $mol_row().setup( obj => { 
-			obj.sub = () => [].concat( this.Search() , this.Type() , this.Filter() , this.Popular() )
-		} )
-	}
-
 	/// sort_items *
 	/// 	price \По цене
 	/// 	size \По размеру
@@ -204,21 +192,24 @@ namespace $ { export class $my_toys extends $mol_book {
 		} )
 	}
 
-	/// Tools_sort $mol_row sub / <= Bar_sort
+	/// Tools_row $mol_row sub /
+	/// 	<= Search
+	/// 	<= Type
+	/// 	<= Filter
+	/// 	<= Popular
+	/// 	<= Bar_sort
 	@ $mol_mem()
-	Tools_sort() {
+	Tools_row() {
 		return new $mol_row().setup( obj => {
-			obj.sub = () => [].concat( this.Bar_sort() )
+			obj.sub = () => [].concat( this.Search() , this.Type() , this.Filter() , this.Popular() , this.Bar_sort() )
 		} )
 	}
 
-	/// Tools_cards $mol_card sub /
-	/// 	<= Tools_row
-	/// 	<= Tools_sort
+	/// Tools_cards $mol_card sub / <= Tools_row
 	@ $mol_mem()
 	Tools_cards() {
 		return new $mol_card().setup( obj => { 
-			obj.sub = () => [].concat( this.Tools_row() , this.Tools_sort() )
+			obj.sub = () => [].concat( this.Tools_row() )
 		} )
 	}
 

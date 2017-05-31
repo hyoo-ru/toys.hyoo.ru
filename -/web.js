@@ -4548,6 +4548,32 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var $;
+(function ($) {
+    var $mol_icon_sort_asc = (function (_super) {
+        __extends($mol_icon_sort_asc, _super);
+        function $mol_icon_sort_asc() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        $mol_icon_sort_asc.prototype.path = function () {
+            return "M10,11V13H18V11H10M10,5V7H14V5H10M10,17V19H22V17H10M6,7H8.5L5,3.5L1.5,7H4V20H6V7Z";
+        };
+        return $mol_icon_sort_asc;
+    }($.$mol_icon));
+    $.$mol_icon_sort_asc = $mol_icon_sort_asc;
+})($ || ($ = {}));
+//asc.view.tree.js.map
+;
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __assign = (this && this.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -4668,32 +4694,6 @@ var $;
     })($mol = $.$mol || ($.$mol = {}));
 })($ || ($ = {}));
 //row.view.js.map
-;
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var $;
-(function ($) {
-    var $mol_icon_sort_asc = (function (_super) {
-        __extends($mol_icon_sort_asc, _super);
-        function $mol_icon_sort_asc() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        $mol_icon_sort_asc.prototype.path = function () {
-            return "M10,11V13H18V11H10M10,5V7H14V5H10M10,17V19H22V17H10M6,7H8.5L5,3.5L1.5,7H4V20H6V7Z";
-        };
-        return $mol_icon_sort_asc;
-    }($.$mol_icon));
-    $.$mol_icon_sort_asc = $mol_icon_sort_asc;
-})($ || ($ = {}));
-//asc.view.tree.js.map
 ;
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -6405,12 +6405,6 @@ var $;
                 obj.label = function () { return [].concat(_this.spam_label()); };
             });
         };
-        $my_toys.prototype.Tools_row = function () {
-            var _this = this;
-            return new $.$mol_row().setup(function (obj) {
-                obj.sub = function () { return [].concat(_this.Search(), _this.Type(), _this.Filter(), _this.Popular()); };
-            });
-        };
         $my_toys.prototype.sort_items = function () {
             return ({
                 "price": "По цене",
@@ -6441,16 +6435,16 @@ var $;
                 obj.sub = function () { return [].concat(_this.Sort_labeler(), _this.Sort_checkbox()); };
             });
         };
-        $my_toys.prototype.Tools_sort = function () {
+        $my_toys.prototype.Tools_row = function () {
             var _this = this;
             return new $.$mol_row().setup(function (obj) {
-                obj.sub = function () { return [].concat(_this.Bar_sort()); };
+                obj.sub = function () { return [].concat(_this.Search(), _this.Type(), _this.Filter(), _this.Popular(), _this.Bar_sort()); };
             });
         };
         $my_toys.prototype.Tools_cards = function () {
             var _this = this;
             return new $.$mol_card().setup(function (obj) {
-                obj.sub = function () { return [].concat(_this.Tools_row(), _this.Tools_sort()); };
+                obj.sub = function () { return [].concat(_this.Tools_row()); };
             });
         };
         $my_toys.prototype.Tools_filter = function () {
@@ -6598,9 +6592,6 @@ var $;
     ], $my_toys.prototype, "Popular", null);
     __decorate([
         $.$mol_mem()
-    ], $my_toys.prototype, "Tools_row", null);
-    __decorate([
-        $.$mol_mem()
     ], $my_toys.prototype, "Sort_labeler", null);
     __decorate([
         $.$mol_mem()
@@ -6613,7 +6604,7 @@ var $;
     ], $my_toys.prototype, "Bar_sort", null);
     __decorate([
         $.$mol_mem()
-    ], $my_toys.prototype, "Tools_sort", null);
+    ], $my_toys.prototype, "Tools_row", null);
     __decorate([
         $.$mol_mem()
     ], $my_toys.prototype, "Tools_cards", null);
