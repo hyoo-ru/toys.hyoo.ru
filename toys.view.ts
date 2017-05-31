@@ -15,7 +15,7 @@ namespace $.$mol {
 		}
 		
 		@ $mol_mem()
-			image( next = `/my/toys/thumbs/${ this.proto() }.jpg` ) {
+			image( next = `-/my/toys/thumbs/${ this.proto() }.jpg` ) {
 			return next
 		}
 		
