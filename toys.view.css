@@ -68,8 +68,7 @@
 	margin: .4rem 0;
 }
 
-[my_toys_show_tools] {
-	transform: rotate(90deg);
+[my_toys_tools_visible] {
 }
 
 [my_toys_tools_row] {

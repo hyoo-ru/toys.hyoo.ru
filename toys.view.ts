@@ -87,6 +87,13 @@ namespace $.$mol {
 			})
 		}
 		
+		catalog_panels() {
+			return [
+				this.tools_visible() ? this.Tools() : null ,
+				this.Goods() ,
+			]
+		}
+		
 		toy_cards() {
 			return this.toys_filtered().map( toy => this.Toy_card( toy.id() ) )
 		}
