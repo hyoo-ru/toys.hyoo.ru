@@ -4,8 +4,8 @@ namespace $.$mol {
 		
 		@ $mol_mem()
 		static protos() {
-			var prod_date = $mol_http.resource( '-/my/toys/toys.json' ).json()
-			var prod = JSON.parse(prod_date)
+			var prod = $mol_http.resource( '-/my/toys/toys.json' ).json()
+
 			return prod
 		}
 		
@@ -74,38 +74,16 @@ namespace $.$mol {
 			
 			return average
 		}
-		
-//		@ $mol_mem()
-//		search() {
-//			const name_items = this.toys().type + this.toys().type
-//		}
-//
-//		@ $mol_mem()
-//		filter_price() {
-//			filter( next = (toy)=> {
-//			return toy.count() > 0
-//		}) {return next}
-//		}
-//
-//		price_up() {
-//			let price_up = this.toys().filter()
-//			return price_up
-//		}
-//
-//		price_down() {
-//
-//		}
-//
-//		price_popular() {
-//
-//		}
 
 		toys_filtered() {
-//			const average = this.size_average()
-//			return this.toys().filter( toy => toy.price() >= average )
+			const filter = this.filter().toLowerCase()
+			const toys = this.toys()
 
-			let price_up = this.toys().sort()
-			return price_up
+			if( !this.filter() ) return this.toys()
+
+			return this.toys().filter( toy => {
+				return toy.title().toLowerCase().match( filter )
+			})
 		}
 		
 		toy_cards() {

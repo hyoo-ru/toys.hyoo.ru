@@ -64,9 +64,9 @@ namespace $ { export class $my_toys extends $mol_book {
 		return ( val !== void 0 ) ? val : ""
 	}
 
-	/// Search $mol_search query?val <=> filter?val
+	/// Filter $mol_search query?val <=> filter?val
 	@ $mol_mem()
-	Search() {
+	Filter() {
 		return new $mol_search().setup( obj => {
 			obj.query = ( val? : any ) => this.filter( val )
 		} )
@@ -119,11 +119,11 @@ namespace $ { export class $my_toys extends $mol_book {
 		})
 	}
 
-	/// Filter $mol_select
+	/// Filter_size $mol_select
 	/// 	value \Размеры
 	/// 	dictionary <= filter_size
 	@ $mol_mem()
-	Filter() {
+	Filter_size() {
 		return new $mol_select().setup( obj => {
 			obj.value = () => "Размеры"
 			obj.dictionary = () => this.filter_size()
@@ -143,27 +143,47 @@ namespace $ { export class $my_toys extends $mol_book {
 		} )
 	}
 
+	/// Tools_row $mol_row sub /
+	/// 	<= Filter
+	/// 	<= Type
+	/// 	<= Filter_size
+	/// 	<= Popular
+	@ $mol_mem()
+	Tools_row() {
+		return new $mol_row().setup( obj => {
+			obj.sub = () => [].concat( this.Filter() , this.Type() , this.Filter_size() , this.Popular() )
+		} )
+	}
+
+	/// Full_string $mol_view sub / <= Tools_row
+	@ $mol_mem()
+	Full_string() {
+		return new $mol_view().setup( obj => {
+			obj.sub = () => [].concat( this.Tools_row() )
+		} )
+	}
+
 	/// sort_items *
-	/// 	price \По цене
-	/// 	size \По размеру
-	/// 	popular \По популярности
-	/// 	alphabet \По алфавиту
+	/// 	price \Сортировать по цене
+	/// 	size \Сортировать по размеру
+	/// 	popular \Сортировать по популярности
+	/// 	alphabet \Сортировать по алфавиту
 	sort_items() {
 		return ({
-			"price" :  "По цене" ,
-			"size" :  "По размеру" ,
-			"popular" :  "По популярности" ,
-			"alphabet" :  "По алфавиту" ,
+			"price" :  "Сортировать по цене" ,
+			"size" :  "Сортировать по размеру" ,
+			"popular" :  "Сортировать по популярности" ,
+			"alphabet" :  "Сортировать по алфавиту" ,
 		})
 	}
 
 	/// Sort_labeler $mol_select
-	/// 	value \По цене
+	/// 	value \Сортировать по цене
 	/// 	dictionary <= sort_items
 	@ $mol_mem()
 	Sort_labeler() {
 		return new $mol_select().setup( obj => {
-			obj.value = () => "По цене"
+			obj.value = () => "Сортировать по цене"
 			obj.dictionary = () => this.sort_items()
 		} )
 	}
@@ -192,24 +212,21 @@ namespace $ { export class $my_toys extends $mol_book {
 		} )
 	}
 
-	/// Tools_row $mol_row sub /
-	/// 	<= Search
-	/// 	<= Type
-	/// 	<= Filter
-	/// 	<= Popular
-	/// 	<= Bar_sort
+	/// Bar $mol_row sub / <= Bar_sort
 	@ $mol_mem()
-	Tools_row() {
+	Bar() {
 		return new $mol_row().setup( obj => {
-			obj.sub = () => [].concat( this.Search() , this.Type() , this.Filter() , this.Popular() , this.Bar_sort() )
+			obj.sub = () => [].concat( this.Bar_sort() )
 		} )
 	}
 
-	/// Tools_cards $mol_card sub / <= Tools_row
+	/// Tools_cards $mol_card sub /
+	/// 	<= Full_string
+	/// 	<= Bar
 	@ $mol_mem()
 	Tools_cards() {
 		return new $mol_card().setup( obj => { 
-			obj.sub = () => [].concat( this.Tools_row() )
+			obj.sub = () => [].concat( this.Full_string() , this.Bar() )
 		} )
 	}
 

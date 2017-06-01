@@ -32,7 +32,6 @@
 
 [my_toys_toy_image] {
     width: 4.5rem;
-	width: 50%;
     margin: 0px 1rem 0 0;
 }
 
@@ -45,6 +44,7 @@
 	display: flex;
 	flex-direction: row;
 	align-items:flex-start;
+	flex-wrap: wrap;
 }
 
 [my_toys_toy_detail] {
@@ -70,7 +70,7 @@
 
 [my_toys_tools_row] {
 	flex: 1 1 auto;
-	margin: 0;
+
 	box-shadow: none;
 	display: flex;
 }
@@ -89,4 +89,25 @@
 	align-items: center;
 	padding: 0;
 	margin: 0;
+}
+
+[my_toys_full_string] {
+	flex: 1 1 750px;
+}
+[my_toys_type] {
+	flex: auto;
+}
+
+[my_toys_bar] {
+	flex: 1000 1 auto;
+	box-shadow: none;
+	align-self: auto;
+}
+
+[my_toys_filter] {
+	flex: auto;
+}
+
+[my_toys_search] {
+	flex: auto;
 }
