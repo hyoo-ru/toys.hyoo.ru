@@ -69,8 +69,8 @@ $my_toys $mol_book
 				<= Goods $mol_row
 					sub <= toy_cards /
 	Toy_card!id $mol_link
-		minimal_width 156
-		minimal_height 156
+		minimal_width 256
+		minimal_height 144
 		arg <= toy_arg!id *
 		sub /
 			<= Toy_type!id $mol_view
