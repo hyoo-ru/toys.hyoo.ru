@@ -16,9 +16,9 @@ $my_toys_catalog $mol_page
 	title @ \Toys
 	minimal_width 600
 	head /
-		<= Title -
 		<= Logo $mol_image
 			uri \-/my/toys/toys_logo.svg
+		<= Title -
 		<= Tools -
 	tools /
 		<= Tools_visible $mol_check_box

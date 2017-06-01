@@ -11,15 +11,16 @@
 
 [my_toys_catalog_title] {
 	flex: 1 1 auto;
-	margin: .5rem 1rem;
+	margin: .5rem 0;
 	font-size: 1.5rem;
 }
 
 [my_toys_catalog_logo] {
 	box-shadow: none;
 	height: 2.5rem;
-	align-self: flex-end;
+	align-self: center;
 	flex: none;
+	margin: 0 1rem;
 }
 
 [my_toys_catalog_tools] {
