@@ -10,65 +10,66 @@ $my_toys_toy $mol_object
 
 $my_toys $mol_book
 	pages /
-		<= Catalog $mol_page
-			title <= catalog_title @ \Toys
-			minimal_width 600
-			tools /
-				<= Tools_visible $mol_check_box
-					checked?val <=> tools_visible?val true
-				- <= Catalog_close $mol_link
-					sub /
-						<= Catalog_close_icon $mol_icon_cross
-					arg *
-						catalog \hide
-			body <= catalog_panels /
-				<= Tools $mol_float
-					sub /
-						<= Tools_cards $mol_card
-							sub /
-								<= Tools_row $mol_row
-									sub /
-										<= Filter_type $mol_select
-											clearable false
-											value?val <=> filter_type?val \all
-											dictionary <= filter_type_options *
-												all \Все типы
-												mass \Массажер
-												vibr \Виброколонка
-												vint \Винтилятор
-												shoes \Обувь
-												suit \Костюм
-												lamp \Лампа
-												mesh \Мешок
-										<= Filter_size $mol_select
-											clearable false
-											value?val <=> filter_size?val \all
-											dictionary <= filter_size_options *
-												all \All sizes
-												xs \Only XS
-												s \Only S
-												m \Only M
-												l \Only L
-												xl \Only XL
-										<= Filter_title $mol_search
-											query?val <=> filter_title?val \
-										<= Filter_popular $mol_check_box
-											checked?val <=> filter_populer?val false
-											title <= filter_populer_title @ \Only popular
-										<= Sorts $mol_bar
-											sub /
-												<= Sort $mol_select
-													value?val <=> sort_key?val \price
-													dictionary <= sort_items *
-														price \Sort by price
-														size \Sort by size
-														popularity \Sort by popularity
-														title \Sort by title
-												<= Sort_order $mol_check
-													sub /
-														<= Icon $mol_icon_sort_asc
-				<= Goods $mol_row
-					sub <= toy_cards /
+		<= Catalog $my_toys_catalog
+
+$my_toys_catalog $mol_page
+	title @ \Toys
+	minimal_width 600
+	head /
+		<= Title -
+		<= Logo $mol_image
+			uri \-/my/toys/toys_logo.svg
+		<= Tools -
+	tools /
+		<= Tools_visible $mol_check_box
+			checked?val <=> tools_visible?val true
+	Toolbar $mol_row
+		sub /
+			<= Filter_type $mol_select
+				clearable false
+				value?val <=> filter_type?val \all
+				dictionary <= filter_type_options *
+					all \Все типы
+					mass \Массажер
+					vibr \Виброколонка
+					vint \Винтилятор
+					shoes \Обувь
+					suit \Костюм
+					lamp \Лампа
+					mesh \Мешок
+			<= Filter_size $mol_select
+				clearable false
+				value?val <=> filter_size?val \all
+				dictionary <= filter_size_options *
+					all \All sizes
+					xs \Only XS
+					s \Only S
+					m \Only M
+					l \Only L
+					xl \Only XL
+			<= Filter_title $mol_search
+				query?val <=> filter_title?val \
+			<= Filter_popular $mol_check_box
+				checked?val <=> filter_populer?val false
+				title <= filter_populer_title @ \Only popular
+			<= Sorts $mol_bar
+				sub /
+					<= Sort $mol_select
+						clearable false
+						value?val <=> sort_key?val \price
+						dictionary <= sort_items *
+							price \Sort by price
+							size \Sort by size
+							popularity \Sort by popularity
+							title \Sort by title
+					<= Sort_order $mol_check
+						sub /
+							<= Icon $mol_icon_sort_asc
+	-
+	body /
+		<= Goods $mol_row
+			sub <= toy_cards /
+	-
 	Toy_card!id $mol_link
 		minimal_width 256
 		minimal_height 144
@@ -99,6 +100,6 @@ $my_toys $mol_book
 			<= Toy_type!id $mol_view
 				sub /
 					<= toy_type!id \
-					
+	-
 	toy!id $my_toys_toy
 		id <= toy_id!id \

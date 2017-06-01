@@ -12,3 +12,4 @@ deploy \/my/toys/thumbs/10.jpg
 deploy \/my/toys/thumbs/11.jpg
 deploy \/my/toys/thumbs/12.jpg
 deploy \/my/toys/toys.json
+deploy \/my/toys/toys_logo.svg

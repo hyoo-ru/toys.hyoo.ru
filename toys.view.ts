@@ -55,7 +55,7 @@ namespace $.$mol {
 		
 	}
 	
-	export class $my_toys extends $.$my_toys {
+	export class $my_toys_catalog extends $.$my_toys_catalog {
 		
 		toys_count() {
 			return 10000
@@ -90,10 +90,11 @@ namespace $.$mol {
 			})
 		}
 		
-		catalog_panels() {
+		sub() {
 			return [
-				this.tools_visible() ? this.Tools() : null ,
-				this.Goods() ,
+				this.Head() ,
+				this.tools_visible() ? this.Toolbar() : null ,
+				this.Body() ,
 			]
 		}
 		
