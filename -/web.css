@@ -611,16 +611,20 @@
 }
 [my_toys_toy_image] {
     width: 4.5rem;
+    height: 4.5rem;
     margin: 0px 1rem 0 0
 }
 [my_toys_toy_title] {
-    width: 100%;
+    width: 100%
+}
+[my_toys_toy_type] {
     font-size: .8em
 }
 [my_toys_toy_option] {
     display: flex;
     flex-direction: row;
-    align-items: flex-start
+    align-items: flex-start;
+    flex-wrap: wrap
 }
 [my_toys_toy_detail] {
     display: flex;
@@ -640,20 +644,39 @@
 }
 [my_toys_tools_row] {
     flex: 1 1 auto;
-    margin: 0;
-    box-shadow: none
+    box-shadow: none;
+    display: flex
 }
-[my_toys_tools_sort] {
+[my_toys_bar_sort] {
     flex: 0 0 auto;
-    margin: 0;
-    box-shadow: none
+    margin-left: auto;
+    box-shadow: none;
+    display: flex
 }
 [my_toys_tools_cards] {
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
     padding: 0;
     margin: 0
+}
+[my_toys_filter_line] {
+    flex: 1 1 750px
+}
+[my_toys_type] {
+    flex: auto
+}
+[my_toys_bar] {
+    flex: 1000 1 auto;
+    box-shadow: none;
+    -ms-grid-row-align: auto;
+        align-self: auto
+}
+[my_toys_filter] {
+    flex: auto
+}
+[my_toys_search] {
+    flex: auto
 }
 
 /*# sourceMappingURL=web.css.map */

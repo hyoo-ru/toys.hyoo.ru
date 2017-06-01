@@ -1964,26 +1964,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var $;
 (function ($) {
-    var $mol_http_request = (function (_super) {
-        __extends($mol_http_request, _super);
-        function $mol_http_request() {
+    var $mol_http = (function (_super) {
+        __extends($mol_http, _super);
+        function $mol_http() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        $mol_http_request.prototype.uri = function () { return ''; };
-        $mol_http_request.prototype.method_get = function () { return 'Get'; };
-        $mol_http_request.prototype.method_put = function () { return 'Put'; };
-        $mol_http_request.prototype.credentials = function () {
+        $mol_http.resource = function (uri) {
+            var next = new $mol_http;
+            next.uri = function () { return uri; };
+            return next;
+        };
+        $mol_http.prototype.uri = function () { return ''; };
+        $mol_http.prototype.method_get = function () { return 'Get'; };
+        $mol_http.prototype.method_put = function () { return 'Put'; };
+        $mol_http.prototype.credentials = function () {
             return null;
         };
-        $mol_http_request.prototype.headers = function () {
+        $mol_http.prototype.headers = function () {
             return {};
         };
-        $mol_http_request.prototype.body = function () { return null; };
-        $mol_http_request.prototype.native = function () {
+        $mol_http.prototype.request = function () {
             var _this = this;
-            if (this['native()'])
-                return this['native()'];
-            var next = this['native()'] = new $.$mol_dom_context.XMLHttpRequest;
+            if (this['request()'])
+                return this['request()'];
+            var next = this['request()'] = new $.$mol_dom_context.XMLHttpRequest;
             next.withCredentials = Boolean(this.credentials());
             next.onload = function (event) {
                 if ((next.status === 0) || (Math.floor(next.status / 100) === 2)) {
@@ -1998,17 +2002,17 @@ var $;
             };
             return next;
         };
-        $mol_http_request.prototype.destroyed = function (next) {
+        $mol_http.prototype.destroyed = function (next) {
             if (next) {
-                var native = this['native()'];
+                var native = this['reques()'];
                 if (native)
                     native.abort();
             }
             return _super.prototype.destroyed.call(this, next);
         };
-        $mol_http_request.prototype.response = function (next, force) {
+        $mol_http.prototype.response = function (next, force) {
             var creds = this.credentials();
-            var native = this.native();
+            var native = this.request();
             var method = (next === void 0) ? this.method_get() : this.method_put();
             var uri = this.uri();
             native.open(method, uri, true, creds && creds.login, creds && creds.password);
@@ -2018,17 +2022,27 @@ var $;
             native.send(next);
             throw new $.$mol_atom_wait(method + " " + uri);
         };
-        $mol_http_request.prototype.text = function (next, force) {
+        $mol_http.prototype.text = function (next, force) {
             return this.response(next, force).responseText;
         };
-        return $mol_http_request;
+        $mol_http.prototype.json = function (next, force) {
+            var next2 = next && JSON.stringify(next, null, '\t');
+            return JSON.parse(this.text(next2, force));
+        };
+        return $mol_http;
     }($.$mol_object));
     __decorate([
         $.$mol_mem()
-    ], $mol_http_request.prototype, "response", null);
-    $.$mol_http_request = $mol_http_request;
+    ], $mol_http.prototype, "response", null);
+    __decorate([
+        $.$mol_mem()
+    ], $mol_http.prototype, "json", null);
+    __decorate([
+        $.$mol_mem_key()
+    ], $mol_http, "resource", null);
+    $.$mol_http = $mol_http;
 })($ || ($ = {}));
-//request.js.map
+//http.js.map
 ;
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -2040,58 +2054,29 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 var $;
 (function ($) {
+    console.warn('$mol_http_resource* is deprecated. Use $mol_http.resource insted.');
     var $mol_http_resource = (function (_super) {
         __extends($mol_http_resource, _super);
         function $mol_http_resource() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
         $mol_http_resource.item = function (uri) {
-            return new $mol_http_resource().setup(function (obj) {
-                obj.uri = function () { return uri; };
-            });
-        };
-        $mol_http_resource.prototype.uri = function () { return ''; };
-        $mol_http_resource.prototype.method_get = function () { return 'Get'; };
-        $mol_http_resource.prototype.method_put = function () { return 'Put'; };
-        $mol_http_resource.prototype.credentials = function () {
-            return null;
-        };
-        $mol_http_resource.prototype.headers = function () {
-            return {};
-        };
-        $mol_http_resource.prototype.request = function () {
-            var _this = this;
-            var request = new $.$mol_http_request();
-            request.uri = function () { return _this.uri(); };
-            request.method_get = function () { return _this.method_get(); };
-            request.method_put = function () { return _this.method_put(); };
-            request.credentials = function () { return _this.credentials(); };
-            request.headers = function () { return _this.headers(); };
-            return request;
-        };
-        $mol_http_resource.prototype.text = function (next, force) {
-            return this.request().text(next, force);
+            return $.$mol_http.resource(uri);
         };
         return $mol_http_resource;
-    }($.$mol_object));
-    __decorate([
-        $.$mol_mem()
-    ], $mol_http_resource.prototype, "request", null);
-    __decorate([
-        $.$mol_mem()
-    ], $mol_http_resource.prototype, "text", null);
-    __decorate([
-        $.$mol_mem_key()
-    ], $mol_http_resource, "item", null);
+    }($.$mol_http));
     $.$mol_http_resource = $mol_http_resource;
+    var $mol_http_resource_json = (function () {
+        function $mol_http_resource_json() {
+        }
+        $mol_http_resource_json.item = function (uri) {
+            return $.$mol_http.resource(uri);
+        };
+        return $mol_http_resource_json;
+    }());
+    $.$mol_http_resource_json = $mol_http_resource_json;
 })($ || ($ = {}));
 //resource.js.map
 ;
@@ -2150,7 +2135,7 @@ var $;
             return match && match[1].substring(1);
         };
         $mol_file.prototype.content = function (next, force) {
-            return $.$mol_http_resource.item(this.path()).text(next);
+            return $.$mol_http.resource(this.path()).text(next);
         };
         $mol_file.prototype.resolve = function (path) {
             var res = this.path() + '/' + path;
@@ -6356,7 +6341,7 @@ var $;
         $my_toys.prototype.filter = function (val, force) {
             return (val !== void 0) ? val : "";
         };
-        $my_toys.prototype.Search = function () {
+        $my_toys.prototype.Filter = function () {
             var _this = this;
             return new $.$mol_search().setup(function (obj) {
                 obj.query = function (val) { return _this.filter(val); };
@@ -6389,7 +6374,7 @@ var $;
                 "xl": "XL",
             });
         };
-        $my_toys.prototype.Filter = function () {
+        $my_toys.prototype.Filter_size = function () {
             var _this = this;
             return new $.$mol_select().setup(function (obj) {
                 obj.value = function () { return "Размеры"; };
@@ -6408,21 +6393,27 @@ var $;
         $my_toys.prototype.Tools_row = function () {
             var _this = this;
             return new $.$mol_row().setup(function (obj) {
-                obj.sub = function () { return [].concat(_this.Search(), _this.Type(), _this.Filter(), _this.Popular()); };
+                obj.sub = function () { return [].concat(_this.Filter(), _this.Type(), _this.Filter_size(), _this.Popular()); };
+            });
+        };
+        $my_toys.prototype.Full_string = function () {
+            var _this = this;
+            return new $.$mol_view().setup(function (obj) {
+                obj.sub = function () { return [].concat(_this.Tools_row()); };
             });
         };
         $my_toys.prototype.sort_items = function () {
             return ({
-                "price": "По цене",
-                "size": "По размеру",
-                "popular": "По популярности",
-                "alphabet": "По алфавиту",
+                "price": "Сортировать по цене",
+                "size": "Сортировать по размеру",
+                "popular": "Сортировать по популярности",
+                "alphabet": "Сортировать по алфавиту",
             });
         };
         $my_toys.prototype.Sort_labeler = function () {
             var _this = this;
             return new $.$mol_select().setup(function (obj) {
-                obj.value = function () { return "По цене"; };
+                obj.value = function () { return "Сортировать по цене"; };
                 obj.dictionary = function () { return _this.sort_items(); };
             });
         };
@@ -6441,7 +6432,7 @@ var $;
                 obj.sub = function () { return [].concat(_this.Sort_labeler(), _this.Sort_checkbox()); };
             });
         };
-        $my_toys.prototype.Tools_sort = function () {
+        $my_toys.prototype.Bar = function () {
             var _this = this;
             return new $.$mol_row().setup(function (obj) {
                 obj.sub = function () { return [].concat(_this.Bar_sort()); };
@@ -6450,7 +6441,7 @@ var $;
         $my_toys.prototype.Tools_cards = function () {
             var _this = this;
             return new $.$mol_card().setup(function (obj) {
-                obj.sub = function () { return [].concat(_this.Tools_row(), _this.Tools_sort()); };
+                obj.sub = function () { return [].concat(_this.Full_string(), _this.Bar()); };
             });
         };
         $my_toys.prototype.Tools_filter = function () {
@@ -6483,15 +6474,6 @@ var $;
         $my_toys.prototype.toy_arg = function (id) {
             return ({});
         };
-        $my_toys.prototype.toy_title = function (id) {
-            return "";
-        };
-        $my_toys.prototype.Toy_title = function (id) {
-            var _this = this;
-            return new $.$mol_view().setup(function (obj) {
-                obj.sub = function () { return [].concat(_this.toy_title(id)); };
-            });
-        };
         $my_toys.prototype.toy_type = function (id) {
             return "";
         };
@@ -6499,6 +6481,15 @@ var $;
             var _this = this;
             return new $.$mol_view().setup(function (obj) {
                 obj.sub = function () { return [].concat(_this.toy_type(id)); };
+            });
+        };
+        $my_toys.prototype.toy_title = function (id) {
+            return "";
+        };
+        $my_toys.prototype.Toy_title = function (id) {
+            var _this = this;
+            return new $.$mol_view().setup(function (obj) {
+                obj.sub = function () { return [].concat(_this.toy_title(id)); };
             });
         };
         $my_toys.prototype.toy_image = function (id) {
@@ -6561,7 +6552,7 @@ var $;
                 obj.minimal_width = function () { return 156; };
                 obj.minimal_height = function () { return 156; };
                 obj.arg = function () { return _this.toy_arg(id); };
-                obj.sub = function () { return [].concat(_this.Toy_title(id), _this.Toy_type(id), _this.Toy_option(id)); };
+                obj.sub = function () { return [].concat(_this.Toy_type(id), _this.Toy_title(id), _this.Toy_option(id)); };
             });
         };
         $my_toys.prototype.toy_id = function (id) {
@@ -6586,19 +6577,22 @@ var $;
     ], $my_toys.prototype, "filter", null);
     __decorate([
         $.$mol_mem()
-    ], $my_toys.prototype, "Search", null);
+    ], $my_toys.prototype, "Filter", null);
     __decorate([
         $.$mol_mem()
     ], $my_toys.prototype, "Type", null);
     __decorate([
         $.$mol_mem()
-    ], $my_toys.prototype, "Filter", null);
+    ], $my_toys.prototype, "Filter_size", null);
     __decorate([
         $.$mol_mem()
     ], $my_toys.prototype, "Popular", null);
     __decorate([
         $.$mol_mem()
     ], $my_toys.prototype, "Tools_row", null);
+    __decorate([
+        $.$mol_mem()
+    ], $my_toys.prototype, "Full_string", null);
     __decorate([
         $.$mol_mem()
     ], $my_toys.prototype, "Sort_labeler", null);
@@ -6613,7 +6607,7 @@ var $;
     ], $my_toys.prototype, "Bar_sort", null);
     __decorate([
         $.$mol_mem()
-    ], $my_toys.prototype, "Tools_sort", null);
+    ], $my_toys.prototype, "Bar", null);
     __decorate([
         $.$mol_mem()
     ], $my_toys.prototype, "Tools_cards", null);
@@ -6628,10 +6622,10 @@ var $;
     ], $my_toys.prototype, "Catalog", null);
     __decorate([
         $.$mol_mem_key()
-    ], $my_toys.prototype, "Toy_title", null);
+    ], $my_toys.prototype, "Toy_type", null);
     __decorate([
         $.$mol_mem_key()
-    ], $my_toys.prototype, "Toy_type", null);
+    ], $my_toys.prototype, "Toy_title", null);
     __decorate([
         $.$mol_mem_key()
     ], $my_toys.prototype, "Toy_image", null);
@@ -6686,8 +6680,7 @@ var $;
                 return _super !== null && _super.apply(this, arguments) || this;
             }
             $my_toys_toy.protos = function () {
-                var prod_date = $.$mol_http_resource.item('toys.json').text();
-                var prod = JSON.parse(prod_date);
+                var prod = $.$mol_http.resource('-/my/toys/toys.json').json();
                 return prod;
             };
             $my_toys_toy.prototype.proto = function () {
@@ -6767,8 +6760,13 @@ var $;
                 return average;
             };
             $my_toys.prototype.toys_filtered = function () {
-                var price_up = this.toys().sort();
-                return price_up;
+                var filter = this.filter().toLowerCase();
+                var toys = this.toys();
+                if (!this.filter())
+                    return this.toys();
+                return this.toys().filter(function (toy) {
+                    return toy.title().toLowerCase().match(filter);
+                });
             };
             $my_toys.prototype.toy_cards = function () {
                 var _this = this;

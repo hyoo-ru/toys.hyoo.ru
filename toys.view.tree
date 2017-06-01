@@ -26,41 +26,43 @@ $my_toys $mol_book
 					sub /
 						<= Tools_cards $mol_card
 							sub /
-								<= Tools_row $mol_row
+								<= Filter_line  $mol_view
 									sub /
-										<= Search $mol_search
-											query?val <=> filter?val \
-										<= Type $mol_select
-											value \Все типы
-											dictionary <= filter_type *
-												mass \Массажер
-												vibr \Виброколонка
-												vint \Винтилятор
-												shoes \Обувь
-												suit \Костюмы
-												lamp \Лампа
-												mesh \Мешок
-										<= Filter $mol_select
-											value \Размеры
-											dictionary <= filter_size *
-												xs \XS
-												s \S
-												m \M
-												l \L
-												xl \XL
-										<= Popular $mol_check_box
-											label / <= spam_label @ \Только популярное
-								<= Tools_sort $mol_row
+										<= Tools_row $mol_row
+											sub /
+												<= Filter $mol_search
+													query?val <=> filter?val \
+												<= Type $mol_select
+													value \Все типы
+													dictionary <= filter_type *
+														mass \Массажер
+														vibr \Виброколонка
+														vint \Винтилятор
+														shoes \Обувь
+														suit \Костюмы
+														lamp \Лампа
+														mesh \Мешок
+												<= Filter_size $mol_select
+													value \Размеры
+													dictionary <= filter_size *
+														xs \XS
+														s \S
+														m \M
+														l \L
+														xl \XL
+												<= Popular $mol_check_box
+													label / <= spam_label @ \Только популярное
+								<= Bar $mol_row
 									sub /
 										<= Bar_sort $mol_bar
 											sub /
 												<= Sort_labeler $mol_select
-													value \По цене
+													value \Сортировать по цене
 													dictionary <= sort_items *
-														price \По цене
-														size \По размеру
-														popular \По популярности
-														alphabet \По алфавиту
+														price \Сортировать по цене
+														size \Сортировать по размеру
+														popular \Сортировать по популярности
+														alphabet \Сортировать по алфавиту
 												<= Sort_checkbox $mol_check
 													sub /
 														<= Icon $mol_icon_sort_asc
@@ -71,12 +73,12 @@ $my_toys $mol_book
 		minimal_height 156
 		arg <= toy_arg!id *
 		sub /
-			<= Toy_title!id $mol_view
-				sub /
-					<= toy_title!id \
 			<= Toy_type!id $mol_view
 				sub /
 					<= toy_type!id \
+			<= Toy_title!id $mol_view
+				sub /
+					<= toy_title!id \
 			<= Toy_option!id $mol_view
 				sub /
 					<= Toy_image!id $mol_image

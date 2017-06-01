@@ -64,9 +64,9 @@ namespace $ { export class $my_toys extends $mol_book {
 		return ( val !== void 0 ) ? val : ""
 	}
 
-	/// Search $mol_search query?val <=> filter?val
+	/// Filter $mol_search query?val <=> filter?val
 	@ $mol_mem()
-	Search() {
+	Filter() {
 		return new $mol_search().setup( obj => {
 			obj.query = ( val? : any ) => this.filter( val )
 		} )
@@ -119,11 +119,11 @@ namespace $ { export class $my_toys extends $mol_book {
 		})
 	}
 
-	/// Filter $mol_select
+	/// Filter_size $mol_select
 	/// 	value \Размеры
 	/// 	dictionary <= filter_size
 	@ $mol_mem()
-	Filter() {
+	Filter_size() {
 		return new $mol_select().setup( obj => {
 			obj.value = () => "Размеры"
 			obj.dictionary = () => this.filter_size()
@@ -143,39 +143,47 @@ namespace $ { export class $my_toys extends $mol_book {
 		} )
 	}
 
-	/// Tools_row $mol_row sub / 
-	/// 	<= Search
-	/// 	<= Type
+	/// Tools_row $mol_row sub /
 	/// 	<= Filter
+	/// 	<= Type
+	/// 	<= Filter_size
 	/// 	<= Popular
 	@ $mol_mem()
 	Tools_row() {
-		return new $mol_row().setup( obj => { 
-			obj.sub = () => [].concat( this.Search() , this.Type() , this.Filter() , this.Popular() )
+		return new $mol_row().setup( obj => {
+			obj.sub = () => [].concat( this.Filter() , this.Type() , this.Filter_size() , this.Popular() )
+		} )
+	}
+
+	/// Full_string $mol_view sub / <= Tools_row
+	@ $mol_mem()
+	Full_string() {
+		return new $mol_view().setup( obj => {
+			obj.sub = () => [].concat( this.Tools_row() )
 		} )
 	}
 
 	/// sort_items *
-	/// 	price \По цене
-	/// 	size \По размеру
-	/// 	popular \По популярности
-	/// 	alphabet \По алфавиту
+	/// 	price \Сортировать по цене
+	/// 	size \Сортировать по размеру
+	/// 	popular \Сортировать по популярности
+	/// 	alphabet \Сортировать по алфавиту
 	sort_items() {
 		return ({
-			"price" :  "По цене" ,
-			"size" :  "По размеру" ,
-			"popular" :  "По популярности" ,
-			"alphabet" :  "По алфавиту" ,
+			"price" :  "Сортировать по цене" ,
+			"size" :  "Сортировать по размеру" ,
+			"popular" :  "Сортировать по популярности" ,
+			"alphabet" :  "Сортировать по алфавиту" ,
 		})
 	}
 
 	/// Sort_labeler $mol_select
-	/// 	value \По цене
+	/// 	value \Сортировать по цене
 	/// 	dictionary <= sort_items
 	@ $mol_mem()
 	Sort_labeler() {
 		return new $mol_select().setup( obj => {
-			obj.value = () => "По цене"
+			obj.value = () => "Сортировать по цене"
 			obj.dictionary = () => this.sort_items()
 		} )
 	}
@@ -204,21 +212,21 @@ namespace $ { export class $my_toys extends $mol_book {
 		} )
 	}
 
-	/// Tools_sort $mol_row sub / <= Bar_sort
+	/// Bar $mol_row sub / <= Bar_sort
 	@ $mol_mem()
-	Tools_sort() {
+	Bar() {
 		return new $mol_row().setup( obj => {
 			obj.sub = () => [].concat( this.Bar_sort() )
 		} )
 	}
 
 	/// Tools_cards $mol_card sub /
-	/// 	<= Tools_row
-	/// 	<= Tools_sort
+	/// 	<= Full_string
+	/// 	<= Bar
 	@ $mol_mem()
 	Tools_cards() {
 		return new $mol_card().setup( obj => { 
-			obj.sub = () => [].concat( this.Tools_row() , this.Tools_sort() )
+			obj.sub = () => [].concat( this.Full_string() , this.Bar() )
 		} )
 	}
 
@@ -273,19 +281,6 @@ namespace $ { export class $my_toys extends $mol_book {
 		})
 	}
 
-	/// toy_title!id \
-	toy_title( id : any ) {
-		return ""
-	}
-
-	/// Toy_title!id $mol_view sub / <= toy_title!id
-	@ $mol_mem_key()
-	Toy_title( id : any ) {
-		return new $mol_view().setup( obj => {
-			obj.sub = () => [].concat( this.toy_title(id) )
-		} )
-	}
-
 	/// toy_type!id \
 	toy_type( id : any ) {
 		return ""
@@ -296,6 +291,19 @@ namespace $ { export class $my_toys extends $mol_book {
 	Toy_type( id : any ) {
 		return new $mol_view().setup( obj => {
 			obj.sub = () => [].concat( this.toy_type(id) )
+		} )
+	}
+
+	/// toy_title!id \
+	toy_title( id : any ) {
+		return ""
+	}
+
+	/// Toy_title!id $mol_view sub / <= toy_title!id
+	@ $mol_mem_key()
+	Toy_title( id : any ) {
+		return new $mol_view().setup( obj => {
+			obj.sub = () => [].concat( this.toy_title(id) )
 		} )
 	}
 
@@ -393,8 +401,8 @@ namespace $ { export class $my_toys extends $mol_book {
 	/// 	minimal_height 156
 	/// 	arg <= toy_arg!id 
 	/// 	sub /
-	/// 		<= Toy_title!id
 	/// 		<= Toy_type!id
+	/// 		<= Toy_title!id
 	/// 		<= Toy_option!id
 	@ $mol_mem_key()
 	Toy_card( id : any ) {
@@ -402,7 +410,7 @@ namespace $ { export class $my_toys extends $mol_book {
 			obj.minimal_width = () => 156
 			obj.minimal_height = () => 156
 			obj.arg = () => this.toy_arg(id)
-			obj.sub = () => [].concat( this.Toy_title(id) , this.Toy_type(id) , this.Toy_option(id) )
+			obj.sub = () => [].concat( this.Toy_type(id) , this.Toy_title(id) , this.Toy_option(id) )
 		} )
 	}
 
