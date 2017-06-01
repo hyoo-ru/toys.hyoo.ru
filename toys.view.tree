@@ -1,11 +1,12 @@
 $my_toys_toy $mol_object
+	id \
+	hue 0
 	image \
 	title \
 	type \
 	size \
 	price 0
 	count 0
-	id \
 
 $my_toys $mol_book
 	pages /
@@ -76,8 +77,8 @@ $my_toys $mol_book
 				sub /
 					<= Toy_image!id $mol_image
 						uri <= toy_image!id \
-						- style *
-							filter \hue-rotate(50deg)
+						style *
+							filter <= toy_image_filter!id \
 					<= Toy_detail!id $mol_view
 						sub /
 							<= Toy_price!id $mol_view

@@ -4,9 +4,7 @@ namespace $.$mol {
 		
 		@ $mol_mem()
 		static protos() {
-			var prod = $mol_http.resource( '-/my/toys/toys.json' ).json()
-
-			return prod
+			return $mol_http.resource( '-/my/toys/toys.json' ).json()
 		}
 		
 		@ $mol_mem()
@@ -15,18 +13,19 @@ namespace $.$mol {
 		}
 		
 		@ $mol_mem()
-		image( next = `-/my/toys/thumbs/${ this.proto() }.jpg` ) {
-			return next
+		image() {
+			return `-/my/toys/thumbs/${ this.proto() }.jpg`
 		}
 		
 		@ $mol_mem()
-		title( next = $my_toys_toy.protos()[ this.proto() ].title ) {
-			return next
+		title() {
+			const title = $my_toys_toy.protos()[ this.proto() ].title
+			return `${ title } #${ this.hue() }`
 		}
 
 		@ $mol_mem()
-		type( next = $my_toys_toy.protos()[ this.proto() ].type ) {
-			return next
+		type() {
+			return $my_toys_toy.protos()[ this.proto() ].type
 		}
 		
 		size() {
@@ -48,6 +47,10 @@ namespace $.$mol {
 		@ $mol_mem()
 		count() {
 			return Math.ceil( $mol_state_time.now( Math.random() * 1000 ) / 1000 - this.seed()  )
+		}
+		
+		hue() {
+			return this.seed() % 360
 		}
 		
 	}
@@ -128,6 +131,14 @@ namespace $.$mol {
 		
 		toy_id( id : string ) {
 			return id
+		}
+		
+		toy_hue( id : string ) {
+			return this.toy( id ).hue()
+		}
+		
+		toy_image_filter( id : string ) {
+			return `invert() sepia() invert() saturate(200%) hue-rotate(${ this.toy_hue( id ) }deg)`
 		}
 		
 	}
