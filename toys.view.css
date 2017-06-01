@@ -74,9 +74,9 @@
 
 [my_toys_tools_row] {
 	flex: 1 1 auto;
-
 	box-shadow: none;
 	display: flex;
+	padding: 0;
 }
 
 [my_toys_bar_sort] {
@@ -84,14 +84,23 @@
 	margin-left: auto;
 	box-shadow: none;
 	display: flex;
+}
 
+[my_toys_filter_size] {
+	flex: 1 1 auto;
+}
+
+[my_toys_popular] {
+	margin: 0;
+	align-self: center;
+	flex: 1 1 auto;
 }
 
 [my_toys_tools_cards] {
 	flex-wrap: wrap;
 	flex-direction: row;
 	align-items: center;
-	padding: 0;
+	padding: .5rem;
 	margin: 0;
 }
 
@@ -106,6 +115,7 @@
 	flex: 1000 1 auto;
 	box-shadow: none;
 	align-self: auto;
+	padding: 0;
 }
 
 [my_toys_filter] {
