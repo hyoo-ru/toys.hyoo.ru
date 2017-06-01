@@ -80,10 +80,10 @@ namespace $.$mol {
 
 		@ $mol_mem()
 		toys_filtered() {
-			const filter = this.filter().toLowerCase()
+			const filter = this.filter_title().toLowerCase()
 			const toys = this.toys()
 
-			if( !this.filter() ) return this.toys()
+			if( !filter ) return this.toys()
 
 			return this.toys().filter( toy => {
 				return toy.title().toLowerCase().match( filter )
