@@ -75,6 +75,7 @@ namespace $.$mol {
 			return average
 		}
 
+		@ $mol_mem()
 		toys_filtered() {
 			const filter = this.filter().toLowerCase()
 			const toys = this.toys()
