@@ -3,6 +3,8 @@ node_js:
   - "6"
 install:
   - cd ..
+  - mkdir my
+  - mv toys.hyoo.ru my/toys
   - git init
   - git remote add origin https://github.com/eigenmethod/mam.git
   - git pull origin master
