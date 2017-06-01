@@ -611,10 +611,13 @@
 }
 [my_toys_toy_image] {
     width: 4.5rem;
+    height: 4.5rem;
     margin: 0px 1rem 0 0
 }
 [my_toys_toy_title] {
-    width: 100%;
+    width: 100%
+}
+[my_toys_toy_type] {
     font-size: .8em
 }
 [my_toys_toy_option] {
@@ -657,7 +660,7 @@
     padding: 0;
     margin: 0
 }
-[my_toys_full_string] {
+[my_toys_filter_line] {
     flex: 1 1 750px
 }
 [my_toys_type] {
