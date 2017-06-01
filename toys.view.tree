@@ -72,12 +72,6 @@ $my_toys $mol_book
 		minimal_height 144
 		arg <= toy_arg!id *
 		sub /
-			<= Toy_type!id $mol_view
-				sub /
-					<= toy_type!id \
-			<= Toy_title!id $mol_view
-				sub /
-					<= toy_title!id \
 			<= Toy_option!id $mol_view
 				sub /
 					<= Toy_image!id $mol_image
@@ -97,6 +91,12 @@ $my_toys $mol_book
 								sub /
 									<= toy_count_prefix @ \Selled: 
 									<= toy_count!id 0
+			<= Toy_title!id $mol_view
+				sub /
+					<= toy_title!id \
+			<= Toy_type!id $mol_view
+				sub /
+					<= toy_type!id \
 					
 	toy!id $my_toys_toy
 		id <= toy_id!id \
