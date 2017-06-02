@@ -32,8 +32,9 @@ namespace $ {
 			return $my_toys_toy.protos()[ this.proto() ].type
 		}
 		
+		@ $mol_mem()
 		size() {
-			var arr = ["XS","S","M","L","XL"]
+			var arr = [ "XS" , "S" , "M" , "L" , "XL" ]
 			var rang = Math.floor(Math.random() * arr.length)
 			return arr[rang]
 		}

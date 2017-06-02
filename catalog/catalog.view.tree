@@ -29,11 +29,11 @@ $my_toys_catalog $mol_page
 				value?val <=> filter_size?val \all
 				dictionary <= filter_size_options *
 					all \All sizes
-					xs \Only XS
-					s \Only S
-					m \Only M
-					l \Only L
-					xl \Only XL
+					XS \Only XS
+					S \Only S
+					M \Only M
+					L \Only L
+					XL \Only XL
 			<= Filter_title $mol_search
 				query?val <=> filter_title?val \
 			<= Filter_popular $mol_check_box

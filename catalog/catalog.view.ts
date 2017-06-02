@@ -12,15 +12,30 @@ namespace $.$mol {
 		}
 
 		@ $mol_mem()
-		toys_filtered() {
-			const filter = this.filter_title().toLowerCase()
+		toys_filtered_by_size() {
+			const filter = this.filter_size()
 			const toys = this.toys()
 
-			if( !filter ) return this.toys()
+			if( filter === 'all' ) return toys
 
-			return this.toys().filter( toy => {
+			return toys.filter( toy => toy.size() === filter )
+		}
+
+		@ $mol_mem()
+		toys_filtered_by_title() {
+			const filter = this.filter_title().toLowerCase()
+			const toys = this.toys_filtered_by_size()
+
+			if( !filter ) return toys
+
+			return toys.filter( toy => {
 				return toy.title().toLowerCase().match( filter )
 			})
+		}
+		
+		@ $mol_mem()
+		toys_filtered() {
+			return this.toys_filtered_by_title()
 		}
 		
 		@ $mol_mem()
