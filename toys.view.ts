@@ -52,7 +52,7 @@ namespace $.$mol {
 		@ $mol_mem()
 		count() {
 			const count = Math.ceil( $mol_state_time.now( Math.random() * 1000 ) / 1000 - this.seed()  )
-			if( Math.random() < this.luck() ) throw new Error( 'Request timeout' )
+			if( Math.random() > this.luck() ) throw new Error( 'Request timeout' )
 			return count
 		}
 		
