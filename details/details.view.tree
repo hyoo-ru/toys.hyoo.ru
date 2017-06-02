@@ -1,37 +1,42 @@
 $my_toys_details $mol_page
-	title <= details_title @ \details
-	minimal_width 600
+	minimal_width 300
 	toy $my_toys_toy
-	body /
-		<= Card $mol_view
+	tools /
+		<= Close $mol_link
+			arg *
+				toy null
 			sub /
-				<= Toy_image $mol_image
-					uri <= toy_image\
-						style *
-							filter <= toy_image_filter \
-				<= Toy_detail $mol_view
+				<= Close_icon $mol_icon_cross
+	body /
+		<= Main $mol_view
+			sub /
+				<= Image $mol_view
 					sub /
-						<= Toy_title $mol_view
+						<= Photo $mol_image
+							uri <= photo_uri \
+							style *
+								filter <= photo_filter \
+				<= Info $mol_view
+					sub /
+						<= Buy_link $mol_link
+							uri \http://yasobe.ru/na/mol
 							sub /
-								<= toy_title \
-						<= Toy_type $mol_view
+								<= Buy_button $mol_button_major
+									sub /
+										<= buy @ \Buy for 
+										<= Price $mol_cost
+											value <= price $mol_unit_money
+						<= Parameters $mol_view
 							sub /
-								<= toy_type \
-						<= Toy_price $mol_view
-							sub /
-								<= toy_price 0
-								<= toy_price_rub \ ₽
-						<= Toy_size $mol_view
-							sub /
-								<= toy_size_prefix @ \Size: 
-								<= toy_size \
-						<= Toy_count $mol_view
-							sub /
-								<= toy_count_prefix @ \Selled: 
-								<= toy_count 0
-						<= Toy_buy $mol_button_minor
-							sub /
-								<= Button_buy $mol_link
-									uri \http://yasobe.ru/na/mol
-									title <= submit_label @ \Buy
-				<= Toy_description $mol_filler
+								<= Type $mol_view
+									sub /
+										<= type \
+								<= Size $mol_view
+									sub /
+										<= size_prefix @ \Size: 
+										<= size \
+								<= Reviews $mol_view
+									sub /
+										<= reviews_prefix @ \Reviews: 
+										<= reviews 0
+		<= Description $mol_filler

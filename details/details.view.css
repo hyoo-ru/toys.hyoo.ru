@@ -1,55 +1,52 @@
-[my_toys_details_card] {
+[my_toys_details] {
+	flex: 1 1 400px;
+}
+
+[my_toys_details_body] {
+	padding: .5rem;
+}
+
+[my_toys_details_image] {
+	flex: 1 1 20rem;
+	margin: .5rem;
+}
+
+[my_toys_details_photo] {
+	width: 100%;
+	display: block;
+}
+
+[my_toys_details_main] {
 	display: flex;
-	flex-direction: row;
 	flex-wrap: wrap;
 }
 
-[my_toys_details_toy_image] {
-	width: 16rem;
-	height: 16rem;
-	margin: 1rem;
-	margin-bottom: 0rem;
-}
-
-[my_toys_details_toy_detail] {
+[my_toys_details_info] {
+	flex: 1000 1 auto;
 	display: flex;
 	flex-direction: column;
-	margin-top: .5rem;
-
 }
 
-[my_toys_details_toy_title] {
-	font-size: 2rem;
+[my_toys_details_description] {
+	display: block;
+	margin: .5rem;
+	max-width: 60rem;
 }
 
-[my_toys_details_toy_type],
-[my_toys_details_toy_size],
-[my_toys_details_toy_count]
-{
-	font-size: 1.25rem;
+[my_toys_details_price] {
+	font-size: 1.5rem;
+	margin: .5rem;
 }
 
-[my_toys_details_toy_title] {
-	font-weight: 600;
+[my_toys_details_parameters] {
+	margin: .5rem;
+	display: flex;
+	flex-direction: column;
 }
 
-[my_toys_details_toy_description] {
-	margin: 1rem;
-	width: 60rem;
-}
-
-[my_toys_details_toy_price] {
-	font-size: 2rem;
-	margin-top: 1rem;
-	font-weight: 600;
-	flex: auto;
-}
-
-[my_toys_details_toy_buy] {
-	background: #D45E9F;
-	color: white;
-	font-weight: bold;
-	margin: 0;
+[my_toys_details_buy_link] {
+	margin: .5rem;
 	padding: 0;
+	display: flex;
+	flex-direction: column;
 }
-

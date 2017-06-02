@@ -2,27 +2,27 @@ namespace $.$mol {
 
 export class $my_toys_details extends  $.$my_toys_details {
 
-		toy_image() {
+		photo_uri() {
 			return this.toy().image()
 		}
 
-		toy_title() {
+		title() {
 			return this.toy().title()
 		}
 
-		toy_type() {
+		type() {
 			return this.toy().type()
 		}
 
-		toy_price() {
+		price() {
 			return this.toy().price()
 		}
 
-		toy_size() {
+		size() {
 			return this.toy().size()
 		}
 
-		toy_count() {
+		reviews() {
 			return this.toy().count()
 		}
 

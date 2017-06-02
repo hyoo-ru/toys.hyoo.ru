@@ -1,7 +1,3 @@
 {
-	"$my_toys_catalog_title": "Игрушки для всей семьи" ,
-	"$my_toys_toy_size_prefix": "Размер: " ,
-	"$my_toys_toy_count_prefix": "Отзывы: " ,
-	"$my_toys_filter_label": "Фильтрация" ,
-	"$my_toys_sort_label": ""
+	"$my_toys_title": "Игрушки для всей семьи"
 }
