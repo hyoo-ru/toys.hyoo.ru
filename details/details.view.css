@@ -1,0 +1,55 @@
+[my_toys_details_card] {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+[my_toys_details_toy_image] {
+	width: 16rem;
+	height: 16rem;
+	margin: 1rem;
+	margin-bottom: 0rem;
+}
+
+[my_toys_details_toy_detail] {
+	display: flex;
+	flex-direction: column;
+	margin-top: .5rem;
+
+}
+
+[my_toys_details_toy_title] {
+	font-size: 2rem;
+}
+
+[my_toys_details_toy_type],
+[my_toys_details_toy_size],
+[my_toys_details_toy_count]
+{
+	font-size: 1.25rem;
+}
+
+[my_toys_details_toy_title] {
+	font-weight: 600;
+}
+
+[my_toys_details_toy_description] {
+	margin: 1rem;
+	width: 60rem;
+}
+
+[my_toys_details_toy_price] {
+	font-size: 2rem;
+	margin-top: 1rem;
+	font-weight: 600;
+	flex: auto;
+}
+
+[my_toys_details_toy_buy] {
+	background: #D45E9F;
+	color: white;
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
+}
+
