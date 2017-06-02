@@ -1,5 +1,4 @@
-
-[my_toys_details_details_card] {
+[my_toys_details_card] {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -36,6 +35,7 @@
 
 [my_toys_details_toy_description] {
 	margin: 1rem;
+	width: 60rem;
 }
 
 [my_toys_details_toy_price] {
@@ -49,14 +49,7 @@
 	background: #D45E9F;
 	color: white;
 	font-weight: bold;
-}
-
-[my_toys_details_button] {
-	flex: auto;
-	padding: 0;
 	margin: 0;
+	padding: 0;
 }
 
-[my_toys_details_toy_description] {
-	width: 60rem;
-}

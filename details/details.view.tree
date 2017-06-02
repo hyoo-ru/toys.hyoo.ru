@@ -3,7 +3,7 @@ $my_toys_details $mol_page
 	minimal_width 600
 	toy $my_toys_toy
 	body /
-		<= Details_card $mol_view
+		<= Card $mol_view
 			sub /
 				<= Toy_image $mol_image
 					uri <= toy_image\
@@ -31,7 +31,7 @@ $my_toys_details $mol_page
 								<= toy_count 0
 						<= Toy_buy $mol_button_minor
 							sub /
-								<= Button $mol_link
+								<= Button_buy $mol_link
 									uri \http://yasobe.ru/na/mol
 									title <= submit_label @ \Buy
 				<= Toy_description $mol_filler
