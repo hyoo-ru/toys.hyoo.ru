@@ -11,7 +11,7 @@ $my_toys_toy $mol_object
 $my_toys $mol_book
 	pages /
 		<= Catalog $my_toys_catalog
-
+		<= Details $my_toys_details
 $my_toys_catalog $mol_page
 	title @ \Toys
 	minimal_width 600
