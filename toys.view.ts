@@ -41,12 +41,19 @@ namespace $.$mol {
 		
 		@ $mol_mem()
 		seed() {
-			return Math.ceil( 1495357170 - Math.random() * 1000 )
+			return Math.ceil( 1496398563 - Math.random() * 1000 )
+		}
+		
+		@ $mol_mem()
+		luck() {
+			return Number( $mol_state_arg.value( 'luck' ) ) || 1
 		}
 		
 		@ $mol_mem()
 		count() {
-			return Math.ceil( $mol_state_time.now( Math.random() * 1000 ) / 1000 - this.seed()  )
+			const count = Math.ceil( $mol_state_time.now( Math.random() * 1000 ) / 1000 - this.seed()  )
+			if( Math.random() < this.luck() ) throw new Error( 'Request timeout' )
+			return count
 		}
 		
 		hue() {
