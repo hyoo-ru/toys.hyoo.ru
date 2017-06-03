@@ -40,13 +40,8 @@
 	flex: 1000 1 8rem;
 }
 
-[my_toys_catalog_sorts] {
-	flex: 0 1 auto;
-	white-space: nowrap;
-}
-
 [my_toys_catalog_sort] {
-	flex: 1 1 auto;
+	flex: 0 1 auto;
 }
 
 [my_toys_catalog_goods] {

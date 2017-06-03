@@ -37,18 +37,13 @@ $my_toys_catalog $mol_page
 			<= Filter_popular $mol_check_box
 				checked?val <=> filter_populer?val false
 				title <= filter_populer_title @ \Only popular
-			<= Sorts $mol_bar
-				sub /
-					<= Sort $mol_select
-						clearable false
-						value?val <=> sort_key?val \price
-						dictionary <= sort_items *
-							price \Sort by price
-							size \Sort by size
-							title \Sort by title
-					<= Sort_order $mol_check
-						sub /
-							<= Icon $mol_icon_sort_asc
+			<= Sort $mol_select
+				clearable false
+				value?val <=> sort_key?val \price
+				dictionary <= sort_items *
+					price \Sort by price
+					size \Sort by size
+					title \Sort by title
 	-
 	body /
 		<= Goods $mol_row
