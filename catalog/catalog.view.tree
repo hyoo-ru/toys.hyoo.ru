@@ -29,11 +29,9 @@ $my_toys_catalog $mol_page
 				value?val <=> filter_size?val \all
 				dictionary <= filter_size_options *
 					all \All sizes
-					XS \Only XS
 					S \Only S
 					M \Only M
 					L \Only L
-					XL \Only XL
 			<= Filter_title $mol_search
 				query?val <=> filter_title?val \
 			<= Filter_popular $mol_check_box
@@ -47,7 +45,6 @@ $my_toys_catalog $mol_page
 						dictionary <= sort_items *
 							price \Sort by price
 							size \Sort by size
-							popularity \Sort by popularity
 							title \Sort by title
 					<= Sort_order $mol_check
 						sub /

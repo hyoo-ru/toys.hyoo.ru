@@ -39,6 +39,20 @@ namespace $.$mol {
 		}
 		
 		@ $mol_mem()
+		toys_sorted() {
+			return this.toys_filtered().slice().sort( this.sorter() )
+		}
+		
+		@ $mol_mem()
+		sorter() {
+			return {
+				price : ( a : $my_toys_toy , b : $my_toys_toy )=> a.price().valueOf() - b.price().valueOf() ,
+				title : ( a : $my_toys_toy , b : $my_toys_toy )=> a.title() < b.title() ? -1 : a.title() > b.title() ? 1 : 0,
+				size : ( a : $my_toys_toy , b : $my_toys_toy )=> a.size() < b.size() ? -1 : a.size() > b.size() ? 1 : 0,
+			}[ this.sort_key() ]
+		}
+		
+		@ $mol_mem()
 		tools_visible( next? : boolean ) {
 			return $mol_state_session.value( 'tools_visible' , next )
 		}
@@ -52,7 +66,7 @@ namespace $.$mol {
 		}
 		
 		toy_cards() {
-			return this.toys_filtered().map( toy => this.Toy_card( toy.id() ) )
+			return this.toys_sorted().map( toy => this.Toy_card( toy.id() ) )
 		}
 		
 		toy_image( id : string ) {

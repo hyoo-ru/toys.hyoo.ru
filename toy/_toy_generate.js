@@ -4,7 +4,7 @@ const fs = require( 'fs' )
 
 const proto = JSON.parse( fs.readFileSync( 'toy_proto.json' ) )
 const data = {}
-const sizes = [ "XS" , "S" , "M" , "L" , "XL" ]
+const sizes = [ "S" , "M" , "L" ]
 
 for( let i = 0 ; i < 10000 ; ++i ) {
 	const pid = i % proto.length
