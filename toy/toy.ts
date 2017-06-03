@@ -27,6 +27,11 @@ namespace $ {
 			return next
 		}
 		
+		@ $mol_mem()
+		static luck() {
+			return Number( $mol_state_arg.value( 'luck' ) ) || 1
+		}
+		
 		id() {
 			return ''
 		}
@@ -41,22 +46,22 @@ namespace $ {
 			return `-/my/toys/toy/thumbs/${ this.id().substring( 0 , 2 ) }.jpg`
 		}
 		
-		@ $mol_mem()
 		title() {
-			const title = this.data().title
-			return `${ title } #${ this.hue() }`
+			return this.data().title
 		}
 
-		@ $mol_mem()
 		type() {
 			return this.data().type
 		}
 		
-		@ $mol_mem()
 		size() {
 			return this.data().size
 		}
 
+		hue() {
+			return this.data().hue
+		}
+		
 		@ $mol_mem()
 		price() {
 			return new $mol_unit_money_rur( this.data().price )
@@ -68,19 +73,10 @@ namespace $ {
 		}
 		
 		@ $mol_mem()
-		luck() {
-			return Number( $mol_state_arg.value( 'luck' ) ) || 1
-		}
-		
-		@ $mol_mem()
 		count() {
 			const count = Math.ceil( $mol_state_time.now( Math.random() * 1000 ) / 1000 - this.seed()  )
-			if( Math.random() > this.luck() ) throw new Error( 'Request timeout' )
+			if( Math.random() > $my_toys_toy.luck() ) throw new Error( 'Request timeout' )
 			return count
-		}
-		
-		hue() {
-			return this.data().hue
 		}
 		
 	}

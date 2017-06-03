@@ -11,7 +11,7 @@ for( let i = 0 ; i < 10000 ; ++i ) {
 	const id = ( pid < 10 ? '0' : '' ) + pid + Math.random().toString( 16 ).substring( 2 , 8 )
 	const p = proto[ pid ]
 	data[ id ] = {
-		title : p.title ,
+		title : `${ p.title } #${ id }` ,
 		type : p.type ,
 		price : Math.ceil( Math.random() * ( 5000 - 300 ) + 300 ) ,
 		size : sizes[ Math.floor( Math.random() * sizes.length ) ] ,
