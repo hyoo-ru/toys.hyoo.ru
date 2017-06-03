@@ -69,12 +69,12 @@ namespace $ {
 		
 		@ $mol_mem()
 		seed() {
-			return Math.ceil( 1496398563 - Math.random() * 1000 )
+			return Math.ceil( 1496400563 - Math.random() * 1000 )
 		}
 		
 		@ $mol_mem()
 		count() {
-			const count = Math.ceil( $mol_state_time.now( Math.random() * 1000 ) / 1000 - this.seed()  )
+			const count = Math.ceil( $mol_state_time.now( 2000 ) / 1000 - this.seed()  )
 			if( Math.random() > $my_toys_toy.luck() ) throw new Error( 'Request timeout' )
 			return count
 		}
