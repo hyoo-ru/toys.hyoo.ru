@@ -10,11 +10,39 @@ namespace $.$mol {
 			
 			return average
 		}
+		
+		@ $mol_mem()
+		filter_type_options() {
+			const dict = { ... super.filter_type_options() }
+			this.toys().forEach( toy => {
+				dict[ toy.type() ] = toy.type()
+			} )
+			return dict
+		}
+		
+		@ $mol_mem()
+		toys_filtered_by_type() {
+			const filter = this.filter_type()
+			const toys = this.toys()
 
+			if( filter === 'all' ) return toys
+
+			return toys.filter( toy => toy.type() === filter )
+		}
+
+		@ $mol_mem()
+		filter_size_options() {
+			const dict = { ... super.filter_size_options() }
+			this.toys().forEach( toy => {
+				dict[ toy.size() ] = toy.size()
+			} )
+			return dict
+		}
+		
 		@ $mol_mem()
 		toys_filtered_by_size() {
 			const filter = this.filter_size()
-			const toys = this.toys()
+			const toys = this.toys_filtered_by_type()
 
 			if( filter === 'all' ) return toys
 

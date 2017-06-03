@@ -17,21 +17,11 @@ $my_toys_catalog $mol_page
 				value?val <=> filter_type?val \all
 				dictionary <= filter_type_options *
 					all \Все типы
-					mass \Массажер
-					vibr \Виброколонка
-					vint \Винтилятор
-					shoes \Обувь
-					suit \Костюм
-					lamp \Лампа
-					mesh \Мешок
 			<= Filter_size $mol_select
 				clearable false
 				value?val <=> filter_size?val \all
 				dictionary <= filter_size_options *
-					all \All sizes
-					S \Only S
-					M \Only M
-					L \Only L
+					all \Все размеры
 			<= Filter_title $mol_search
 				query?val <=> filter_title?val \
 			<= Filter_popular $mol_check_box
