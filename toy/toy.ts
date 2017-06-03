@@ -1,10 +1,30 @@
 namespace $ {
 	
+	type $my_toys_toy_data = {
+		title : string
+		type : string
+		price : number
+		size : string
+		hue : number
+	}
+	
 	export class $my_toys_toy extends $mol_object {
 		
 		@ $mol_mem()
-		static protos() {
-			return $mol_http.resource( '-/my/toys/toy/toys.json' ).json()
+		static data() {
+			return $mol_http.resource( '-/my/toys/toy/toy_data.json' ).json() as { [ id : string ] : $my_toys_toy_data }
+		}
+		
+		@ $mol_mem()
+		static all() {
+			return Object.keys( this.data() ).map( id => this.item( id ) )
+		}
+		
+		@ $mol_mem_key()
+		static item( id : string ) {
+			const next = new this
+			next.id = $mol_const( id )
+			return next
 		}
 		
 		id() {
@@ -12,36 +32,34 @@ namespace $ {
 		}
 		
 		@ $mol_mem()
-		proto() {
-			return $mol_stub_select_random( Object.keys( $my_toys_toy.protos() ) )
+		data() {
+			return $my_toys_toy.data()[ this.id() ]
 		}
 		
 		@ $mol_mem()
 		image() {
-			return `-/my/toys/toy/thumbs/${ this.proto() }.jpg`
+			return `-/my/toys/toy/thumbs/${ this.id().substring( 0 , 2 ) }.jpg`
 		}
 		
 		@ $mol_mem()
 		title() {
-			const title = $my_toys_toy.protos()[ this.proto() ].title
+			const title = this.data().title
 			return `${ title } #${ this.hue() }`
 		}
 
 		@ $mol_mem()
 		type() {
-			return $my_toys_toy.protos()[ this.proto() ].type
+			return this.data().type
 		}
 		
 		@ $mol_mem()
 		size() {
-			var arr = [ "XS" , "S" , "M" , "L" , "XL" ]
-			var rang = Math.floor(Math.random() * arr.length)
-			return arr[rang]
+			return this.data().size
 		}
 
 		@ $mol_mem()
 		price() {
-			return new $mol_unit_money_rur( Math.ceil( Math.random() * (5000 - 300 ) + 300 ) )
+			return new $mol_unit_money_rur( this.data().price )
 		}
 		
 		@ $mol_mem()
@@ -62,7 +80,7 @@ namespace $ {
 		}
 		
 		hue() {
-			return this.seed() % 360
+			return this.data().hue
 		}
 		
 	}

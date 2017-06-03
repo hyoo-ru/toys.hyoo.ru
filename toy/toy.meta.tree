@@ -11,4 +11,4 @@ deploy \/my/toys/toy/thumbs/9.jpg
 deploy \/my/toys/toy/thumbs/10.jpg
 deploy \/my/toys/toy/thumbs/11.jpg
 deploy \/my/toys/toy/thumbs/12.jpg
-deploy \/my/toys/toy/toys.json
+deploy \/my/toys/toy/toy_data.json

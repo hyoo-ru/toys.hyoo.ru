@@ -2,16 +2,12 @@ namespace $.$mol {
 	
 	export class $my_toys extends $.$my_toys {
 		
-		toy_id( id : string ) {
-			return id
+		toy( id : string ) {
+			return $my_toys_toy.item( id )
 		}
 		
-		@ $mol_mem()
 		toys() {
-			return $mol_range_in({
-				item : id => this.toy( String( id ) ) ,
-				length : this.toys_count() ,
-			}).valueOf() as $my_toys_toy[]
+			return $my_toys_toy.all()
 		}
 		
 		toy_current() {
