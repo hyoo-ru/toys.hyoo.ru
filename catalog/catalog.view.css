@@ -10,8 +10,17 @@
 	margin: 0 1rem;
 }
 
+[my_toys_catalog_title] {
+	margin: 1rem 0;
+}
+
 [my_toys_catalog_tools] {
 	flex: 1 1 auto;
+	padding: 0;
+}
+
+[my_toys_catalog_tools_visible] > [mol_icon] {
+	transform: rotate(90deg);
 }
 
 [my_toys_catalog_toolbar] {

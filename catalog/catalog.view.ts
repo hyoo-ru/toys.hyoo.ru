@@ -21,6 +21,11 @@ namespace $.$mol {
 		}
 		
 		@ $mol_mem()
+		filter_type( next? : string ) {
+			return $mol_state_arg.value( 'type' , next ) || 'all'
+		}
+
+		@ $mol_mem()
 		toys_filtered_by_type() {
 			const filter = this.filter_type()
 			const toys = this.toys()
@@ -40,6 +45,11 @@ namespace $.$mol {
 		}
 		
 		@ $mol_mem()
+		filter_size( next? : string ) {
+			return $mol_state_arg.value( 'size' , next ) || 'all'
+		}
+
+		@ $mol_mem()
 		toys_filtered_by_size() {
 			const filter = this.filter_size()
 			const toys = this.toys_filtered_by_type()
@@ -49,6 +59,11 @@ namespace $.$mol {
 			return toys.filter( toy => toy.size() === filter )
 		}
 		
+		@ $mol_mem()
+		filter_title( next? : string ) {
+			return $mol_state_arg.value( 'title' , next ) || ''
+		}
+
 		@ $mol_mem()
 		toys_filtered_by_title() {
 			const filter = this.filter_title().toLowerCase()
@@ -61,6 +76,11 @@ namespace $.$mol {
 			})
 		}
 		
+		@ $mol_mem()
+		filter_popular( next? : boolean ) {
+			return $mol_state_arg.value( 'popular' , ( next === undefined ) ? undefined : ( next ? '' : null ) ) === ''
+		}
+
 		@ $mol_mem()
 		toys_filtered_by_popularity() {
 			const filter = this.filter_popular()
@@ -82,6 +102,11 @@ namespace $.$mol {
 			return this.toys_filtered().slice().sort( this.sorter() )
 		}
 		
+		@ $mol_mem()
+		sort_key( next? : string ) {
+			return $mol_state_arg.value( 'sort' , next ) || 'price'
+		}
+
 		@ $mol_mem()
 		sorter() {
 			return {
