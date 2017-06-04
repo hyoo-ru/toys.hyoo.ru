@@ -48,7 +48,7 @@ namespace $.$mol {
 
 			return toys.filter( toy => toy.size() === filter )
 		}
-
+		
 		@ $mol_mem()
 		toys_filtered_by_title() {
 			const filter = this.filter_title().toLowerCase()
