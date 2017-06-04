@@ -25,7 +25,7 @@ $my_toys_catalog $mol_page
 			<= Filter_title $mol_search
 				query?val <=> filter_title?val \
 			<= Filter_popular $mol_check_box
-				checked?val <=> filter_populer?val false
+				checked?val <=> filter_popular?val false
 				title <= filter_populer_title @ \Only popular
 			<= Sort $mol_select
 				clearable false
@@ -58,10 +58,10 @@ $my_toys_catalog $mol_page
 								sub /
 									<= toy_size_prefix @ \Size: 
 									<= toy_size!id \
-							<= Toy_count!id $mol_view
+							<= Toy_reviews!id $mol_view
 								sub /
-									<= toy_count_prefix @ \Reviews: 
-									<= toy_count!id 0
+									<= toy_reviews_prefix @ \Reviews: 
+									<= toy_reviews!id 0
 			<= Toy_title!id $mol_view
 				sub /
 					<= toy_title!id \

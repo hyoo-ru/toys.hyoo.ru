@@ -62,8 +62,19 @@ namespace $.$mol {
 		}
 		
 		@ $mol_mem()
+		toys_filtered_by_popularity() {
+			const filter = this.filter_popular()
+			const toys = this.toys_filtered_by_title()
+
+			if( !filter ) return toys
+
+			const average = this.reviews_average()
+			return toys.filter( toy => toy.reviews() >= average )
+		}
+		
+		@ $mol_mem()
 		toys_filtered() {
-			return this.toys_filtered_by_title()
+			return this.toys_filtered_by_popularity()
 		}
 		
 		@ $mol_mem()
@@ -117,8 +128,13 @@ namespace $.$mol {
 			return this.toy( id ).price()
 		}
 		
-		toy_count( id : string ) {
-			return this.toy( id ).count()
+		toy_reviews( id : string ) {
+			return this.toy( id ).reviews()
+		}
+		
+		reviews_average() {
+			const toys = this.toys()
+			return toys.reduce( ( sum , toy )=> sum + toy.reviews() , 0 ) / toys.length
 		}
 		
 		toy_arg( id : string ) {

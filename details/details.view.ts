@@ -23,7 +23,7 @@ export class $my_toys_details extends  $.$my_toys_details {
 		}
 
 		reviews() {
-			return this.toy().count()
+			return this.toy().reviews()
 		}
 
 	}
