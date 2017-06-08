@@ -19,7 +19,7 @@ $my_toys_details $mol_page
 				<= Info $mol_view
 					sub /
 						<= Buy_link $mol_link
-							uri \http://yasobe.ru/na/mol
+							uri \http://github.com/nin-jin/toys.hyoo.ru
 							sub /
 								<= Buy_button $mol_button_major
 									sub /
