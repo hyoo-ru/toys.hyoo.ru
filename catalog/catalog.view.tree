@@ -63,9 +63,9 @@ $my_toys_catalog $mol_page
 								sub /
 									<= toy_reviews_prefix @ \Reviews: 
 									<= toy_reviews!id 0
-			<= Toy_title!id $mol_view
-				sub /
-					<= toy_title!id \
+			<= Toy_title!id $mol_dimmer
+				needle <= filter_title -
+				haystack <= toy_title!id \
 			<= Toy_type!id $mol_view
 				sub /
 					<= toy_type!id \
