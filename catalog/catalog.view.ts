@@ -119,7 +119,7 @@ namespace $.$mol {
 		@ $mol_mem()
 		tools_visible( next? : boolean ) {
 			const next2 = $mol_state_session.value( 'tools_visible' , next )
-			return ( next2 === undefined ) ? true : next2
+			return ( next2 == null ) ? true : next2
 		}
 		
 		sub() {
