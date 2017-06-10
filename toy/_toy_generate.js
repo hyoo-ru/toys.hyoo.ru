@@ -6,7 +6,7 @@ const proto = JSON.parse( fs.readFileSync( 'toy_proto.json' ) )
 const data = {}
 const sizes = [ "S" , "M" , "L" ]
 
-for( let i = 0 ; i < 10000 ; ++i ) {
+for( let i = 0 ; i < 1000 ; ++i ) {
 	const pid = i % proto.length
 	const id = ( pid < 10 ? '0' : '' ) + pid + Math.random().toString( 16 ).substring( 2 , 8 )
 	const p = proto[ pid ]

@@ -74,7 +74,7 @@ namespace $ {
 		
 		@ $mol_mem()
 		reviews() {
-			const count = Math.ceil( $mol_state_time.now( 2000 ) / 1000 - this.seed()  )
+			const count = Math.ceil( $mol_state_time.now( 10000 ) / 1000 - this.seed()  )
 			if( Math.random() > $my_toys_toy.luck() ) throw new Error( 'Request timeout' )
 			return count
 		}
