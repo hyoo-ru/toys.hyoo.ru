@@ -1,6 +1,5 @@
 $my_toys $mol_book
 	title @ \Toys for all
-	toys_count 10000
 	toy!id $my_toys_toy
 	pages /
 		<= Catalog $my_toys_catalog
