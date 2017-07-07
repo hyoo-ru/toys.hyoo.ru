@@ -1,5 +1,5 @@
 $my_toys_catalog $mol_page
-	minimal_width 300
+	minimal_width 400
 	toys /
 	toy!id $my_toys_toy
 	head /
@@ -55,6 +55,7 @@ $my_toys_catalog $mol_page
 						sub /
 							<= Toy_price!id $mol_cost
 								value <= toy_price!id $mol_unit_money
+									valueOf 0
 							<= Toy_size!id $mol_view
 								sub /
 									<= toy_size_prefix @ \Size: 

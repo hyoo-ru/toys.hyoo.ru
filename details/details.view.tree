@@ -1,5 +1,5 @@
 $my_toys_details $mol_page
-	minimal_width 300
+	minimal_width 600
 	toy $my_toys_toy
 	tools /
 		<= Close $mol_link
@@ -26,6 +26,7 @@ $my_toys_details $mol_page
 										<= buy @ \Buy for 
 										<= Price $mol_cost
 											value <= price $mol_unit_money
+												valueOf 0
 						<= Parameters $mol_view
 							sub /
 								<= Type $mol_view
