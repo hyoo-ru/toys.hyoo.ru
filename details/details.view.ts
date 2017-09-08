@@ -1,4 +1,4 @@
-namespace $.$mol {
+namespace $.$$ {
 
 export class $my_toys_details extends  $.$my_toys_details {
 

@@ -14,12 +14,10 @@ $my_toys_catalog $mol_page
 	Toolbar $mol_row
 		sub /
 			<= Filter_type $mol_select
-				clearable false
 				value?val <=> filter_type?val \all
 				dictionary <= filter_type_options *
 					all \Все типы
 			<= Filter_size $mol_select
-				clearable false
 				value?val <=> filter_size?val \all
 				dictionary <= filter_size_options *
 					all \Все размеры
@@ -29,7 +27,6 @@ $my_toys_catalog $mol_page
 				checked?val <=> filter_popular?val false
 				title <= filter_populer_title @ \Only popular
 			<= Sort $mol_select
-				clearable false
 				value?val <=> sort_key?val \price
 				dictionary <= sort_items *
 					price \Sort by price
