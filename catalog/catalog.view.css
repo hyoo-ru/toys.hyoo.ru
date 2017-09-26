@@ -17,6 +17,7 @@
 
 [my_toys_catalog_tools_visible] > [mol_icon] {
 	transform: rotate(90deg);
+	align-self: center;
 }
 
 [my_toys_catalog_toolbar] {
@@ -27,26 +28,13 @@
 	color: var(--mol_skin_base_text);
 }
 
-[my_toys_catalog_filter_type] {
-	flex: 1 1 auto;
-}
-
-[my_toys_catalog_filter_size] {
-	flex: 1 1 auto;
-}
-
 [my_toys_catalog_filter_popular] {
 	margin: 0;
 	align-self: center;
-	flex: 1 1 auto;
 }
 
 [my_toys_catalog_filter_title] {
 	flex: 1000 1 8rem;
-}
-
-[my_toys_catalog_sort] {
-	flex: 0 1 auto;
 }
 
 [my_toys_catalog_goods] {

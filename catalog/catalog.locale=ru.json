@@ -1,4 +1,10 @@
 {
-	"$my_toys_catalog_toy_size_prefix": "Размер: " ,
-	"$my_toys_catalog_toy_count_prefix": "Отзывы: "
+	"$my_toys_catalog_toy_size_prefix": "Размер: ",
+	"$my_toys_catalog_toy_reviews_prefix": "Отзывы: ",
+	"$my_toys_catalog_filter_type_option_all": "Все типы",
+	"$my_toys_catalog_filter_size_option_all": "Все размеры",
+	"$my_toys_catalog_filter_popular_title": "Только популярное",
+	"$my_toys_catalog_sort_option_price": "Сортировать по цене",
+	"$my_toys_catalog_sort_option_size": "Сортировать по размеру",
+	"$my_toys_catalog_sort_option_title": "Сортировать по названию"
 }

@@ -13,25 +13,25 @@ $my_toys_catalog $mol_page
 			checked?val <=> tools_visible?val true
 	Toolbar $mol_row
 		sub /
+			<= Filter_title $mol_search
+				query?val <=> filter_title?val \
 			<= Filter_type $mol_select
 				value?val <=> filter_type?val \all
 				dictionary <= filter_type_options *
-					all \Все типы
+					all <= filter_type_option_all @ \All types
 			<= Filter_size $mol_select
 				value?val <=> filter_size?val \all
 				dictionary <= filter_size_options *
-					all \Все размеры
-			<= Filter_title $mol_search
-				query?val <=> filter_title?val \
+					all <= filter_size_option_all @ \All sizes
 			<= Filter_popular $mol_check_box
 				checked?val <=> filter_popular?val false
-				title <= filter_populer_title @ \Only popular
+				title <= filter_popular_title @ \Only popular
 			<= Sort $mol_select
 				value?val <=> sort_key?val \price
 				dictionary <= sort_items *
-					price \Sort by price
-					size \Sort by size
-					title \Sort by title
+					price <= sort_option_price @ \Sort by price
+					size <= sort_option_size @ \Sort by size
+					title <= sort_option_title @ \Sort by title
 	-
 	body /
 		<= Goods $mol_row
