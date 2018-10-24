@@ -12,7 +12,7 @@ install:
 script:
   - npm start my/toys
   - rm my/toys/.gitignore
-  - mv my/toys toys.hyoo.ru
+  - mv my/toys/- toys.hyoo.ru
 deploy:
   provider: pages
   skip_cleanup: true
