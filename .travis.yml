@@ -12,11 +12,12 @@ install:
 script:
   - npm start my/toys
   - rm my/toys/.gitignore
+  - mv my/toys toys.hyoo.ru
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
-  local_dir: ../my/toys/-
+  local_dir: .
   on:
     branch: master
 notifications:
