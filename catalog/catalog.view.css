@@ -15,17 +15,26 @@
 	padding: 0;
 }
 
+[my_toys_catalog_tools_visible] {
+	flex-direction: row-reverse;
+	align-self: flex-end;
+}
+
 [my_toys_catalog_tools_visible] > [mol_icon] {
 	transform: rotate(90deg);
 	align-self: center;
 }
 
 [my_toys_catalog_toolbar] {
-	margin-top: -.5rem;
 	justify-content: flex-end;
 	flex: none;
-	background: var(--mol_skin_base);
-	color: var(--mol_skin_base_text);
+	background: var(--mol_theme_back);
+	box-shadow: 0 0 0 1px var(--mol_theme_line);
+	z-index: 1;
+}
+
+[my_toys_catalog_toolbar] > * {
+	margin: 0;
 }
 
 [my_toys_catalog_filter_popular] {

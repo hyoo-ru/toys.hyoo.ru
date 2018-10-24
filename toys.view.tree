@@ -1,7 +1,9 @@
 $my_toys $mol_book
+	attr * mol_theme \$mol_theme_dark
 	title @ \Toys for all
 	toy!id $my_toys_toy
 	Placeholder null
+	event * keydown?event <=> keydown?event null
 	pages /
 		<= Catalog $my_toys_catalog
 			title <= title -
@@ -9,3 +11,4 @@ $my_toys $mol_book
 			toy!id <= toy!id -
 		<= Details $my_toys_details
 			toy <= toy_current $my_toys_toy
+			event_top?event <=> event_front_up?event

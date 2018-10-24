@@ -4,13 +4,14 @@ $my_toys_catalog $mol_page
 	toy!id $my_toys_toy
 	head /
 		<= Logo $mol_image
-			uri \-/my/toys/toys_logo.svg
+			uri \my/toys/toys_logo.svg
 		<= Title -
 		<= Tools -
 	tools /
 		<= Tools_visible $mol_check_icon
 			Icon $mol_icon_chevron
 			checked?val <=> tools_visible?val true
+			title <= tools_visible_title @ \Filters
 	Toolbar $mol_row
 		sub /
 			<= Filter_title $mol_search
@@ -21,6 +22,7 @@ $my_toys_catalog $mol_page
 					all <= filter_type_option_all @ \All types
 			<= Filter_size $mol_select
 				value?val <=> filter_size?val \all
+				Filter null
 				dictionary <= filter_size_options *
 					all <= filter_size_option_all @ \All sizes
 			<= Filter_popular $mol_check_box
@@ -28,6 +30,7 @@ $my_toys_catalog $mol_page
 				title <= filter_popular_title @ \Only popular
 			<= Sort $mol_select
 				value?val <=> sort_key?val \price
+				Filter null
 				dictionary <= sort_items *
 					price <= sort_option_price @ \Sort by price
 					size <= sort_option_size @ \Sort by size

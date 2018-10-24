@@ -3,8 +3,17 @@
 }
 
 [my_toys] [mol_page_head] {
-	background: var(--mol_skin_light);
-	color: var(--mol_skin_light_text);
-	border-bottom: .5rem solid var(--mol_skin_base);
 	flex-wrap: nowrap;
+}
+
+[my_toys][mol_theme="$mol_theme_dark"] {
+	--mol_theme_focus: #d45e9f;
+}
+
+[my_toys] [mol_theme="$mol_theme_base"] {
+	--mol_theme_back: black;
+}
+
+[my_toys] [mol_theme="$mol_theme_accent"] {
+	--mol_theme_back: #d45e9f;
 }

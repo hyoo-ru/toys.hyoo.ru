@@ -21,6 +21,15 @@ namespace $.$$ {
 				this.toy_current() ? this.Details() : null ,
 			]
 		}
+
+		keydown( event? : KeyboardEvent ) {
+
+			if( event.ctrlKey && event.keyCode === $mol_keyboard_code.F ) {
+				event.preventDefault()
+				this.Catalog().Filter_title().Suggest().Filter().focused( true )
+			}
+
+		}
 		
 	}
 	
