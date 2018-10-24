@@ -16,7 +16,7 @@ deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
-  local_dir: my/toys/-
+  local_dir: ../my/toys/-
   on:
     branch: master
 notifications:
