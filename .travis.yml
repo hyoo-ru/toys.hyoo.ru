@@ -13,6 +13,7 @@ script:
   - npm start hyoo/toys
   - rm hyoo/toys/.gitignore
   - mv hyoo/toys/- toys.hyoo.ru
+  - mv hyoo/toys/CNAME toys.hyoo.ru/CNAME
 deploy:
   provider: pages
   skip_cleanup: true
