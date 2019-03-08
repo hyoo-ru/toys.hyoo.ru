@@ -3,16 +3,16 @@ node_js:
   - "9"
 install:
   - cd ..
-  - mkdir my
-  - mv toys.hyoo.ru my/toys
+  - mkdir hyoo
+  - mv toys.hyoo.ru hyoo/toys
   - git init
   - git remote add origin https://github.com/eigenmethod/mam.git
   - git pull origin master
   - npm install
 script:
-  - npm start my/toys
-  - rm my/toys/.gitignore
-  - mv my/toys/- toys.hyoo.ru
+  - npm start hyoo/toys
+  - rm hyoo/toys/.gitignore
+  - mv hyoo/toys/- toys.hyoo.ru
 deploy:
   provider: pages
   skip_cleanup: true
