@@ -39,6 +39,11 @@
 	font-weight: bolder;
 }
 
+[hyoo_toys_catalog_toy_type] {
+	display: block;
+	margin: 0 .5rem;
+}
+
 [hyoo_toys_catalog_toy_option] {
 	display: flex;
 	flex-direction: row;
