@@ -12,7 +12,7 @@ namespace $ {
 		
 		@ $mol_mem
 		static data() {
-			return $mol_http.resource( 'my/toys/toy/toy_data.json' ).json() as { [ id : string ] : $hyoo_toys_toy_data }
+			return $mol_http.resource( 'hyoo/toys/toy/toy_data.json' ).json() as { [ id : string ] : $hyoo_toys_toy_data }
 		}
 		
 		@ $mol_mem
@@ -43,7 +43,7 @@ namespace $ {
 		
 		@ $mol_mem
 		image() {
-			return `my/toys/toy/thumbs/${ this.id().substring( 0 , 2 ) }.jpg`
+			return `hyoo/toys/toy/thumbs/${ this.id().substring( 0 , 2 ) }.jpg`
 		}
 		
 		title() {

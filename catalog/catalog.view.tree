@@ -8,7 +8,7 @@ $hyoo_toys_catalog $mol_page
 	filter_popular true
 	head /
 		<= Logo $mol_image
-			uri \my/toys/toys_logo.svg
+			uri \hyoo/toys/toys_logo.svg
 			event * click?val <=> event_top?val null
 		<= Title -
 		<= Tools -
