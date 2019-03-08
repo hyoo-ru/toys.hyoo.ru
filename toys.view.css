@@ -2,18 +2,45 @@
 	--mol_skin_accent: #d45e9f;
 }
 
-[my_toys] [mol_page_head] {
+[hyoo_toys] [mol_page_head] {
 	flex-wrap: nowrap;
 }
 
-[my_toys][mol_theme="$mol_theme_dark"] {
+[hyoo_toys][mol_theme="$mol_theme_dark"] {
 	--mol_theme_focus: #d45e9f;
 }
 
-[my_toys] [mol_theme="$mol_theme_base"] {
+[hyoo_toys] [mol_theme="$mol_theme_base"] {
 	--mol_theme_back: black;
 }
 
-[my_toys] [mol_theme="$mol_theme_accent"] {
+[hyoo_toys] [mol_theme="$mol_theme_accent"] {
 	--mol_theme_back: #d45e9f;
+}
+
+[hyoo_toys_filter_type] {
+	flex-direction: column;
+}
+
+[hyoo_toys_sort] {
+	flex-direction: column;
+}
+
+[hyoo_toys_filter_type] {
+	padding: .5rem 0;
+}
+
+[hyoo_toys_sort] {
+	padding: .5rem 0;
+}
+
+[hyoo_toys_filter_popular] {
+	margin: .5rem 0;
+	padding: .5rem 1rem;
+	display: block;
+}
+
+[hyoo_toys_filter_popular][mol_check_checked] {
+	background: var(--mol_theme_current);
+	color: var(--mol_theme_text);
 }

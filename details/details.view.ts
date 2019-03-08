@@ -1,6 +1,6 @@
 namespace $.$$ {
 
-export class $my_toys_details extends  $.$my_toys_details {
+export class $hyoo_toys_details extends  $.$hyoo_toys_details {
 
 		photo_uri() {
 			return this.toy().image()

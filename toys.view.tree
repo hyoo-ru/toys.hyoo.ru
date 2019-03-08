@@ -1,14 +1,40 @@
-$my_toys $mol_book
+$hyoo_toys $mol_book
 	attr * mol_theme \$mol_theme_dark
 	title @ \Toys for all
-	toy!id $my_toys_toy
+	toy!id $hyoo_toys_toy
 	Placeholder null
 	event * keydown?event <=> keydown?event null
 	pages /
-		<= Catalog $my_toys_catalog
+		<= Filters $mol_page
+			title <= filters_title @ \Filters
+			minimal_width 200
+			body /
+				<= Filter_type $mol_switch
+					value?val <=> filter_type?val \all
+					options <= filter_type_options *
+						all <= filter_type_option_all @ \All types
+				<= Filter_size $mol_switch
+					value?val <=> filter_size?val \all
+					options <= filter_size_options *
+						all <= filter_size_option_all @ \All sizes
+				<= Filter_popular $mol_check
+					checked?val <=> filter_popular?val false
+					title <= filter_popular_title @ \Only popular
+				<= Sort $mol_switch
+					value?val <=> sort_key?val \price
+					options <= sort_items *
+						price <= sort_option_price @ \Sort by price
+						size <= sort_option_size @ \Sort by size
+						title <= sort_option_title @ \Sort by title
+		<= Catalog $hyoo_toys_catalog
 			title <= title -
 			toys <= toys /
 			toy!id <= toy!id -
-		<= Details $my_toys_details
-			toy <= toy_current $my_toys_toy
+			event_top?event <=> event_front_up?event
+			filter_type <= filter_type
+			filter_size <= filter_size
+			filter_popular <= filter_popular
+			sort_key <= sort_key
+		<= Details $hyoo_toys_details
+			toy <= toy_current $hyoo_toys_toy
 			event_top?event <=> event_front_up?event

@@ -1,6 +1,6 @@
 namespace $ {
 	
-	type $my_toys_toy_data = {
+	type $hyoo_toys_toy_data = {
 		title : string
 		type : string
 		price : number
@@ -8,11 +8,11 @@ namespace $ {
 		hue : number
 	}
 	
-	export class $my_toys_toy extends $mol_object {
+	export class $hyoo_toys_toy extends $mol_object {
 		
 		@ $mol_mem
 		static data() {
-			return $mol_http.resource( 'my/toys/toy/toy_data.json' ).json() as { [ id : string ] : $my_toys_toy_data }
+			return $mol_http.resource( 'my/toys/toy/toy_data.json' ).json() as { [ id : string ] : $hyoo_toys_toy_data }
 		}
 		
 		@ $mol_mem
@@ -38,7 +38,7 @@ namespace $ {
 		
 		@ $mol_mem
 		data() {
-			return $my_toys_toy.data()[ this.id() ]
+			return $hyoo_toys_toy.data()[ this.id() ]
 		}
 		
 		@ $mol_mem
@@ -75,7 +75,7 @@ namespace $ {
 		@ $mol_mem
 		reviews() {
 			const count = Math.ceil( $mol_state_time.now( 10000 ) / 1000 - this.seed()  )
-			if( Math.random() > $my_toys_toy.luck() ) throw new Error( 'Request timeout' )
+			if( Math.random() > $hyoo_toys_toy.luck() ) throw new Error( 'Request timeout' )
 			return count
 		}
 		

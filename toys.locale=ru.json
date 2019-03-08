@@ -1,3 +1,10 @@
 {
-	"$my_toys_title": "Игрушки для всей семьи"
+	"$hyoo_toys_title": "Игрушки для всей семьи",
+	"$hyoo_toys_filters_title": "Фильтры",
+	"$hyoo_toys_filter_type_option_all": "Все типы",
+	"$hyoo_toys_filter_size_option_all": "Все размеры",
+	"$hyoo_toys_filter_popular_title": "Только популярное",
+	"$hyoo_toys_sort_option_price": "Сортировать по цене",
+	"$hyoo_toys_sort_option_size": "Сортировать по размеру",
+	"$hyoo_toys_sort_option_title": "Сортировать по названию"
 }
