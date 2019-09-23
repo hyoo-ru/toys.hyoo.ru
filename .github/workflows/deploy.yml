@@ -12,5 +12,6 @@ jobs:
     #- uses: actions/setup-node@v1
     - name: check
       run: |
-        ls
+        cd ..
         pwd
+        ls
