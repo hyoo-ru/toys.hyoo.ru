@@ -19,6 +19,8 @@ jobs:
       run: |
         cd ..
         ls
+        mkdir mam/hyoo
+        mkdir mam/hyoo/toys
         mv toys.hyoo.ru/* mam/hyoo/toys
         cd mam
         yarn start hyoo/toys
