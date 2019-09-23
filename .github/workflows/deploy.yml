@@ -12,8 +12,8 @@ jobs:
       with:
         repository: eigenmethod/mam
         ref: master
-        path: .
     - uses: actions/setup-node@v1
     - name: check
       run: |
+        cd mam
         yarn start hyoo/toys
