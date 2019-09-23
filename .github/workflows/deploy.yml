@@ -33,7 +33,7 @@ jobs:
         yarn start hyoo/toys
         cp hyoo/toys/CNAME hyoo/toys/-/CNAME
     - name: Deploy on github pages
-      uses: alex-page/blazing-fast-gh-pages-deploy@v1.0.0
+      uses: alex-page/blazing-fast-gh-pages-deploy@v1.0.1
       with:
         repo-token: ${{ secrets.GH_PAT }}
         site-directory: '../mam/hyoo/toys/-'
