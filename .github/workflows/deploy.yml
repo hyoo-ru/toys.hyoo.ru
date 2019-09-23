@@ -1,4 +1,4 @@
-name: CI
+name: Deploy
 
 on: [push]
 
@@ -25,3 +25,7 @@ jobs:
         cd mam
         yarn
         yarn start hyoo/toys
+    - uses: maxheld83/ghpages@v0.2.1
+      with:
+        env:
+          BUILD_DIR: hyoo/toys/-
