@@ -17,6 +17,7 @@ jobs:
     - name: check
       run: |
         pwd
+        cd ..
         ls
         cd mam
         yarn start hyoo/toys
