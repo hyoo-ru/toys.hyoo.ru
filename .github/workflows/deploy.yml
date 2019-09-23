@@ -33,4 +33,4 @@ jobs:
       env:
         BUILD_DIR: '-'
       with:
-        secrets: [GH_PAT]
+        secrets: GH_PAT
