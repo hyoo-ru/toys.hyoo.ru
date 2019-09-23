@@ -3446,30 +3446,6 @@ var $;
 })($ || ($ = {}));
 //money.js.map
 ;
-#!/usr/bin/env node
-
-const fs = require( 'fs' )
-
-const proto = JSON.parse( fs.readFileSync( 'toy_proto.json' ) )
-const data = {}
-const sizes = [ "S" , "M" , "L" ]
-
-for( let i = 0 ; i < 1000 ; ++i ) {
-	const pid = i % proto.length
-	const id = ( pid < 10 ? '0' : '' ) + pid + Math.random().toString( 16 ).substring( 2 , 8 )
-	const p = proto[ pid ]
-	data[ id ] = {
-		title : `${ p.title } #${ id }` ,
-		type : p.type ,
-		price : Math.ceil( Math.random() * ( 5000 - 300 ) + 300 ) ,
-		size : sizes[ Math.floor( Math.random() * sizes.length ) ] ,
-		hue : Math.floor( Math.random() * 360 )
-	}
-}
-
-fs.writeFileSync( 'toy_data.json' , JSON.stringify( data ) )
-
-;
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
