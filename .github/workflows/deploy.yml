@@ -28,4 +28,4 @@ jobs:
     - name: Deploy on github pages
       uses: maxheld83/ghpages@v0.2.1
       env:
-        BUILD_DIR: -
+        BUILD_DIR: '-'
