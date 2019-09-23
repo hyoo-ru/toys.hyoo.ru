@@ -10,14 +10,15 @@ jobs:
     steps:
     - uses: actions/setup-node@v1
     - uses: actions/checkout@v1
+    - uses: actions/checkout@v1
       with:
         repository: eigenmethod/mam
         ref: master
         path: mam
-    - name: check
+    - name: cbuild
       run: |
-        pwd
         cd ..
         ls
+        mv toys.hyoo.ru/* mam/hyoo/toys
         cd mam
         yarn start hyoo/toys
