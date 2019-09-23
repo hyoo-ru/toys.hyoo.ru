@@ -35,5 +35,5 @@ jobs:
     - name: Deploy on github pages
       uses: alex-page/blazing-fast-gh-pages-deploy@v1.0.1
       with:
-        repo-token: ${{ secrets.GH_PAT }}
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
         site-directory: '../mam/hyoo/toys/-'
