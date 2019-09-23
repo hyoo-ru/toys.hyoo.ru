@@ -13,6 +13,7 @@ jobs:
       with:
         repository: eigenmethod/mam
         ref: master
+        path: mam
     - name: check
       run: |
         pwd
