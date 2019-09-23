@@ -31,7 +31,7 @@ jobs:
         cd mam
         yarn
         yarn start hyoo/toys
-        cd ..
+        mv hyoo/toys/CNAME hyoo/toys/-/CNAME
     - name: Deploy on github pages
       uses: alex-page/blazing-fast-gh-pages-deploy@v1.0.0
       with:
