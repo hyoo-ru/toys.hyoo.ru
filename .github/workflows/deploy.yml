@@ -8,14 +8,17 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/setup-node@v1
-    - uses: actions/checkout@v1
-    - uses: actions/checkout@v1
+    - name: Setup node
+      uses: actions/setup-node@v1
+    - name: Checkout sources
+      uses: actions/checkout@v1
+    - name: Checkout MAM
+      uses: actions/checkout@v1
       with:
         repository: eigenmethod/mam
         ref: master
         path: mam
-    - name: cbuild
+    - name: Build app
       run: |
         cd ..
         ls
@@ -29,3 +32,5 @@ jobs:
       uses: maxheld83/ghpages@v0.2.1
       env:
         BUILD_DIR: '-'
+      with:
+        secrets: [GH_PAT]
