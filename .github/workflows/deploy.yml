@@ -23,4 +23,5 @@ jobs:
         mkdir mam/hyoo/toys
         mv toys.hyoo.ru/* mam/hyoo/toys
         cd mam
+        yarn
         yarn start hyoo/toys
