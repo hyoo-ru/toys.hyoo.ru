@@ -11,16 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    
     - name: Set up NodeJS
       uses: actions/setup-node@v1
+    
     - name: Checkout sources
       uses: actions/checkout@v1
+    
     - name: Checkout MAM
       uses: actions/checkout@v1
       with:
         repository: eigenmethod/mam
         ref: master
         path: mam
+    
     - name: Build app
       run: |
         cd ..
@@ -32,6 +36,7 @@ jobs:
         yarn
         yarn start hyoo/toys
         cp hyoo/toys/CNAME hyoo/toys/-/CNAME
+    
     - name: Deploy on GitHub Pages
       uses: alex-page/blazing-fast-gh-pages-deploy@v1.0.1
       with:
