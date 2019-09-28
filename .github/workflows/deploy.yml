@@ -24,21 +24,27 @@ jobs:
         repository: eigenmethod/mam
         ref: master
         path: mam
-    
+
+    - name: Build app
+      uses: hyoo-ru/mam_build@1.0.0
+      with:
+        module: 'hyoo/toys'
+
     - name: Build app
       run: |
-        cd ..
-        ls
-        mkdir mam/hyoo
-        mkdir mam/hyoo/toys
-        mv toys.hyoo.ru/* mam/hyoo/toys
-        cd mam
-        yarn
-        yarn start hyoo/toys
-        cp hyoo/toys/CNAME hyoo/toys/-/CNAME
+        cp CNAME -/CNAME
+#         cd ..
+#         ls
+#         mkdir mam/hyoo
+#         mkdir mam/hyoo/toys
+#         mv toys.hyoo.ru/* mam/hyoo/toys
+#         cd mam
+#         yarn
+#         yarn start hyoo/toys
+#         cp hyoo/toys/CNAME hyoo/toys/-/CNAME
     
     - name: Deploy on GitHub Pages
       uses: alex-page/blazing-fast-gh-pages-deploy@v1.0.1
       with:
         repo-token: ${{ secrets.GH_PAT }}
-        site-directory: '../mam/hyoo/toys/-'
+        site-directory: '-'
