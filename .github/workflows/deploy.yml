@@ -22,10 +22,6 @@ jobs:
       uses: hyoo-ru/mam_build@master
       with:
         module: 'hyoo/toys'
-
-    - name: Copy CNAME
-      run: |
-        cp CNAME -/CNAME
     
     - name: Deploy on GitHub Pages
       uses: alex-page/blazing-fast-gh-pages-deploy@v1.0.1
