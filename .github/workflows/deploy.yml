@@ -26,7 +26,7 @@ jobs:
         path: mam
 
     - name: Build app
-      uses: hyoo-ru/mam_build@1.0.0
+      uses: hyoo-ru/mam_build@master
       with:
         module: 'hyoo/toys'
 
