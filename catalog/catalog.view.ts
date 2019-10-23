@@ -84,6 +84,7 @@ namespace $.$$ {
 			return ( next2 == null ) ? true : next2
 		}
 		
+		@ $mol_mem
 		toy_cards() {
 			return this.toys_sorted().map( toy => this.Toy_card( toy.id() ) )
 		}
