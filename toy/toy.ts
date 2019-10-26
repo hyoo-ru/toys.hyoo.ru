@@ -12,7 +12,7 @@ namespace $ {
 		
 		@ $mol_mem
 		static data() {
-			return $mol_http.resource( 'hyoo/toys/toy/toy_data.json' ).json() as { [ id : string ] : $hyoo_toys_toy_data }
+			return $mol_fetch.json( 'hyoo/toys/toy/toy_data.json' ) as { [ id : string ] : $hyoo_toys_toy_data }
 		}
 		
 		@ $mol_mem
