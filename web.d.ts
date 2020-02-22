@@ -851,16 +851,16 @@ declare namespace $ {
         click(event?: any, force?: $mol_mem_force): any;
         event_click(event?: any, force?: $mol_mem_force): any;
         event(): {
-            "click": (event?: any) => any;
-            "keypress": (event?: any) => any;
+            click: (event?: any) => any;
+            keypress: (event?: any) => any;
         };
         event_activate(event?: any, force?: $mol_mem_force): any;
         event_key_press(event?: any, force?: $mol_mem_force): any;
         attr(): {
-            "disabled": boolean;
-            "role": string;
-            "tabindex": number;
-            "title": string;
+            disabled: boolean;
+            role: string;
+            tabindex: number;
+            title: string;
         };
         disabled(): boolean;
         tab_index(): number;
@@ -888,11 +888,11 @@ declare namespace $ {
 declare namespace $ {
     class $mol_button_major extends $mol_button_typed {
         attr(): {
-            "mol_theme": string;
-            "disabled": boolean;
-            "role": string;
-            "tabindex": number;
-            "title": string;
+            mol_theme: string;
+            disabled: boolean;
+            role: string;
+            tabindex: number;
+            title: string;
         };
     }
 }
@@ -912,13 +912,13 @@ declare namespace $ {
         minimal_height(): number;
         _event_scroll_timer(val?: any, force?: $mol_mem_force): any;
         field(): {
-            "scrollTop": any;
-            "scrollLeft": any;
+            scrollTop: any;
+            scrollLeft: any;
         };
         scroll_top(val?: any, force?: $mol_mem_force): any;
         scroll_left(val?: any, force?: $mol_mem_force): any;
         event(): {
-            "scroll": (event?: any) => any;
+            scroll: (event?: any) => any;
         };
         event_scroll(event?: any, force?: $mol_mem_force): any;
     }
@@ -971,12 +971,12 @@ declare namespace $ {
 declare namespace $ {
     class $mol_check extends $mol_button_minor {
         attr(): {
-            "mol_check_checked": any;
+            mol_check_checked: any;
             "aria-checked": any;
-            "role": string;
-            "disabled": boolean;
-            "tabindex": number;
-            "title": string;
+            role: string;
+            disabled: boolean;
+            tabindex: number;
+            title: string;
         };
         checked(val?: any, force?: $mol_mem_force): any;
         sub(): readonly any[];
@@ -1073,14 +1073,14 @@ declare namespace $ {
             "touch-action": string;
         };
         event(): {
-            "touchstart": (event?: any) => any;
-            "touchmove": (event?: any) => any;
-            "touchend": (event?: any) => any;
-            "mousedown": (event?: any) => any;
-            "mousemove": (event?: any) => any;
-            "mouseup": (event?: any) => any;
-            "mouseleave": (event?: any) => any;
-            "wheel": (event?: any) => any;
+            touchstart: (event?: any) => any;
+            touchmove: (event?: any) => any;
+            touchend: (event?: any) => any;
+            mousedown: (event?: any) => any;
+            mousemove: (event?: any) => any;
+            mouseup: (event?: any) => any;
+            mouseleave: (event?: any) => any;
+            wheel: (event?: any) => any;
         };
         event_start(event?: any, force?: $mol_mem_force): any;
         event_move(event?: any, force?: $mol_mem_force): any;
@@ -1151,19 +1151,19 @@ declare namespace $ {
     class $mol_book_placeholder extends $mol_view {
         minimal_width(): number;
         attr(): {
-            "tabindex": any;
+            tabindex: any;
         };
     }
 }
 declare namespace $ {
     class $mol_book_page extends $mol_ghost {
         attr_static(): {
-            "tabindex": number;
-            "mol_book_page_visible": boolean;
+            tabindex: number;
+            mol_book_page_visible: boolean;
         };
         attr(): {
-            "mol_book_page_focused": boolean;
-            "mol_book_page_visible": boolean;
+            mol_book_page_focused: boolean;
+            mol_book_page_visible: boolean;
         };
         visible(): boolean;
     }
@@ -1268,8 +1268,8 @@ declare namespace $ {
     class $mol_image extends $mol_view {
         dom_name(): string;
         field(): {
-            "src": string;
-            "alt": string;
+            src: string;
+            alt: string;
         };
         uri(): string;
     }
@@ -1290,7 +1290,7 @@ declare namespace $ {
 declare namespace $ {
     class $mol_pop extends $mol_view {
         event(): {
-            "keydown": (event?: any) => any;
+            keydown: (event?: any) => any;
         };
         keydown(event?: any, force?: $mol_mem_force): any;
         showed(val?: any, force?: $mol_mem_force): any;
@@ -1313,12 +1313,12 @@ declare namespace $ {
         sub(): readonly (string | number | boolean | Node | $mol_view)[];
         content(): readonly (string | number | boolean | Node | $mol_view)[];
         style(): {
-            "maxHeight": number;
+            maxHeight: number;
         };
         height_max(): number;
         attr(): {
-            "mol_pop_align": string;
-            "tabindex": number;
+            mol_pop_align: string;
+            tabindex: number;
         };
         align(): string;
     }
@@ -1373,7 +1373,7 @@ declare namespace $ {
         event_left(event?: any, force?: $mol_mem_force): any;
         event_right(event?: any, force?: $mol_mem_force): any;
         event(): {
-            "keydown": (event?: any) => any;
+            keydown: (event?: any) => any;
         };
         event_key(event?: any, force?: $mol_mem_force): any;
     }
@@ -1429,12 +1429,12 @@ declare namespace $ {
         minimal_height(): number;
         autocomplete(): boolean;
         field(): {
-            "disabled": boolean;
-            "value": any;
-            "placeholder": string;
-            "type": any;
-            "spellcheck": boolean;
-            "autocomplete": string;
+            disabled: boolean;
+            value: any;
+            placeholder: string;
+            type: any;
+            spellcheck: boolean;
+            autocomplete: string;
         };
         disabled(): boolean;
         value_changed(val?: any, force?: $mol_mem_force): any;
@@ -1444,12 +1444,12 @@ declare namespace $ {
         spellcheck(): boolean;
         autocomplete_native(): string;
         attr(): {
-            "maxlength": number;
+            maxlength: number;
         };
         length_max(): number;
         event(): {
-            "input": (event?: any) => any;
-            "keydown": (event?: any) => any;
+            input: (event?: any) => any;
+            keydown: (event?: any) => any;
         };
         event_change(event?: any, force?: $mol_mem_force): any;
         event_key_press(event?: any, force?: $mol_mem_force): any;
@@ -1502,8 +1502,8 @@ declare namespace $ {
     class $mol_svg_root extends $mol_svg {
         dom_name(): string;
         attr(): {
-            "viewBox": string;
-            "preserveAspectRatio": string;
+            viewBox: string;
+            preserveAspectRatio: string;
         };
         view_box(): string;
         aspect(): string;
@@ -1514,7 +1514,7 @@ declare namespace $ {
     class $mol_svg_path extends $mol_svg {
         dom_name(): string;
         attr(): {
-            "d": string;
+            d: string;
         };
         geometry(): string;
     }
@@ -1644,11 +1644,11 @@ declare namespace $ {
     class $mol_link extends $mol_view {
         dom_name(): string;
         attr(): {
-            "href": string;
-            "title": string;
-            "target": string;
-            "download": string;
-            "mol_link_current": boolean;
+            href: string;
+            title: string;
+            target: string;
+            download: string;
+            mol_link_current: boolean;
         };
         uri(): string;
         hint(): string;
@@ -1658,7 +1658,7 @@ declare namespace $ {
         sub(): readonly (string | number | boolean | Node | $mol_view)[];
         arg(): {};
         event(): {
-            "click": (event?: any) => any;
+            click: (event?: any) => any;
         };
         click(event?: any, force?: $mol_mem_force): any;
         event_click(event?: any, force?: $mol_mem_force): any;
@@ -1833,13 +1833,13 @@ declare namespace $ {
 declare namespace $ {
     class $hyoo_toys extends $mol_book {
         attr(): {
-            "mol_theme": string;
+            mol_theme: string;
         };
         title(): string;
         toy(id: any): $hyoo_toys_toy;
         Placeholder(): any;
         event(): {
-            "keydown": (event?: any) => any;
+            keydown: (event?: any) => any;
         };
         keydown(event?: any, force?: $mol_mem_force): any;
         pages(): readonly any[];
@@ -1848,13 +1848,13 @@ declare namespace $ {
         Filter_type(): $$.$mol_switch;
         filter_type(val?: any, force?: $mol_mem_force): any;
         filter_type_options(): {
-            "all": string;
+            all: string;
         };
         filter_type_option_all(): string;
         Filter_size(): $$.$mol_switch;
         filter_size(val?: any, force?: $mol_mem_force): any;
         filter_size_options(): {
-            "all": string;
+            all: string;
         };
         filter_size_option_all(): string;
         Filter_popular(): $$.$mol_check;
@@ -1863,9 +1863,9 @@ declare namespace $ {
         Sort(): $$.$mol_switch;
         sort_key(val?: any, force?: $mol_mem_force): any;
         sort_items(): {
-            "price": string;
-            "size": string;
-            "title": string;
+            price: string;
+            size: string;
+            title: string;
         };
         sort_option_price(): string;
         sort_option_size(): string;
@@ -1886,11 +1886,11 @@ declare namespace $.$$ {
         keydown(event?: KeyboardEvent): void;
         filter_type(next?: string): string;
         filter_type_options(): {
-            "all": string;
+            all: string;
         };
         filter_size(next?: string): string;
         filter_size_options(): {
-            "all": string;
+            all: string;
         };
         filter_popular(next?: boolean): boolean;
         sort_key(next?: string): string;
