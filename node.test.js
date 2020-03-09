@@ -4426,6 +4426,9 @@ var $;
         options() {
             return ({});
         }
+        keys() {
+            return [];
+        }
         sub() {
             return this.items();
         }
@@ -4458,8 +4461,11 @@ var $;
             options() {
                 return {};
             }
+            keys() {
+                return Object.keys(this.options());
+            }
             items() {
-                return Object.keys(this.options()).map(key => this.Option(key));
+                return this.keys().map(key => this.Option(key));
             }
             option_title(key) {
                 return this.options()[key];
@@ -4470,6 +4476,9 @@ var $;
                 this.value(next ? key : null);
             }
         }
+        __decorate([
+            $.$mol_mem
+        ], $mol_switch.prototype, "keys", null);
         __decorate([
             $.$mol_mem
         ], $mol_switch.prototype, "items", null);
