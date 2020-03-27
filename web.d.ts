@@ -1417,9 +1417,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-}
-
-declare namespace $ {
     class $mol_image extends $mol_view {
         dom_name(): string;
         field(): {
@@ -1436,6 +1433,9 @@ declare namespace $ {
 declare namespace $ {
     class $mol_bar extends $mol_view {
     }
+}
+
+declare namespace $ {
 }
 
 declare namespace $ {
@@ -1651,9 +1651,6 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-}
-
-declare namespace $ {
     class $mol_svg_root extends $mol_svg {
         dom_name(): string;
         attr(): {
@@ -1663,6 +1660,9 @@ declare namespace $ {
         view_box(): string;
         aspect(): string;
     }
+}
+
+declare namespace $ {
 }
 
 declare namespace $ {
@@ -1788,11 +1788,11 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_row extends $mol_view {
+    }
 }
 
 declare namespace $ {
-    class $mol_row extends $mol_view {
-    }
 }
 
 declare namespace $ {
@@ -1930,13 +1930,13 @@ declare namespace $ {
 }
 
 declare namespace $ {
-}
-
-declare namespace $ {
     class $mol_filler extends $mol_view {
         minimal_height(): number;
         sub(): readonly any[];
     }
+}
+
+declare namespace $ {
 }
 
 declare namespace $ {
