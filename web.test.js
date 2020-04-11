@@ -1406,6 +1406,12 @@ var $;
 //mem.test.js.map
 ;
 "use strict";
+//param.test.js.map
+;
+"use strict";
+//result.test.js.map
+;
+"use strict";
 var $;
 (function ($) {
     $.$mol_test({
@@ -1855,9 +1861,6 @@ var $;
     });
 })($ || ($ = {}));
 //view.test.js.map
-;
-"use strict";
-//result.test.js.map
 ;
 "use strict";
 var $;
