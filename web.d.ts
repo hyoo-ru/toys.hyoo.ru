@@ -348,7 +348,7 @@ declare namespace $ {
         mime(): string | null;
         stream(): ReadableStream<Uint8Array> | null;
         text(): string;
-        json(): any;
+        json(): unknown;
         buffer(): ArrayBuffer;
         xml(): Document;
         xhtml(): Document;
@@ -359,7 +359,7 @@ declare namespace $ {
         static response(input: RequestInfo, init?: RequestInit): $mol_fetch_response;
         static stream(input: RequestInfo, init?: RequestInit): ReadableStream<Uint8Array> | null;
         static text(input: RequestInfo, init?: RequestInit): string;
-        static json(input: RequestInfo, init?: RequestInit): any;
+        static json(input: RequestInfo, init?: RequestInit): unknown;
         static buffer(input: RequestInfo, init?: RequestInit): void;
         static xml(input: RequestInfo, init?: RequestInit): Document;
         static xhtml(input: RequestInfo, init?: RequestInit): Document;
@@ -2043,7 +2043,7 @@ declare namespace $ {
         Catalog(): $$.$hyoo_toys_catalog;
         toys(): readonly any[];
         Details(): $$.$hyoo_toys_details;
-        toy_current(): $hyoo_toys_toy;
+        toy_current(): any;
     }
 }
 
@@ -2051,9 +2051,9 @@ declare namespace $.$$ {
     class $hyoo_toys extends $.$hyoo_toys {
         toy(id: string): $hyoo_toys_toy;
         toys(): $hyoo_toys_toy[];
-        toy_current(): "" | $hyoo_toys_toy | null;
+        toy_current(): $hyoo_toys_toy | null;
         pages(): ($mol_page | $hyoo_toys_catalog | $hyoo_toys_details | null)[];
-        keydown(event?: KeyboardEvent): void;
+        keydown(event: KeyboardEvent): void;
         filter_type(next?: string): string;
         filter_type_options(): {
             all: string;

@@ -1,5 +1,5 @@
 $hyoo_toys $mol_book
-	attr * mol_theme \$mol_theme_dark
+	attr * mol_theme \$mol_theme_auto
 	title @ \Toys for all
 	toy!id $hyoo_toys_toy
 	Placeholder null
@@ -36,13 +36,12 @@ $hyoo_toys $mol_book
 			filter_popular <= filter_popular
 			sort_key <= sort_key
 		<= Details $hyoo_toys_details
-			toy <= toy_current $hyoo_toys_toy
+			toy <= toy_current null
 			event_top?event <=> event_front_up?event
 
 $mol_page $mol_view
 	sub /
 		<= Head $mol_view
-			attr * mol_theme \$mol_theme_base
 			sub <= head /
 				<= Title $mol_button
 					sub /
@@ -54,7 +53,6 @@ $mol_page $mol_view
 			scroll_top?val <=> body_scroll_top?val 0
 			sub <= body /$mol_view_content
 		<= Foot $mol_view
-			attr * mol_theme \$mol_theme_base
 			sub <= foot /$mol_view
 
 $mol_button $mol_view
@@ -238,8 +236,8 @@ $hyoo_toys_catalog $mol_page
 			sub <= toy_cards /
 	-
 	Toy_card!id $mol_link
-		minimal_width 256
-		minimal_height 144
+		minimal_width 192
+		minimal_height 168
 		arg <= toy_arg!id *
 		sub /
 			<= Toy_option!id $mol_view

@@ -1294,7 +1294,7 @@ var $;
     }
     $.$mol_mem_persist = $mol_mem_persist;
     function $mol_mem(proto, name, descr) {
-        const value = descr.value;
+        const orig = descr.value;
         const store = new WeakMap();
         Object.defineProperty(proto, name + "()", {
             get: function () {
@@ -1306,7 +1306,7 @@ var $;
             if (cache)
                 return cache;
             let cache2 = new $.$mol_atom2;
-            cache2.calculate = value.bind(host);
+            cache2.calculate = orig.bind(host);
             cache2[Symbol.toStringTag] = `${host}.${name}()`;
             cache2.abort = () => {
                 store.delete(host);
@@ -1318,24 +1318,25 @@ var $;
             store.set(host, cache2);
             return cache2;
         };
-        return Object.assign(Object.assign({}, descr || {}), { value(next, force) {
-                if (next === undefined) {
-                    const cache = get_cache(this);
-                    if (force === $.$mol_mem_force_cache)
-                        return cache.obsolete(Number.NaN);
-                    if ($.$mol_atom2.current)
-                        return cache.get();
-                    else
-                        return $.$mol_fiber.run(() => cache.get());
-                }
-                return $.$mol_fiber.run(() => {
-                    if (force === $.$mol_mem_force_fail)
-                        return get_cache(this).fail(next);
-                    if (force !== $.$mol_mem_force_cache)
-                        next = value.call(this, next);
-                    return get_cache(this).put(next);
-                });
-            } });
+        function value(next, force) {
+            if (next === undefined) {
+                const cache = get_cache(this);
+                if (force === $.$mol_mem_force_cache)
+                    return cache.obsolete(Number.NaN);
+                if ($.$mol_atom2.current)
+                    return cache.get();
+                else
+                    return $.$mol_fiber.run(() => cache.get());
+            }
+            return $.$mol_fiber.run(() => {
+                if (force === $.$mol_mem_force_fail)
+                    return get_cache(this).fail(next);
+                if (force !== $.$mol_mem_force_cache)
+                    next = orig.call(this, next);
+                return get_cache(this).put(next);
+            });
+        }
+        return Object.assign(Object.assign({}, descr || {}), { value: Object.assign(value, { orig }) });
     }
     $.$mol_mem = $mol_mem;
 })($ || ($ = {}));
@@ -3215,9 +3216,6 @@ var $;
         }
         Head() {
             return ((obj) => {
-                obj.attr = () => ({
-                    "mol_theme": "$mol_theme_base",
-                });
                 obj.sub = () => this.head();
                 return obj;
             })(new this.$.$mol_view());
@@ -3259,9 +3257,6 @@ var $;
         }
         Foot() {
             return ((obj) => {
-                obj.attr = () => ({
-                    "mol_theme": "$mol_theme_base",
-                });
                 obj.sub = () => this.foot();
                 return obj;
             })(new this.$.$mol_view());
@@ -3347,6 +3342,9 @@ var $;
                 margin: 0,
                 minHeight: calc(`1.5em + 2rem`),
                 padding: rem(.5),
+                background: "var(--mol_theme_back)",
+                boxShadow: `0 0 .5rem hsla(0,0%,0%,.25)`,
+                zIndex: '1',
             },
             Title: {
                 flex: {
@@ -3357,6 +3355,7 @@ var $;
                 padding: rem(.5),
                 wordBreak: 'normal',
                 cursor: 'default',
+                fontWeight: 'bolder',
                 ':empty': {
                     display: 'none',
                 },
@@ -3383,6 +3382,9 @@ var $;
                 flex: 'none',
                 margin: 0,
                 overflow: 'hidden',
+                background: "var(--mol_theme_back)",
+                boxShadow: `0 0 .5rem hsla(0,0%,0%,.25)`,
+                zIndex: '1',
             },
         });
     })($$ = $.$$ || ($.$$ = {}));
@@ -6386,8 +6388,8 @@ var $;
         }
         Toy_card(id) {
             return ((obj) => {
-                obj.minimal_width = () => 256;
-                obj.minimal_height = () => 144;
+                obj.minimal_width = () => 192;
+                obj.minimal_height = () => 168;
                 obj.arg = () => this.toy_arg(id);
                 obj.sub = () => [this.Toy_option(id), this.Toy_title(id), this.Toy_type(id)];
                 return obj;
@@ -6928,7 +6930,7 @@ var $;
     class $hyoo_toys extends $.$mol_book {
         attr() {
             return ({
-                "mol_theme": "$mol_theme_dark",
+                "mol_theme": "$mol_theme_auto",
             });
         }
         title() {
@@ -7063,9 +7065,7 @@ var $;
             })(new this.$.$hyoo_toys_details());
         }
         toy_current() {
-            return ((obj) => {
-                return obj;
-            })(new this.$.$hyoo_toys_toy());
+            return null;
         }
     }
     __decorate([
@@ -7107,9 +7107,6 @@ var $;
     __decorate([
         $.$mol_mem
     ], $hyoo_toys.prototype, "Details", null);
-    __decorate([
-        $.$mol_mem
-    ], $hyoo_toys.prototype, "toy_current", null);
     $.$hyoo_toys = $hyoo_toys;
 })($ || ($ = {}));
 //toys.view.tree.js.map
@@ -7128,7 +7125,9 @@ var $;
             }
             toy_current() {
                 const id = $.$mol_state_arg.value('toy');
-                return id && this.toy(id);
+                if (!id)
+                    return null;
+                return this.toy(id);
             }
             pages() {
                 return [
