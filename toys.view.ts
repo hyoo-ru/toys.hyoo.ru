@@ -12,7 +12,8 @@ namespace $.$$ {
 		
 		toy_current() {
 			const id = $mol_state_arg.value( 'toy' )
-			return id && this.toy( id )
+			if( !id ) return null
+			return this.toy( id )
 		}
 		
 		pages() {
@@ -23,7 +24,7 @@ namespace $.$$ {
 			]
 		}
 
-		keydown( event? : KeyboardEvent ) {
+		keydown( event : KeyboardEvent ) {
 
 			if( event.ctrlKey && event.keyCode === $mol_keyboard_code.F ) {
 				event.preventDefault()

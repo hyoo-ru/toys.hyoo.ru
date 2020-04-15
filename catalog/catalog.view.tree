@@ -23,8 +23,8 @@ $hyoo_toys_catalog $mol_page
 			sub <= toy_cards /
 	-
 	Toy_card!id $mol_link
-		minimal_width 256
-		minimal_height 144
+		minimal_width 192
+		minimal_height 168
 		arg <= toy_arg!id *
 		sub /
 			<= Toy_option!id $mol_view

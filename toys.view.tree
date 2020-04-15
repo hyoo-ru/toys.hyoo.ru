@@ -1,5 +1,5 @@
 $hyoo_toys $mol_book
-	attr * mol_theme \$mol_theme_dark
+	attr * mol_theme \$mol_theme_auto
 	title @ \Toys for all
 	toy!id $hyoo_toys_toy
 	Placeholder null
@@ -36,5 +36,5 @@ $hyoo_toys $mol_book
 			filter_popular <= filter_popular
 			sort_key <= sort_key
 		<= Details $hyoo_toys_details
-			toy <= toy_current $hyoo_toys_toy
+			toy <= toy_current null
 			event_top?event <=> event_front_up?event
