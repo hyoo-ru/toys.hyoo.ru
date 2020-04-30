@@ -1412,6 +1412,8 @@ declare namespace $.$$ {
         dom_node_actual(): Element;
         dom_tree(): Element;
         title(): string;
+        minimal_width(): number;
+        minimal_height(): number;
     }
 }
 
@@ -1520,7 +1522,7 @@ declare namespace $ {
         abstract watcher(): {
             destructor(): void;
         };
-        exists(next?: boolean): boolean;
+        exists(next?: boolean, force?: $mol_mem_force): boolean;
         type(): $mol_file_type;
         name(): string;
         ext(): string;

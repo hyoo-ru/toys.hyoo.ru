@@ -4230,6 +4230,7 @@ var $;
                 return node;
             }
             dom_node_actual() {
+                this.dom_node();
                 const node = this.Sub().dom_node_actual();
                 const attr = this.attr();
                 const style = this.style();
@@ -4247,6 +4248,12 @@ var $;
             }
             title() {
                 return this.Sub().title();
+            }
+            minimal_width() {
+                return this.Sub().minimal_width();
+            }
+            minimal_height() {
+                return this.Sub().minimal_height();
             }
         }
         __decorate([
@@ -4576,7 +4583,7 @@ var $;
         version() {
             return this.stat().mtime.getTime().toString(36).toUpperCase();
         }
-        exists(next) {
+        exists(next, force) {
             let exists = true;
             try {
                 this.stat();
