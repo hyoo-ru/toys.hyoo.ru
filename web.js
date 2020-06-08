@@ -4899,6 +4899,9 @@ var $;
                     ...this.label(),
                 ];
             }
+            label() {
+                return this.title() ? super.label() : [];
+            }
         }
         $$.$mol_check = $mol_check;
     })($$ = $.$$ || ($.$$ = {}));
