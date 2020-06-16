@@ -15,6 +15,11 @@ $hyoo_toys_catalog $mol_page
 	tools /
 		<= Filter_title $mol_search
 			query?val <=> filter_title?val \
+		<= Source $mol_link
+			uri \https://github.com/hyoo-ru/toys.hyoo.ru
+			hint <= source_hint @ \Source code
+			sub /
+				<= Source_icon $mol_icon_github_circle
 	-
 	body /
 		<= Goods $mol_row

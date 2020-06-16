@@ -15,6 +15,10 @@
 	--mol_theme_back: #d45e9f;
 }
 
+[hyoo_toys_filters] {
+	flex: 0 0 16rem;	
+}
+
 [hyoo_toys_filters_body] {
 	padding: .75rem;
 }
