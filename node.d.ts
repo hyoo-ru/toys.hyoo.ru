@@ -835,15 +835,6 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    class $mol_theme_auto extends $mol_plugin {
-        attr(): {
-            mol_theme: string;
-        };
-        theme(): string;
-    }
-}
-
-declare namespace $ {
     class $mol_state_local<Value> extends $mol_object {
         static 'native()': Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
         static native(): Storage | {
@@ -854,16 +845,6 @@ declare namespace $ {
         static value<Value>(key: string, next?: Value, force?: $mol_mem_force): Value | null;
         prefix(): string;
         value(key: string, next?: Value): Value | null;
-    }
-}
-
-declare namespace $ {
-    function $mol_lights(this: $mol_ambient_context, next?: boolean): boolean;
-}
-
-declare namespace $.$$ {
-    class $mol_theme_auto extends $.$mol_theme_auto {
-        theme(): "$mol_theme_light" | "$mol_theme_dark";
     }
 }
 
@@ -1957,6 +1938,9 @@ declare namespace $ {
         };
         event_change(event?: any, force?: $mol_mem_force): any;
         event_key_press(event?: any, force?: $mol_mem_force): any;
+        plugins(): readonly any[];
+        Submit(): $$.$mol_hotkey;
+        submit(event?: any, force?: $mol_mem_force): any;
     }
 }
 
@@ -1966,7 +1950,6 @@ declare namespace $ {
 declare namespace $.$$ {
     class $mol_string extends $.$mol_string {
         event_change(next?: Event): void;
-        event_key_press(next?: KeyboardEvent): void;
         disabled(): boolean;
         autocomplete_native(): "on" | "off";
     }
@@ -2076,7 +2059,7 @@ declare namespace $ {
         Filter(): $$.$mol_string;
         filter_hint(): string;
         hint(): string;
-        debounce(): number;
+        submit(event?: any, force?: $mol_mem_force): any;
         Trigger_icon(): $mol_icon_chevron;
     }
 }
@@ -2097,12 +2080,12 @@ declare namespace $.$$ {
         options_filtered(): readonly string[];
         option_label(id: string): any;
         option_rows(): $mol_view[];
-        option_focused(component?: $mol_view): $mol_view;
+        option_focused(component?: $mol_view): $mol_view | $mol_string;
         event_select(id: string, event?: MouseEvent): void;
-        nav_components(): $mol_view[];
+        nav_components(): ($mol_view | $mol_string)[];
         option_content_current(): readonly any[];
         trigger_content(): any[];
-        menu_content(): $mol_view[];
+        menu_content(): ($mol_view | $mol_string)[];
     }
 }
 
@@ -2124,7 +2107,7 @@ declare namespace $ {
         hint(): string;
         suggests_showed(): boolean;
         suggests(): readonly string[];
-        debounce(): number;
+        submit(event?: any, force?: $mol_mem_force): any;
         Clear(): $mol_button_minor;
         Clear_icon(): $mol_icon_cross;
         clear_hint(): string;
@@ -2229,7 +2212,7 @@ declare namespace $ {
         head(): readonly any[];
         Logo(): $mol_image;
         event_top(val?: any, force?: $mol_mem_force): any;
-        sub(): readonly any[];
+        tools(): readonly any[];
         Filter_title(): $$.$mol_search;
         filter_title(val?: any, force?: $mol_mem_force): any;
         body(): readonly any[];
