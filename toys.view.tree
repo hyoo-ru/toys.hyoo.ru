@@ -1,5 +1,5 @@
 $hyoo_toys $mol_book
-	attr * mol_theme \$mol_theme_auto
+	attr * mol_theme \$mol_theme_dark
 	title @ \Toys for all
 	toy!id $hyoo_toys_toy
 	Placeholder null

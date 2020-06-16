@@ -2,35 +2,38 @@
 	--mol_skin_accent: #d45e9f;
 }
 
-[hyoo_toys] [mol_page_head] {
-	flex-wrap: nowrap;
-}
-
 [hyoo_toys][mol_theme="$mol_theme_dark"] {
 	--mol_theme_focus: #d45e9f;
 }
 
 [hyoo_toys] [mol_theme="$mol_theme_base"] {
-	--mol_theme_back: black;
+	--mol_theme_back: #398ccb;
+	--mol_theme_text: black;
 }
 
 [hyoo_toys] [mol_theme="$mol_theme_accent"] {
 	--mol_theme_back: #d45e9f;
 }
 
+[hyoo_toys_filters_body] {
+	padding: .75rem;
+}
+
 [hyoo_toys_filter_type] {
 	flex-direction: column;
+	flex: none;
+}
+
+[hyoo_toys_filter_size] {
+	flex: none;
 }
 
 [hyoo_toys_sort] {
 	flex-direction: column;
+	flex: none;
 }
 
 [hyoo_toys_filter_type] {
-	padding: .5rem 0;
-}
-
-[hyoo_toys_sort] {
 	padding: .5rem 0;
 }
 

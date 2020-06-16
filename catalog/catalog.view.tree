@@ -12,11 +12,9 @@ $hyoo_toys_catalog $mol_page
 			event * click?val <=> event_top?val null
 		<= Title -
 		<= Tools -
-	sub /
-		<= Head
+	tools /
 		<= Filter_title $mol_search
 			query?val <=> filter_title?val \
-		<= Body
 	-
 	body /
 		<= Goods $mol_row
