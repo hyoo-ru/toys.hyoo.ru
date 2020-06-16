@@ -1,97 +1,27 @@
-$mol_meter $mol_plugin
-	zoom 1
-	-
-	width?val 0
-	height?val 0
-	-
-	left?val 0
-	right?val 0
-	bottom?val 0
-	top?val 0
-
-$mol_touch $mol_plugin
-	start_zoom?val 0
-	start_distance?val 0
-	zoom?val 1
-	-
-	start_pan?val /
-		0
-		0
-	pan?val /
-		0
-		0
-	pos?val /
-		NaN
-		NaN
-	-
-	start_pos?val null
-	swipe_precision 16
-	-
-	swipe_right?val null
-	swipe_bottom?val null
-	swipe_left?val null
-	swipe_top?val null
-	-
-	swipe_from_right?val null
-	swipe_from_bottom?val null
-	swipe_from_left?val null
-	swipe_from_top?val null
-	-
-	swipe_to_right?val null
-	swipe_to_bottom?val null
-	swipe_to_left?val null
-	swipe_to_top?val null
-	-
-	style *
+$mol_scroll $mol_view
+	minimal_height 0
+	_event_scroll_timer?val null
+	field *
 		^
-		touch-action \none
-		overscroll-behavior \none
-	-
+		scrollTop <= scroll_top?val 0
+		scrollLeft <= scroll_left?val 0
 	event *
 		^
-		touchstart?event <=> event_start?event null
-		touchmove?event <=> event_move?event null
-		touchend?event <=> event_end?event null
-		mousedown?event <=> event_start?event null
-		mousemove?event <=> event_move?event null
-		mouseup?event <=> event_end?event null
-		mouseleave?event <=> event_leave?event null
-		wheel?event <=> event_wheel?event null
+		scroll?event <=> event_scroll?event null
 
-$mol_ghost $mol_view
-	Sub $mol_view
-
-$mol_book $mol_view
-	sub <= pages_wrapped /$mol_view
+$mol_book2 $mol_scroll
+	sub <= pages /$mol_view
 	minimal_width 0
-	pages /$mol_view
-	plugins /$mol_plugin
-		<= Meter $mol_meter
-			width => width
-		<= Touch $mol_touch
-			swipe_from_left?val <=> event_front_up?val null
-			swipe_to_left?val <=> event_front_down?val null
-	Page!index $mol_book_page
-		Sub <= page!index null
-		visible <= page_visible!index true
-	Placeholder $mol_book_placeholder
-		title <= title
+	Placeholder $mol_view
 
-$mol_book_placeholder $mol_view
-	minimal_width 400
-	attr *
+$mol_hotkey $mol_plugin
+	event *
 		^
-		tabindex null
-
-$mol_book_page $mol_ghost
-	attr_static *
-		^
-		tabindex 0
-		mol_book_page_visible true
-	attr *
-		^
-		mol_book_page_focused <= focused
-		mol_book_page_visible <= visible true
+		keydown?event <=> keydown?event null
+	key *
+	mod_ctrl false
+	mod_alt false
+	mod_shift false
 
 $mol_button $mol_view
 	enabled true
@@ -110,17 +40,6 @@ $mol_button $mol_view
 		title <= hint \
 	sub /$mol_view_content
 		<= title
-
-$mol_scroll $mol_view
-	minimal_height 0
-	_event_scroll_timer?val null
-	field *
-		^
-		scrollTop <= scroll_top?val 0
-		scrollLeft <= scroll_left?val 0
-	event *
-		^
-		scroll?event <=> event_scroll?event null
 
 $mol_page $mol_view
 	sub /
@@ -175,14 +94,16 @@ $mol_image $mol_view
 
 $mol_bar $mol_view
 
-$mol_hotkey $mol_plugin
-	event *
-		^
-		keydown?event <=> keydown?event null
-	key *
-	mod_ctrl false
-	mod_alt false
-	mod_shift false
+$mol_meter $mol_plugin
+	zoom 1
+	-
+	width?val 0
+	height?val 0
+	-
+	left?val 0
+	right?val 0
+	bottom?val 0
+	top?val 0
 
 $mol_pop $mol_view
 	event * keydown?event <=> keydown?event null
@@ -364,8 +285,6 @@ $mol_search $mol_bar
 			event_click?val <=> event_clear?val null
 			hint <= clear_hint @ \Clear
 
-$mol_row $mol_view
-
 $mol_link $mol_view
 	dom_name \a
 	attr *
@@ -382,6 +301,10 @@ $mol_link $mol_view
 	event *
 		^
 		click?event <=> click?event <=> event_click?event null
+
+$mol_icon_github_circle $mol_icon path \M12,2C6.48,2 2,6.48 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12C22,6.48 17.52,2 12,2Z
+
+$mol_row $mol_view
 
 $mol_cost $mol_view
 	value null
@@ -413,6 +336,11 @@ $hyoo_toys_catalog $mol_page
 	tools /
 		<= Filter_title $mol_search
 			query?val <=> filter_title?val \
+		<= Source $mol_link
+			uri \https://github.com/hyoo-ru/toys.hyoo.ru
+			hint <= source_hint @ \Source code
+			sub /
+				<= Source_icon $mol_icon_github_circle
 	-
 	body /
 		<= Goods $mol_row
@@ -510,43 +438,43 @@ $hyoo_toys_details $mol_page
 										<= reviews 0
 		<= Description $mol_filler
 
-$hyoo_toys $mol_book
+$hyoo_toys $mol_book2
 	attr * mol_theme \$mol_theme_dark
 	title @ \Toys for all
 	toy!id $hyoo_toys_toy
 	Placeholder null
-	event * keydown?event <=> keydown?event null
-	pages /
-		<= Filters $mol_page
-			title <= filters_title @ \Filters
-			minimal_width 200
-			body /
-				<= Filter_type $mol_switch
-					value?val <=> filter_type?val \all
-					options <= filter_type_options *
-						all <= filter_type_option_all @ \All types
-				<= Filter_size $mol_switch
-					value?val <=> filter_size?val \all
-					options <= filter_size_options *
-						all <= filter_size_option_all @ \All sizes
-				<= Filter_popular $mol_check
-					checked?val <=> filter_popular?val false
-					title <= filter_popular_title @ \Only popular
-				<= Sort $mol_switch
-					value?val <=> sort_key?val \price
-					options <= sort_items *
-						price <= sort_option_price @ \Sort by price
-						size <= sort_option_size @ \Sort by size
-						title <= sort_option_title @ \Sort by title
-		<= Catalog $hyoo_toys_catalog
-			title <= title -
-			toys <= toys /
-			toy!id <= toy!id -
-			event_top?event <=> event_front_up?event
-			filter_type <= filter_type
-			filter_size <= filter_size
-			filter_popular <= filter_popular
-			sort_key <= sort_key
-		<= Details $hyoo_toys_details
-			toy <= toy_current null
-			event_top?event <=> event_front_up?event
+	plugins /
+		<= Hotkey $mol_hotkey
+			mod_ctrl true
+			key * F?event <=> search?event null
+	Filters $mol_page
+		title <= filters_title @ \Filters
+		minimal_width 200
+		body /
+			<= Filter_type $mol_switch
+				value?val <=> filter_type?val \all
+				options <= filter_type_options *
+					all <= filter_type_option_all @ \All types
+			<= Filter_size $mol_switch
+				value?val <=> filter_size?val \all
+				options <= filter_size_options *
+					all <= filter_size_option_all @ \All sizes
+			<= Filter_popular $mol_check
+				checked?val <=> filter_popular?val false
+				title <= filter_popular_title @ \Only popular
+			<= Sort $mol_switch
+				value?val <=> sort_key?val \price
+				options <= sort_items *
+					price <= sort_option_price @ \Sort by price
+					size <= sort_option_size @ \Sort by size
+					title <= sort_option_title @ \Sort by title
+	Catalog $hyoo_toys_catalog
+		title <= title -
+		toys <= toys /
+		toy!id <= toy!id -
+		filter_type <= filter_type
+		filter_size <= filter_size
+		filter_popular <= filter_popular
+		sort_key <= sort_key
+	Details!toy $hyoo_toys_details
+		toy <= toy_current null

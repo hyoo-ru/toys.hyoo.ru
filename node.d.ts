@@ -611,442 +611,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $mol_plugin extends $mol_view {
-        dom_node(next?: Element): Element;
-        attr_static(): {
-            [key: string]: string | number | boolean;
-        };
-        event(): {
-            [key: string]: (event: Event) => void;
-        };
-        render(): void;
-    }
-}
-
-declare namespace $ {
-    class $mol_meter extends $mol_plugin {
-        zoom(): number;
-        width(val?: any, force?: $mol_mem_force): any;
-        height(val?: any, force?: $mol_mem_force): any;
-        left(val?: any, force?: $mol_mem_force): any;
-        right(val?: any, force?: $mol_mem_force): any;
-        bottom(val?: any, force?: $mol_mem_force): any;
-        top(val?: any, force?: $mol_mem_force): any;
-    }
-}
-
-declare namespace $ {
-    class $mol_after_timeout extends $mol_object2 {
-        delay: number;
-        task: () => void;
-        id: any;
-        constructor(delay: number, task: () => void);
-        destructor(): void;
-    }
-}
-
-declare namespace $ {
-    class $mol_after_frame extends $mol_after_timeout {
-        task: () => void;
-        constructor(task: () => void);
-    }
-}
-
-declare namespace $.$$ {
-    class $mol_meter extends $.$mol_meter {
-        rect(): {
-            left: number;
-            top: number;
-            right: number;
-            bottom: number;
-            width: number;
-            height: number;
-            zoom: number;
-        };
-        top(): number;
-        bottom(): number;
-        left(): number;
-        right(): number;
-        width(): number;
-        height(): number;
-        zoom(): number;
-    }
-}
-
-declare namespace $ {
-    class $mol_touch extends $mol_plugin {
-        start_zoom(val?: any, force?: $mol_mem_force): any;
-        start_distance(val?: any, force?: $mol_mem_force): any;
-        zoom(val?: any, force?: $mol_mem_force): any;
-        start_pan(val?: any, force?: $mol_mem_force): any;
-        pan(val?: any, force?: $mol_mem_force): any;
-        pos(val?: any, force?: $mol_mem_force): any;
-        start_pos(val?: any, force?: $mol_mem_force): any;
-        swipe_precision(): number;
-        swipe_right(val?: any, force?: $mol_mem_force): any;
-        swipe_bottom(val?: any, force?: $mol_mem_force): any;
-        swipe_left(val?: any, force?: $mol_mem_force): any;
-        swipe_top(val?: any, force?: $mol_mem_force): any;
-        swipe_from_right(val?: any, force?: $mol_mem_force): any;
-        swipe_from_bottom(val?: any, force?: $mol_mem_force): any;
-        swipe_from_left(val?: any, force?: $mol_mem_force): any;
-        swipe_from_top(val?: any, force?: $mol_mem_force): any;
-        swipe_to_right(val?: any, force?: $mol_mem_force): any;
-        swipe_to_bottom(val?: any, force?: $mol_mem_force): any;
-        swipe_to_left(val?: any, force?: $mol_mem_force): any;
-        swipe_to_top(val?: any, force?: $mol_mem_force): any;
-        style(): {
-            "touch-action": string;
-            "overscroll-behavior": string;
-        };
-        event(): {
-            touchstart: (event?: any) => any;
-            touchmove: (event?: any) => any;
-            touchend: (event?: any) => any;
-            mousedown: (event?: any) => any;
-            mousemove: (event?: any) => any;
-            mouseup: (event?: any) => any;
-            mouseleave: (event?: any) => any;
-            wheel: (event?: any) => any;
-        };
-        event_start(event?: any, force?: $mol_mem_force): any;
-        event_move(event?: any, force?: $mol_mem_force): any;
-        event_end(event?: any, force?: $mol_mem_force): any;
-        event_leave(event?: any, force?: $mol_mem_force): any;
-        event_wheel(event?: any, force?: $mol_mem_force): any;
-    }
-}
-
-declare namespace $.$$ {
-    class $mol_touch extends $.$mol_touch {
-        rect(): DOMRect;
-        event_start(event: TouchEvent | MouseEvent): void;
-        event_leave(event: TouchEvent | MouseEvent): void;
-        event_move(event: TouchEvent | MouseEvent): void;
-        swipe_left(event?: TouchEvent | MouseEvent): void;
-        swipe_right(event?: TouchEvent | MouseEvent): void;
-        swipe_top(event?: TouchEvent | MouseEvent): void;
-        swipe_bottom(event?: TouchEvent | MouseEvent): void;
-        event_end(event?: TouchEvent | MouseEvent): void;
-        event_wheel(event: WheelEvent): void;
-    }
-}
-
-declare namespace $ {
-    class $mol_ghost extends $mol_view {
-        Sub(): $mol_view;
-    }
-}
-
-declare namespace $ {
-    function $mol_log(path: any, ...values: any[]): void;
-}
-
-declare namespace $ {
-    function $mol_log_context(next?: (() => void) | null): (() => void) | null;
-}
-
-declare namespace $ {
-    function $mol_log_debug(next?: () => void): () => void;
-}
-
-declare namespace $ {
-    var $mol_log_filter: (next?: string | null) => string | null;
-}
-
-declare namespace $ {
-    function $mol_log_group<Task extends Function, This>(name: string, task: Task): Task;
-}
-
-declare namespace $ {
-    function $mol_dom_render_events(el: Element, events: {
-        [key: string]: (event: Event) => any;
-    }): void;
-    function $mol_dom_render_events_async(el: Element, events: {
-        [key: string]: (event: Event) => any;
-    }): void;
-}
-
-declare namespace $.$$ {
-    class $mol_ghost extends $.$mol_ghost {
-        dom_node(): Element;
-        dom_node_actual(): Element;
-        dom_tree(): Element;
-        title(): string;
-        minimal_width(): number;
-        minimal_height(): number;
-    }
-}
-
-declare namespace $ {
-    class $mol_book extends $mol_view {
-        sub(): readonly $mol_view[];
-        pages_wrapped(): readonly $mol_view[];
-        minimal_width(): number;
-        pages(): readonly $mol_view[];
-        plugins(): readonly $mol_plugin[];
-        width(): number;
-        Meter(): $$.$mol_meter;
-        Touch(): $$.$mol_touch;
-        event_front_up(val?: any, force?: $mol_mem_force): any;
-        event_front_down(val?: any, force?: $mol_mem_force): any;
-        Page(index: any): $mol_book_page;
-        page(index: any): any;
-        page_visible(index: any): boolean;
-        Placeholder(): $mol_book_placeholder;
-    }
-}
-declare namespace $ {
-    class $mol_book_placeholder extends $mol_view {
-        minimal_width(): number;
-        attr(): {
-            tabindex: any;
-        };
-    }
-}
-declare namespace $ {
-    class $mol_book_page extends $mol_ghost {
-        attr_static(): {
-            tabindex: number;
-            mol_book_page_visible: boolean;
-        };
-        attr(): {
-            mol_book_page_focused: boolean;
-            mol_book_page_visible: boolean;
-        };
-        visible(): boolean;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $.$$ {
-    class $mol_book extends $.$mol_book {
-        pages_extended(): $mol_view[];
-        break_point(): number;
-        page(index: number): $mol_view;
-        page_visible(index: number): boolean;
-        pages_wrapped(): $mol_view[];
-        title(): string;
-        event_front_up(event?: Event): void;
-        event_front_down(event?: Event): void;
-    }
-}
-
-declare namespace $ {
-    class $mol_state_local<Value> extends $mol_object {
-        static 'native()': Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
-        static native(): Storage | {
-            getItem(key: string): any;
-            setItem(key: string, value: string): void;
-            removeItem(key: string): void;
-        };
-        static value<Value>(key: string, next?: Value, force?: $mol_mem_force): Value | null;
-        prefix(): string;
-        value(key: string, next?: Value): Value | null;
-    }
-}
-
-declare namespace $ {
-    type $mol_charset_encoding = 'utf8' | 'ibm866' | 'iso-8859-2' | 'iso-8859-3' | 'iso-8859-4' | 'iso-8859-5' | 'iso-8859-6' | 'iso-8859-7' | 'iso-8859-8' | 'iso-8859-8i' | 'iso-8859-10' | 'iso-8859-13' | 'iso-8859-14' | 'iso-8859-15' | 'iso-8859-16' | 'koi8-r' | 'koi8-u' | 'koi8-r' | 'macintosh' | 'windows-874' | 'windows-1250' | 'windows-1251' | 'windows-1252' | 'windows-1253' | 'windows-1254' | 'windows-1255' | 'windows-1256' | 'windows-1257' | 'windows-1258' | 'x-mac-cyrillic' | 'gbk' | 'gb18030' | 'hz-gb-2312' | 'big5' | 'euc-jp' | 'iso-2022-jp' | 'shift-jis' | 'euc-kr' | 'iso-2022-kr';
-    function $mol_charset_decode(value: Uint8Array, code?: $mol_charset_encoding): string;
-}
-
-declare namespace $ {
-    function $mol_charset_encode(value: string): Uint8Array;
-}
-
-declare namespace $ {
-    type $mol_file_type = 'file' | 'dir' | 'link';
-    interface $mol_file_stat {
-        type: $mol_file_type;
-        size: number;
-        atime: Date;
-        mtime: Date;
-        ctime: Date;
-    }
-    class $mol_file_not_found extends Error {
-    }
-    abstract class $mol_file extends $mol_object {
-        static absolute(path: string): $mol_file;
-        static relative(path: string): $mol_file;
-        path(): string;
-        parent(): $mol_file;
-        abstract stat(next?: $mol_file_stat, force?: $mol_mem_force): $mol_file_stat;
-        reset(): void;
-        version(): string;
-        abstract ensure(next?: boolean): boolean;
-        watcher(): {
-            destructor(): void;
-        };
-        exists(next?: boolean, force?: $mol_mem_force): boolean;
-        type(): $mol_file_type;
-        name(): string;
-        ext(): string;
-        abstract buffer(next?: Uint8Array, force?: $mol_mem_force): Uint8Array;
-        text(next?: string, force?: $mol_mem_force): string;
-        fail(error: Error): void;
-        buffer_cached(buffer: Uint8Array): void;
-        text_cached(content: string): void;
-        abstract sub(): $mol_file[];
-        abstract resolve(path: string): $mol_file;
-        abstract relate(base?: $mol_file): string;
-        abstract append(next: Uint8Array | string): void;
-        find(include?: RegExp, exclude?: RegExp): $mol_file[];
-    }
-}
-
-declare namespace $ {
-    function $mol_compare_array<Value extends ArrayLike<unknown>>(a: Value, b: Value): boolean;
-}
-
-declare namespace $ {
-    class $mol_file_node extends $mol_file {
-        static absolute(path: string): $mol_file_node;
-        static relative(path: string): $mol_file_node;
-        watcher(): {
-            destructor(): void;
-        };
-        stat(next?: $mol_file_stat, force?: $mol_mem_force): $mol_file_stat;
-        ensure(next?: boolean): boolean;
-        buffer(next?: Uint8Array, force?: $mol_mem_force): Uint8Array;
-        sub(): $mol_file[];
-        resolve(path: string): $mol_file;
-        relate(base?: $mol_file): any;
-        append(next: Uint8Array | string): undefined;
-    }
-}
-
-declare namespace $ {
-    interface $mol_locale_dict {
-        [key: string]: string;
-    }
-    class $mol_locale extends $mol_object {
-        static lang_default(): string;
-        static lang(next?: string): string;
-        static source(lang: string): any;
-        static texts(lang: string, next?: $mol_locale_dict): $mol_locale_dict;
-        static text(key: string): string;
-    }
-}
-
-declare namespace $ {
-    function $mol_dom_parse(text: string, type?: SupportedType): Document;
-}
-
-declare namespace $ {
-    class $mol_fetch_response extends $mol_object2 {
-        readonly native: Response;
-        constructor(native: Response);
-        headers(): Headers;
-        mime(): string | null;
-        stream(): ReadableStream<Uint8Array> | null;
-        text(): string;
-        json(): unknown;
-        buffer(): ArrayBuffer;
-        xml(): Document;
-        xhtml(): Document;
-        html(): Document;
-    }
-    class $mol_fetch extends $mol_object2 {
-        static request: (input: RequestInfo, init?: RequestInit | undefined) => Response;
-        static response(input: RequestInfo, init?: RequestInit): $mol_fetch_response;
-        static stream(input: RequestInfo, init?: RequestInit): ReadableStream<Uint8Array> | null;
-        static text(input: RequestInfo, init?: RequestInit): string;
-        static json(input: RequestInfo, init?: RequestInit): unknown;
-        static buffer(input: RequestInfo, init?: RequestInit): void;
-        static xml(input: RequestInfo, init?: RequestInit): Document;
-        static xhtml(input: RequestInfo, init?: RequestInit): Document;
-        static html(input: RequestInfo, init?: RequestInit): Document;
-    }
-}
-
-declare namespace $ {
-    class $mol_state_arg extends $mol_object {
-        prefix: string;
-        static href(next?: string): string;
-        static dict(next?: {
-            [key: string]: string | null;
-        }): {
-            [key: string]: string;
-        };
-        static value(key: string, next?: string | null): string | null;
-        static link(next: any): string;
-        static make_link(next: {
-            [key: string]: any;
-        }): string;
-        constructor(prefix?: string);
-        value(key: string, next?: string): string | null;
-        sub(postfix: string): $mol_state_arg;
-        link(next: {
-            [key: string]: string;
-        }): string;
-    }
-}
-
-declare namespace $ {
-    class $mol_unit extends $mol_object {
-        'valueOf()': number;
-        constructor(value?: number);
-        prefix(): string;
-        postfix(): string;
-        valueOf(): number;
-        delimiter(): string;
-        value_view(): string;
-        toString(): string;
-        static summ(a: $mol_unit, b: $mol_unit): any;
-        mult(m: number): this;
-    }
-}
-
-declare namespace $ {
-    class $mol_unit_money extends $mol_unit {
-    }
-    class $mol_unit_money_usd extends $mol_unit_money {
-        prefix(): string;
-    }
-    class $mol_unit_money_rur extends $mol_unit_money {
-        postfix(): string;
-    }
-}
-
-declare namespace $ {
-    class $mol_state_time extends $mol_object {
-        static now(precision?: number, next?: number): number;
-    }
-}
-
-declare namespace $ {
-    type $hyoo_toys_toy_data = {
-        title: string;
-        type: string;
-        price: number;
-        size: string;
-        hue: number;
-    };
-    export class $hyoo_toys_toy extends $mol_object {
-        static data(): {
-            [id: string]: $hyoo_toys_toy_data;
-        };
-        static all(): $hyoo_toys_toy[];
-        static item(id: string): $hyoo_toys_toy;
-        static luck(): number;
-        id(): string;
-        data(): $hyoo_toys_toy_data;
-        image(): string;
-        title(): string;
-        type(): string;
-        size(): string;
-        hue(): number;
-        price(): $mol_unit_money_rur;
-        seed(): number;
-        reviews(): number;
-    }
-    export {};
-}
-
-declare namespace $ {
     type $mol_type_error<Message, Info = {}> = Message & {
         $mol_type_error: Info;
     };
@@ -1306,27 +870,325 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $mol_button extends $mol_view {
-        enabled(): boolean;
+    class $mol_scroll extends $mol_view {
         minimal_height(): number;
-        click(event?: any, force?: $mol_mem_force): any;
-        event_click(event?: any, force?: $mol_mem_force): any;
+        _event_scroll_timer(val?: any, force?: $mol_mem_force): any;
+        field(): {
+            scrollTop: any;
+            scrollLeft: any;
+        };
+        scroll_top(val?: any, force?: $mol_mem_force): any;
+        scroll_left(val?: any, force?: $mol_mem_force): any;
         event(): {
-            click: (event?: any) => any;
-            keypress: (event?: any) => any;
+            scroll: (event?: any) => any;
         };
-        event_activate(event?: any, force?: $mol_mem_force): any;
-        event_key_press(event?: any, force?: $mol_mem_force): any;
-        attr(): {
-            disabled: boolean;
-            role: string;
-            tabindex: number;
-            title: string;
+        event_scroll(event?: any, force?: $mol_mem_force): any;
+    }
+}
+
+declare namespace $ {
+    class $mol_state_session<Value> extends $mol_object {
+        static 'native()': Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
+        static native(): Storage | {
+            getItem(key: string): any;
+            setItem(key: string, value: string): void;
+            removeItem(key: string): void;
         };
-        disabled(): boolean;
-        tab_index(): number;
-        hint(): string;
-        sub(): readonly (string | number | boolean | $mol_view | Node)[];
+        static value<Value>(key: string, next?: Value): Value;
+        prefix(): string;
+        value(key: string, next?: Value): Value;
+    }
+}
+
+declare namespace $ {
+    class $mol_memo extends $mol_wrapper {
+        static wrap<This extends object, Value>(task: (this: This, next?: Value) => Value): (this: This, next?: Value | undefined) => Value | undefined;
+    }
+}
+
+declare namespace $ {
+    class $mol_after_timeout extends $mol_object2 {
+        delay: number;
+        task: () => void;
+        id: any;
+        constructor(delay: number, task: () => void);
+        destructor(): void;
+    }
+}
+
+declare namespace $.$$ {
+}
+
+declare namespace $.$$ {
+    class $mol_scroll extends $.$mol_scroll {
+        scroll_top(next?: number): number;
+        scroll_left(next?: number): number;
+        _event_scroll_timer(next?: $mol_after_timeout | null): $mol_after_timeout | null | undefined;
+        event_scroll(next?: Event): void;
+    }
+}
+
+declare namespace $ {
+    class $mol_book2 extends $mol_scroll {
+        sub(): readonly $mol_view[];
+        pages(): readonly $mol_view[];
+        minimal_width(): number;
+        Placeholder(): $mol_view;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $.$$ {
+    class $mol_book2 extends $.$mol_book2 {
+        title(): string;
+        sub(): $mol_view[];
+    }
+}
+
+declare namespace $ {
+    class $mol_state_local<Value> extends $mol_object {
+        static 'native()': Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
+        static native(): Storage | {
+            getItem(key: string): any;
+            setItem(key: string, value: string): void;
+            removeItem(key: string): void;
+        };
+        static value<Value>(key: string, next?: Value, force?: $mol_mem_force): Value | null;
+        prefix(): string;
+        value(key: string, next?: Value): Value | null;
+    }
+}
+
+declare namespace $ {
+    type $mol_charset_encoding = 'utf8' | 'ibm866' | 'iso-8859-2' | 'iso-8859-3' | 'iso-8859-4' | 'iso-8859-5' | 'iso-8859-6' | 'iso-8859-7' | 'iso-8859-8' | 'iso-8859-8i' | 'iso-8859-10' | 'iso-8859-13' | 'iso-8859-14' | 'iso-8859-15' | 'iso-8859-16' | 'koi8-r' | 'koi8-u' | 'koi8-r' | 'macintosh' | 'windows-874' | 'windows-1250' | 'windows-1251' | 'windows-1252' | 'windows-1253' | 'windows-1254' | 'windows-1255' | 'windows-1256' | 'windows-1257' | 'windows-1258' | 'x-mac-cyrillic' | 'gbk' | 'gb18030' | 'hz-gb-2312' | 'big5' | 'euc-jp' | 'iso-2022-jp' | 'shift-jis' | 'euc-kr' | 'iso-2022-kr';
+    function $mol_charset_decode(value: Uint8Array, code?: $mol_charset_encoding): string;
+}
+
+declare namespace $ {
+    function $mol_charset_encode(value: string): Uint8Array;
+}
+
+declare namespace $ {
+    type $mol_file_type = 'file' | 'dir' | 'link';
+    interface $mol_file_stat {
+        type: $mol_file_type;
+        size: number;
+        atime: Date;
+        mtime: Date;
+        ctime: Date;
+    }
+    class $mol_file_not_found extends Error {
+    }
+    abstract class $mol_file extends $mol_object {
+        static absolute(path: string): $mol_file;
+        static relative(path: string): $mol_file;
+        path(): string;
+        parent(): $mol_file;
+        abstract stat(next?: $mol_file_stat, force?: $mol_mem_force): $mol_file_stat;
+        reset(): void;
+        version(): string;
+        abstract ensure(next?: boolean): boolean;
+        watcher(): {
+            destructor(): void;
+        };
+        exists(next?: boolean, force?: $mol_mem_force): boolean;
+        type(): $mol_file_type;
+        name(): string;
+        ext(): string;
+        abstract buffer(next?: Uint8Array, force?: $mol_mem_force): Uint8Array;
+        text(next?: string, force?: $mol_mem_force): string;
+        fail(error: Error): void;
+        buffer_cached(buffer: Uint8Array): void;
+        text_cached(content: string): void;
+        abstract sub(): $mol_file[];
+        abstract resolve(path: string): $mol_file;
+        abstract relate(base?: $mol_file): string;
+        abstract append(next: Uint8Array | string): void;
+        find(include?: RegExp, exclude?: RegExp): $mol_file[];
+    }
+}
+
+declare namespace $ {
+    function $mol_compare_array<Value extends ArrayLike<unknown>>(a: Value, b: Value): boolean;
+}
+
+declare namespace $ {
+    class $mol_file_node extends $mol_file {
+        static absolute(path: string): $mol_file_node;
+        static relative(path: string): $mol_file_node;
+        watcher(): {
+            destructor(): void;
+        };
+        stat(next?: $mol_file_stat, force?: $mol_mem_force): $mol_file_stat;
+        ensure(next?: boolean): boolean;
+        buffer(next?: Uint8Array, force?: $mol_mem_force): Uint8Array;
+        sub(): $mol_file[];
+        resolve(path: string): $mol_file;
+        relate(base?: $mol_file): any;
+        append(next: Uint8Array | string): undefined;
+    }
+}
+
+declare namespace $ {
+    interface $mol_locale_dict {
+        [key: string]: string;
+    }
+    class $mol_locale extends $mol_object {
+        static lang_default(): string;
+        static lang(next?: string): string;
+        static source(lang: string): any;
+        static texts(lang: string, next?: $mol_locale_dict): $mol_locale_dict;
+        static text(key: string): string;
+    }
+}
+
+declare namespace $ {
+    function $mol_dom_parse(text: string, type?: SupportedType): Document;
+}
+
+declare namespace $ {
+    class $mol_fetch_response extends $mol_object2 {
+        readonly native: Response;
+        constructor(native: Response);
+        headers(): Headers;
+        mime(): string | null;
+        stream(): ReadableStream<Uint8Array> | null;
+        text(): string;
+        json(): unknown;
+        buffer(): ArrayBuffer;
+        xml(): Document;
+        xhtml(): Document;
+        html(): Document;
+    }
+    class $mol_fetch extends $mol_object2 {
+        static request: (input: RequestInfo, init?: RequestInit | undefined) => Response;
+        static response(input: RequestInfo, init?: RequestInit): $mol_fetch_response;
+        static stream(input: RequestInfo, init?: RequestInit): ReadableStream<Uint8Array> | null;
+        static text(input: RequestInfo, init?: RequestInit): string;
+        static json(input: RequestInfo, init?: RequestInit): unknown;
+        static buffer(input: RequestInfo, init?: RequestInit): void;
+        static xml(input: RequestInfo, init?: RequestInit): Document;
+        static xhtml(input: RequestInfo, init?: RequestInit): Document;
+        static html(input: RequestInfo, init?: RequestInit): Document;
+    }
+}
+
+declare namespace $ {
+    class $mol_state_arg extends $mol_object {
+        prefix: string;
+        static href(next?: string): string;
+        static dict(next?: {
+            [key: string]: string | null;
+        }): {
+            [key: string]: string;
+        };
+        static value(key: string, next?: string | null): string | null;
+        static link(next: any): string;
+        static make_link(next: {
+            [key: string]: any;
+        }): string;
+        constructor(prefix?: string);
+        value(key: string, next?: string): string | null;
+        sub(postfix: string): $mol_state_arg;
+        link(next: {
+            [key: string]: string;
+        }): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_unit extends $mol_object {
+        'valueOf()': number;
+        constructor(value?: number);
+        prefix(): string;
+        postfix(): string;
+        valueOf(): number;
+        delimiter(): string;
+        value_view(): string;
+        toString(): string;
+        static summ(a: $mol_unit, b: $mol_unit): any;
+        mult(m: number): this;
+    }
+}
+
+declare namespace $ {
+    class $mol_unit_money extends $mol_unit {
+    }
+    class $mol_unit_money_usd extends $mol_unit_money {
+        prefix(): string;
+    }
+    class $mol_unit_money_rur extends $mol_unit_money {
+        postfix(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_after_frame extends $mol_after_timeout {
+        task: () => void;
+        constructor(task: () => void);
+    }
+}
+
+declare namespace $ {
+    class $mol_state_time extends $mol_object {
+        static now(precision?: number, next?: number): number;
+    }
+}
+
+declare namespace $ {
+    type $hyoo_toys_toy_data = {
+        title: string;
+        type: string;
+        price: number;
+        size: string;
+        hue: number;
+    };
+    export class $hyoo_toys_toy extends $mol_object {
+        static data(): {
+            [id: string]: $hyoo_toys_toy_data;
+        };
+        static all(): $hyoo_toys_toy[];
+        static item(id: string): $hyoo_toys_toy;
+        static luck(): number;
+        id(): string;
+        data(): $hyoo_toys_toy_data;
+        image(): string;
+        title(): string;
+        type(): string;
+        size(): string;
+        hue(): number;
+        price(): $mol_unit_money_rur;
+        seed(): number;
+        reviews(): number;
+    }
+    export {};
+}
+
+declare namespace $ {
+    class $mol_plugin extends $mol_view {
+        dom_node(next?: Element): Element;
+        attr_static(): {
+            [key: string]: string | number | boolean;
+        };
+        event(): {
+            [key: string]: (event: Event) => void;
+        };
+        render(): void;
+    }
+}
+
+declare namespace $ {
+    class $mol_hotkey extends $mol_plugin {
+        event(): {
+            keydown: (event?: any) => any;
+        };
+        keydown(event?: any, force?: $mol_mem_force): any;
+        key(): {};
+        mod_ctrl(): boolean;
+        mod_alt(): boolean;
+        mod_shift(): boolean;
     }
 }
 
@@ -1435,6 +1297,140 @@ declare namespace $ {
     }
 }
 
+declare namespace $.$$ {
+    class $mol_hotkey extends $.$mol_hotkey {
+        key(): {
+            [x: number]: ((event: KeyboardEvent) => void) | undefined;
+            readonly backspace?: ((event: KeyboardEvent) => void) | undefined;
+            readonly tab?: ((event: KeyboardEvent) => void) | undefined;
+            readonly enter?: ((event: KeyboardEvent) => void) | undefined;
+            readonly shift?: ((event: KeyboardEvent) => void) | undefined;
+            readonly ctrl?: ((event: KeyboardEvent) => void) | undefined;
+            readonly alt?: ((event: KeyboardEvent) => void) | undefined;
+            readonly pause?: ((event: KeyboardEvent) => void) | undefined;
+            readonly capsLock?: ((event: KeyboardEvent) => void) | undefined;
+            readonly escape?: ((event: KeyboardEvent) => void) | undefined;
+            readonly space?: ((event: KeyboardEvent) => void) | undefined;
+            readonly pageUp?: ((event: KeyboardEvent) => void) | undefined;
+            readonly pageDown?: ((event: KeyboardEvent) => void) | undefined;
+            readonly end?: ((event: KeyboardEvent) => void) | undefined;
+            readonly home?: ((event: KeyboardEvent) => void) | undefined;
+            readonly left?: ((event: KeyboardEvent) => void) | undefined;
+            readonly up?: ((event: KeyboardEvent) => void) | undefined;
+            readonly right?: ((event: KeyboardEvent) => void) | undefined;
+            readonly down?: ((event: KeyboardEvent) => void) | undefined;
+            readonly insert?: ((event: KeyboardEvent) => void) | undefined;
+            readonly delete?: ((event: KeyboardEvent) => void) | undefined;
+            readonly key0?: ((event: KeyboardEvent) => void) | undefined;
+            readonly key1?: ((event: KeyboardEvent) => void) | undefined;
+            readonly key2?: ((event: KeyboardEvent) => void) | undefined;
+            readonly key3?: ((event: KeyboardEvent) => void) | undefined;
+            readonly key4?: ((event: KeyboardEvent) => void) | undefined;
+            readonly key5?: ((event: KeyboardEvent) => void) | undefined;
+            readonly key6?: ((event: KeyboardEvent) => void) | undefined;
+            readonly key7?: ((event: KeyboardEvent) => void) | undefined;
+            readonly key8?: ((event: KeyboardEvent) => void) | undefined;
+            readonly key9?: ((event: KeyboardEvent) => void) | undefined;
+            readonly A?: ((event: KeyboardEvent) => void) | undefined;
+            readonly B?: ((event: KeyboardEvent) => void) | undefined;
+            readonly C?: ((event: KeyboardEvent) => void) | undefined;
+            readonly D?: ((event: KeyboardEvent) => void) | undefined;
+            readonly E?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F?: ((event: KeyboardEvent) => void) | undefined;
+            readonly G?: ((event: KeyboardEvent) => void) | undefined;
+            readonly H?: ((event: KeyboardEvent) => void) | undefined;
+            readonly I?: ((event: KeyboardEvent) => void) | undefined;
+            readonly J?: ((event: KeyboardEvent) => void) | undefined;
+            readonly K?: ((event: KeyboardEvent) => void) | undefined;
+            readonly L?: ((event: KeyboardEvent) => void) | undefined;
+            readonly M?: ((event: KeyboardEvent) => void) | undefined;
+            readonly N?: ((event: KeyboardEvent) => void) | undefined;
+            readonly O?: ((event: KeyboardEvent) => void) | undefined;
+            readonly P?: ((event: KeyboardEvent) => void) | undefined;
+            readonly Q?: ((event: KeyboardEvent) => void) | undefined;
+            readonly R?: ((event: KeyboardEvent) => void) | undefined;
+            readonly S?: ((event: KeyboardEvent) => void) | undefined;
+            readonly T?: ((event: KeyboardEvent) => void) | undefined;
+            readonly U?: ((event: KeyboardEvent) => void) | undefined;
+            readonly V?: ((event: KeyboardEvent) => void) | undefined;
+            readonly W?: ((event: KeyboardEvent) => void) | undefined;
+            readonly X?: ((event: KeyboardEvent) => void) | undefined;
+            readonly Y?: ((event: KeyboardEvent) => void) | undefined;
+            readonly Z?: ((event: KeyboardEvent) => void) | undefined;
+            readonly metaLeft?: ((event: KeyboardEvent) => void) | undefined;
+            readonly metaRight?: ((event: KeyboardEvent) => void) | undefined;
+            readonly select?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numpad0?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numpad1?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numpad2?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numpad3?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numpad4?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numpad5?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numpad6?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numpad7?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numpad8?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numpad9?: ((event: KeyboardEvent) => void) | undefined;
+            readonly multiply?: ((event: KeyboardEvent) => void) | undefined;
+            readonly add?: ((event: KeyboardEvent) => void) | undefined;
+            readonly subtract?: ((event: KeyboardEvent) => void) | undefined;
+            readonly decimal?: ((event: KeyboardEvent) => void) | undefined;
+            readonly divide?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F1?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F2?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F3?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F4?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F5?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F6?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F7?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F8?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F9?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F10?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F11?: ((event: KeyboardEvent) => void) | undefined;
+            readonly F12?: ((event: KeyboardEvent) => void) | undefined;
+            readonly numLock?: ((event: KeyboardEvent) => void) | undefined;
+            readonly scrollLock?: ((event: KeyboardEvent) => void) | undefined;
+            readonly semicolon?: ((event: KeyboardEvent) => void) | undefined;
+            readonly equals?: ((event: KeyboardEvent) => void) | undefined;
+            readonly comma?: ((event: KeyboardEvent) => void) | undefined;
+            readonly dash?: ((event: KeyboardEvent) => void) | undefined;
+            readonly period?: ((event: KeyboardEvent) => void) | undefined;
+            readonly forwardSlash?: ((event: KeyboardEvent) => void) | undefined;
+            readonly graveAccent?: ((event: KeyboardEvent) => void) | undefined;
+            readonly bracketOpen?: ((event: KeyboardEvent) => void) | undefined;
+            readonly slashBack?: ((event: KeyboardEvent) => void) | undefined;
+            readonly slashBackLeft?: ((event: KeyboardEvent) => void) | undefined;
+            readonly bracketClose?: ((event: KeyboardEvent) => void) | undefined;
+            readonly quoteSingle?: ((event: KeyboardEvent) => void) | undefined;
+        };
+        keydown(event?: KeyboardEvent): void;
+    }
+}
+
+declare namespace $ {
+    class $mol_button extends $mol_view {
+        enabled(): boolean;
+        minimal_height(): number;
+        click(event?: any, force?: $mol_mem_force): any;
+        event_click(event?: any, force?: $mol_mem_force): any;
+        event(): {
+            click: (event?: any) => any;
+            keypress: (event?: any) => any;
+        };
+        event_activate(event?: any, force?: $mol_mem_force): any;
+        event_key_press(event?: any, force?: $mol_mem_force): any;
+        attr(): {
+            disabled: boolean;
+            role: string;
+            tabindex: number;
+            title: string;
+        };
+        disabled(): boolean;
+        tab_index(): number;
+        hint(): string;
+        sub(): readonly (string | number | boolean | $mol_view | Node)[];
+    }
+}
+
 declare namespace $ {
 }
 
@@ -1444,55 +1440,6 @@ declare namespace $.$$ {
         event_activate(next: Event): void;
         event_key_press(event: KeyboardEvent): void;
         tab_index(): number;
-    }
-}
-
-declare namespace $ {
-    class $mol_scroll extends $mol_view {
-        minimal_height(): number;
-        _event_scroll_timer(val?: any, force?: $mol_mem_force): any;
-        field(): {
-            scrollTop: any;
-            scrollLeft: any;
-        };
-        scroll_top(val?: any, force?: $mol_mem_force): any;
-        scroll_left(val?: any, force?: $mol_mem_force): any;
-        event(): {
-            scroll: (event?: any) => any;
-        };
-        event_scroll(event?: any, force?: $mol_mem_force): any;
-    }
-}
-
-declare namespace $ {
-    class $mol_state_session<Value> extends $mol_object {
-        static 'native()': Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
-        static native(): Storage | {
-            getItem(key: string): any;
-            setItem(key: string, value: string): void;
-            removeItem(key: string): void;
-        };
-        static value<Value>(key: string, next?: Value): Value;
-        prefix(): string;
-        value(key: string, next?: Value): Value;
-    }
-}
-
-declare namespace $ {
-    class $mol_memo extends $mol_wrapper {
-        static wrap<This extends object, Value>(task: (this: This, next?: Value) => Value): (this: This, next?: Value | undefined) => Value | undefined;
-    }
-}
-
-declare namespace $.$$ {
-}
-
-declare namespace $.$$ {
-    class $mol_scroll extends $.$mol_scroll {
-        scroll_top(next?: number): number;
-        scroll_left(next?: number): number;
-        _event_scroll_timer(next?: $mol_after_timeout | null): $mol_after_timeout | null | undefined;
-        event_scroll(next?: Event): void;
     }
 }
 
@@ -1628,124 +1575,35 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $mol_hotkey extends $mol_plugin {
-        event(): {
-            keydown: (event?: any) => any;
-        };
-        keydown(event?: any, force?: $mol_mem_force): any;
-        key(): {};
-        mod_ctrl(): boolean;
-        mod_alt(): boolean;
-        mod_shift(): boolean;
+    class $mol_meter extends $mol_plugin {
+        zoom(): number;
+        width(val?: any, force?: $mol_mem_force): any;
+        height(val?: any, force?: $mol_mem_force): any;
+        left(val?: any, force?: $mol_mem_force): any;
+        right(val?: any, force?: $mol_mem_force): any;
+        bottom(val?: any, force?: $mol_mem_force): any;
+        top(val?: any, force?: $mol_mem_force): any;
     }
 }
 
 declare namespace $.$$ {
-    class $mol_hotkey extends $.$mol_hotkey {
-        key(): {
-            [x: number]: ((event: KeyboardEvent) => void) | undefined;
-            readonly backspace?: ((event: KeyboardEvent) => void) | undefined;
-            readonly tab?: ((event: KeyboardEvent) => void) | undefined;
-            readonly enter?: ((event: KeyboardEvent) => void) | undefined;
-            readonly shift?: ((event: KeyboardEvent) => void) | undefined;
-            readonly ctrl?: ((event: KeyboardEvent) => void) | undefined;
-            readonly alt?: ((event: KeyboardEvent) => void) | undefined;
-            readonly pause?: ((event: KeyboardEvent) => void) | undefined;
-            readonly capsLock?: ((event: KeyboardEvent) => void) | undefined;
-            readonly escape?: ((event: KeyboardEvent) => void) | undefined;
-            readonly space?: ((event: KeyboardEvent) => void) | undefined;
-            readonly pageUp?: ((event: KeyboardEvent) => void) | undefined;
-            readonly pageDown?: ((event: KeyboardEvent) => void) | undefined;
-            readonly end?: ((event: KeyboardEvent) => void) | undefined;
-            readonly home?: ((event: KeyboardEvent) => void) | undefined;
-            readonly left?: ((event: KeyboardEvent) => void) | undefined;
-            readonly up?: ((event: KeyboardEvent) => void) | undefined;
-            readonly right?: ((event: KeyboardEvent) => void) | undefined;
-            readonly down?: ((event: KeyboardEvent) => void) | undefined;
-            readonly insert?: ((event: KeyboardEvent) => void) | undefined;
-            readonly delete?: ((event: KeyboardEvent) => void) | undefined;
-            readonly key0?: ((event: KeyboardEvent) => void) | undefined;
-            readonly key1?: ((event: KeyboardEvent) => void) | undefined;
-            readonly key2?: ((event: KeyboardEvent) => void) | undefined;
-            readonly key3?: ((event: KeyboardEvent) => void) | undefined;
-            readonly key4?: ((event: KeyboardEvent) => void) | undefined;
-            readonly key5?: ((event: KeyboardEvent) => void) | undefined;
-            readonly key6?: ((event: KeyboardEvent) => void) | undefined;
-            readonly key7?: ((event: KeyboardEvent) => void) | undefined;
-            readonly key8?: ((event: KeyboardEvent) => void) | undefined;
-            readonly key9?: ((event: KeyboardEvent) => void) | undefined;
-            readonly A?: ((event: KeyboardEvent) => void) | undefined;
-            readonly B?: ((event: KeyboardEvent) => void) | undefined;
-            readonly C?: ((event: KeyboardEvent) => void) | undefined;
-            readonly D?: ((event: KeyboardEvent) => void) | undefined;
-            readonly E?: ((event: KeyboardEvent) => void) | undefined;
-            readonly F?: ((event: KeyboardEvent) => void) | undefined;
-            readonly G?: ((event: KeyboardEvent) => void) | undefined;
-            readonly H?: ((event: KeyboardEvent) => void) | undefined;
-            readonly I?: ((event: KeyboardEvent) => void) | undefined;
-            readonly J?: ((event: KeyboardEvent) => void) | undefined;
-            readonly K?: ((event: KeyboardEvent) => void) | undefined;
-            readonly L?: ((event: KeyboardEvent) => void) | undefined;
-            readonly M?: ((event: KeyboardEvent) => void) | undefined;
-            readonly N?: ((event: KeyboardEvent) => void) | undefined;
-            readonly O?: ((event: KeyboardEvent) => void) | undefined;
-            readonly P?: ((event: KeyboardEvent) => void) | undefined;
-            readonly Q?: ((event: KeyboardEvent) => void) | undefined;
-            readonly R?: ((event: KeyboardEvent) => void) | undefined;
-            readonly S?: ((event: KeyboardEvent) => void) | undefined;
-            readonly T?: ((event: KeyboardEvent) => void) | undefined;
-            readonly U?: ((event: KeyboardEvent) => void) | undefined;
-            readonly V?: ((event: KeyboardEvent) => void) | undefined;
-            readonly W?: ((event: KeyboardEvent) => void) | undefined;
-            readonly X?: ((event: KeyboardEvent) => void) | undefined;
-            readonly Y?: ((event: KeyboardEvent) => void) | undefined;
-            readonly Z?: ((event: KeyboardEvent) => void) | undefined;
-            readonly metaLeft?: ((event: KeyboardEvent) => void) | undefined;
-            readonly metaRight?: ((event: KeyboardEvent) => void) | undefined;
-            readonly select?: ((event: KeyboardEvent) => void) | undefined;
-            readonly numpad0?: ((event: KeyboardEvent) => void) | undefined;
-            readonly numpad1?: ((event: KeyboardEvent) => void) | undefined;
-            readonly numpad2?: ((event: KeyboardEvent) => void) | undefined;
-            readonly numpad3?: ((event: KeyboardEvent) => void) | undefined;
-            readonly numpad4?: ((event: KeyboardEvent) => void) | undefined;
-            readonly numpad5?: ((event: KeyboardEvent) => void) | undefined;
-            readonly numpad6?: ((event: KeyboardEvent) => void) | undefined;
-            readonly numpad7?: ((event: KeyboardEvent) => void) | undefined;
-            readonly numpad8?: ((event: KeyboardEvent) => void) | undefined;
-            readonly numpad9?: ((event: KeyboardEvent) => void) | undefined;
-            readonly multiply?: ((event: KeyboardEvent) => void) | undefined;
-            readonly add?: ((event: KeyboardEvent) => void) | undefined;
-            readonly subtract?: ((event: KeyboardEvent) => void) | undefined;
-            readonly decimal?: ((event: KeyboardEvent) => void) | undefined;
-            readonly divide?: ((event: KeyboardEvent) => void) | undefined;
-            readonly F1?: ((event: KeyboardEvent) => void) | undefined;
-            readonly F2?: ((event: KeyboardEvent) => void) | undefined;
-            readonly F3?: ((event: KeyboardEvent) => void) | undefined;
-            readonly F4?: ((event: KeyboardEvent) => void) | undefined;
-            readonly F5?: ((event: KeyboardEvent) => void) | undefined;
-            readonly F6?: ((event: KeyboardEvent) => void) | undefined;
-            readonly F7?: ((event: KeyboardEvent) => void) | undefined;
-            readonly F8?: ((event: KeyboardEvent) => void) | undefined;
-            readonly F9?: ((event: KeyboardEvent) => void) | undefined;
-            readonly F10?: ((event: KeyboardEvent) => void) | undefined;
-            readonly F11?: ((event: KeyboardEvent) => void) | undefined;
-            readonly F12?: ((event: KeyboardEvent) => void) | undefined;
-            readonly numLock?: ((event: KeyboardEvent) => void) | undefined;
-            readonly scrollLock?: ((event: KeyboardEvent) => void) | undefined;
-            readonly semicolon?: ((event: KeyboardEvent) => void) | undefined;
-            readonly equals?: ((event: KeyboardEvent) => void) | undefined;
-            readonly comma?: ((event: KeyboardEvent) => void) | undefined;
-            readonly dash?: ((event: KeyboardEvent) => void) | undefined;
-            readonly period?: ((event: KeyboardEvent) => void) | undefined;
-            readonly forwardSlash?: ((event: KeyboardEvent) => void) | undefined;
-            readonly graveAccent?: ((event: KeyboardEvent) => void) | undefined;
-            readonly bracketOpen?: ((event: KeyboardEvent) => void) | undefined;
-            readonly slashBack?: ((event: KeyboardEvent) => void) | undefined;
-            readonly slashBackLeft?: ((event: KeyboardEvent) => void) | undefined;
-            readonly bracketClose?: ((event: KeyboardEvent) => void) | undefined;
-            readonly quoteSingle?: ((event: KeyboardEvent) => void) | undefined;
+    class $mol_meter extends $.$mol_meter {
+        rect(): {
+            left: number;
+            top: number;
+            right: number;
+            bottom: number;
+            width: number;
+            height: number;
+            zoom: number;
         };
-        keydown(event?: KeyboardEvent): void;
+        top(): number;
+        bottom(): number;
+        left(): number;
+        right(): number;
+        width(): number;
+        height(): number;
+        zoom(): number;
     }
 }
 
@@ -2127,14 +1985,6 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    class $mol_row extends $mol_view {
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
     class $mol_link extends $mol_view {
         dom_name(): string;
         attr(): {
@@ -2173,6 +2023,20 @@ declare namespace $.$$ {
         minimal_height(): number;
         theme(): "$mol_theme_base" | null;
     }
+}
+
+declare namespace $ {
+    class $mol_icon_github_circle extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_row extends $mol_view {
+    }
+}
+
+declare namespace $ {
 }
 
 declare namespace $ {
@@ -2215,6 +2079,9 @@ declare namespace $ {
         tools(): readonly any[];
         Filter_title(): $$.$mol_search;
         filter_title(val?: any, force?: $mol_mem_force): any;
+        Source(): $$.$mol_link;
+        source_hint(): string;
+        Source_icon(): $mol_icon_github_circle;
         body(): readonly any[];
         Goods(): $mol_row;
         toy_cards(): readonly any[];
@@ -2343,18 +2210,16 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    class $hyoo_toys extends $mol_book {
+    class $hyoo_toys extends $mol_book2 {
         attr(): {
             mol_theme: string;
         };
         title(): string;
         toy(id: any): $hyoo_toys_toy;
         Placeholder(): any;
-        event(): {
-            keydown: (event?: any) => any;
-        };
-        keydown(event?: any, force?: $mol_mem_force): any;
-        pages(): readonly any[];
+        plugins(): readonly any[];
+        Hotkey(): $$.$mol_hotkey;
+        search(event?: any, force?: $mol_mem_force): any;
         Filters(): $$.$mol_page;
         filters_title(): string;
         Filter_type(): $$.$mol_switch;
@@ -2384,7 +2249,7 @@ declare namespace $ {
         sort_option_title(): string;
         Catalog(): $$.$hyoo_toys_catalog;
         toys(): readonly any[];
-        Details(): $$.$hyoo_toys_details;
+        Details(toy: any): $$.$hyoo_toys_details;
         toy_current(): any;
     }
 }
@@ -2397,8 +2262,8 @@ declare namespace $.$$ {
         toy(id: string): $hyoo_toys_toy;
         toys(): $hyoo_toys_toy[];
         toy_current(): $hyoo_toys_toy | null;
-        pages(): ($mol_page | $hyoo_toys_catalog | $hyoo_toys_details | null)[];
-        keydown(event: KeyboardEvent): void;
+        pages(): ($mol_page | $hyoo_toys_catalog | $hyoo_toys_details)[];
+        search(event: KeyboardEvent): void;
         filter_type(next?: string): string;
         filter_type_options(): {
             all: string;

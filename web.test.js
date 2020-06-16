@@ -1770,143 +1770,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $.$mol_test_mocks.push(context => {
-        class $mol_state_local_mock extends $.$mol_state_local {
-            static value(key, next = this.state[key], force) {
-                return this.state[key] = (next || null);
-            }
-        }
-        $mol_state_local_mock.state = {};
-        __decorate([
-            $.$mol_mem_key
-        ], $mol_state_local_mock, "value", null);
-        context.$mol_state_local = $mol_state_local_mock;
-    });
-})($ || ($ = {}));
-//local.mock.test.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_test({
-        'local get set delete'() {
-            var key = '$mol_state_local_test:' + Math.random();
-            $.$mol_assert_equal($.$mol_state_local.value(key), null);
-            $.$mol_state_local.value(key, 123);
-            $.$mol_assert_equal($.$mol_state_local.value(key), 123);
-            $.$mol_state_local.value(key, null);
-            $.$mol_assert_equal($.$mol_state_local.value(key), null);
-        },
-    });
-})($ || ($ = {}));
-//local.test.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_test({
-        'decode utf8 string'() {
-            const str = 'Hello, ΧΨΩЫ';
-            const encoded = new Uint8Array([72, 101, 108, 108, 111, 44, 32, 206, 167, 206, 168, 206, 169, 208, 171]);
-            $.$mol_assert_equal($.$mol_charset_decode(encoded), str);
-            $.$mol_assert_equal($.$mol_charset_decode(encoded, 'utf8'), str);
-        },
-        'decode empty string'() {
-            const encoded = new Uint8Array([]);
-            $.$mol_assert_equal($.$mol_charset_decode(encoded), '');
-        },
-    });
-})($ || ($ = {}));
-//decode.test.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_test({
-        'encode utf8 string'() {
-            const str = 'Hello, ΧΨΩЫ';
-            const encoded = new Uint8Array([72, 101, 108, 108, 111, 44, 32, 206, 167, 206, 168, 206, 169, 208, 171]);
-            $.$mol_assert_like($.$mol_charset_encode(str), encoded);
-        },
-    });
-})($ || ($ = {}));
-//encode.test.js.map
-;
-"use strict";
-var $;
-(function ($_1) {
-    $_1.$mol_test_mocks.push(context => {
-        class $mol_state_arg_mock extends $_1.$mol_state_arg {
-            static href(next) { return next || ''; }
-        }
-        __decorate([
-            $_1.$mol_mem
-        ], $mol_state_arg_mock, "href", null);
-        context.$mol_state_arg = $mol_state_arg_mock;
-    });
-    $_1.$mol_test({
-        'args as dictionary'($) {
-            $.$mol_state_arg.href('#foo=bar/xxx');
-            $_1.$mol_assert_like($.$mol_state_arg.dict(), { foo: 'bar', xxx: '' });
-            $.$mol_state_arg.dict({ foo: null, yyy: '', lol: '123' });
-            $_1.$mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#yyy/lol=123');
-        },
-        'one value from args'($) {
-            $.$mol_state_arg.href('#foo=bar/xxx');
-            $_1.$mol_assert_equal($.$mol_state_arg.value('foo'), 'bar');
-            $_1.$mol_assert_equal($.$mol_state_arg.value('xxx'), '');
-            $.$mol_state_arg.value('foo', 'lol');
-            $_1.$mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#foo=lol/xxx');
-            $.$mol_state_arg.value('foo', '');
-            $_1.$mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#foo/xxx');
-            $.$mol_state_arg.value('foo', null);
-            $_1.$mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#xxx');
-        },
-        'nested args'($) {
-            const base = new $.$mol_state_arg('nested.');
-            class Nested extends $_1.$mol_state_arg {
-                constructor(prefix) {
-                    super(base.prefix + prefix);
-                }
-            }
-            Nested.value = (key, next) => base.value(key, next);
-            $.$mol_state_arg.href('#foo=bar/nested.xxx=123');
-            $_1.$mol_assert_equal(Nested.value('foo'), null);
-            $_1.$mol_assert_equal(Nested.value('xxx'), '123');
-            Nested.value('foo', 'lol');
-            $_1.$mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#foo=bar/nested.xxx=123/nested.foo=lol');
-        },
-    });
-})($ || ($ = {}));
-//arg.web.test.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_test({
-        'convertion to primitives'() {
-            var unit = new $.$mol_unit_money_usd(5);
-            $.$mol_assert_equal(unit.valueOf(), 5);
-            $.$mol_assert_equal(unit * 2, 10);
-            $.$mol_assert_equal(unit + '', '5');
-            $.$mol_assert_equal(`${unit}`, '$5');
-            $.$mol_assert_equal(unit.toString(), '$5');
-            $.$mol_assert_equal(String(unit), '$5');
-        },
-        'arithmetic'() {
-            var usd1 = new $.$mol_unit_money_usd(2);
-            var usd2 = new $.$mol_unit_money_usd(3);
-            var rur = new $.$mol_unit_money_rur(2);
-            $.$mol_assert_equal($.$mol_unit.summ(usd1, usd2).toString(), '$5');
-            $.$mol_assert_equal(usd1.mult(2).toString(), '$4');
-        },
-    });
-})($ || ($ = {}));
-//unit.test.js.map
-;
-"use strict";
-var $;
-(function ($) {
     class $mol_style_sheet_test1 extends $.$mol_view {
         Item() { return new $.$mol_view; }
     }
@@ -2132,40 +1995,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    var $$;
-    (function ($$) {
-        $.$mol_test({
-            'handle clicks by default'() {
-                let clicked = false;
-                const clicker = $$.$mol_button.make({
-                    event_click: (event) => { clicked = true; },
-                });
-                const element = clicker.dom_tree();
-                const event = $.$mol_dom_context.document.createEvent('mouseevent');
-                event.initEvent('click', true, true);
-                element.dispatchEvent(event);
-                $.$mol_assert_ok(clicked);
-            },
-            'no handle clicks if disabled'() {
-                let clicked = false;
-                const clicker = $$.$mol_button.make({
-                    event_click: (event) => { clicked = true; },
-                    enabled: () => false,
-                });
-                const element = clicker.dom_tree();
-                const event = $.$mol_dom_context.document.createEvent('mouseevent');
-                event.initEvent('click', true, true);
-                element.dispatchEvent(event);
-                $.$mol_assert_not(clicked);
-            },
-        });
-    })($$ = $.$$ || ($.$$ = {}));
-})($ || ($ = {}));
-//button.test.js.map
-;
-"use strict";
-var $;
-(function ($) {
     $.$mol_test({
         'null by default'() {
             const key = String(Math.random());
@@ -2206,6 +2035,177 @@ var $;
     });
 })($ || ($ = {}));
 //memo.test.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_test_mocks.push(context => {
+        class $mol_state_local_mock extends $.$mol_state_local {
+            static value(key, next = this.state[key], force) {
+                return this.state[key] = (next || null);
+            }
+        }
+        $mol_state_local_mock.state = {};
+        __decorate([
+            $.$mol_mem_key
+        ], $mol_state_local_mock, "value", null);
+        context.$mol_state_local = $mol_state_local_mock;
+    });
+})($ || ($ = {}));
+//local.mock.test.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_test({
+        'local get set delete'() {
+            var key = '$mol_state_local_test:' + Math.random();
+            $.$mol_assert_equal($.$mol_state_local.value(key), null);
+            $.$mol_state_local.value(key, 123);
+            $.$mol_assert_equal($.$mol_state_local.value(key), 123);
+            $.$mol_state_local.value(key, null);
+            $.$mol_assert_equal($.$mol_state_local.value(key), null);
+        },
+    });
+})($ || ($ = {}));
+//local.test.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_test({
+        'decode utf8 string'() {
+            const str = 'Hello, ΧΨΩЫ';
+            const encoded = new Uint8Array([72, 101, 108, 108, 111, 44, 32, 206, 167, 206, 168, 206, 169, 208, 171]);
+            $.$mol_assert_equal($.$mol_charset_decode(encoded), str);
+            $.$mol_assert_equal($.$mol_charset_decode(encoded, 'utf8'), str);
+        },
+        'decode empty string'() {
+            const encoded = new Uint8Array([]);
+            $.$mol_assert_equal($.$mol_charset_decode(encoded), '');
+        },
+    });
+})($ || ($ = {}));
+//decode.test.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_test({
+        'encode utf8 string'() {
+            const str = 'Hello, ΧΨΩЫ';
+            const encoded = new Uint8Array([72, 101, 108, 108, 111, 44, 32, 206, 167, 206, 168, 206, 169, 208, 171]);
+            $.$mol_assert_like($.$mol_charset_encode(str), encoded);
+        },
+    });
+})($ || ($ = {}));
+//encode.test.js.map
+;
+"use strict";
+var $;
+(function ($_1) {
+    $_1.$mol_test_mocks.push(context => {
+        class $mol_state_arg_mock extends $_1.$mol_state_arg {
+            static href(next) { return next || ''; }
+        }
+        __decorate([
+            $_1.$mol_mem
+        ], $mol_state_arg_mock, "href", null);
+        context.$mol_state_arg = $mol_state_arg_mock;
+    });
+    $_1.$mol_test({
+        'args as dictionary'($) {
+            $.$mol_state_arg.href('#foo=bar/xxx');
+            $_1.$mol_assert_like($.$mol_state_arg.dict(), { foo: 'bar', xxx: '' });
+            $.$mol_state_arg.dict({ foo: null, yyy: '', lol: '123' });
+            $_1.$mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#yyy/lol=123');
+        },
+        'one value from args'($) {
+            $.$mol_state_arg.href('#foo=bar/xxx');
+            $_1.$mol_assert_equal($.$mol_state_arg.value('foo'), 'bar');
+            $_1.$mol_assert_equal($.$mol_state_arg.value('xxx'), '');
+            $.$mol_state_arg.value('foo', 'lol');
+            $_1.$mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#foo=lol/xxx');
+            $.$mol_state_arg.value('foo', '');
+            $_1.$mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#foo/xxx');
+            $.$mol_state_arg.value('foo', null);
+            $_1.$mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#xxx');
+        },
+        'nested args'($) {
+            const base = new $.$mol_state_arg('nested.');
+            class Nested extends $_1.$mol_state_arg {
+                constructor(prefix) {
+                    super(base.prefix + prefix);
+                }
+            }
+            Nested.value = (key, next) => base.value(key, next);
+            $.$mol_state_arg.href('#foo=bar/nested.xxx=123');
+            $_1.$mol_assert_equal(Nested.value('foo'), null);
+            $_1.$mol_assert_equal(Nested.value('xxx'), '123');
+            Nested.value('foo', 'lol');
+            $_1.$mol_assert_equal($.$mol_state_arg.href().replace(/.*#/, '#'), '#foo=bar/nested.xxx=123/nested.foo=lol');
+        },
+    });
+})($ || ($ = {}));
+//arg.web.test.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_test({
+        'convertion to primitives'() {
+            var unit = new $.$mol_unit_money_usd(5);
+            $.$mol_assert_equal(unit.valueOf(), 5);
+            $.$mol_assert_equal(unit * 2, 10);
+            $.$mol_assert_equal(unit + '', '5');
+            $.$mol_assert_equal(`${unit}`, '$5');
+            $.$mol_assert_equal(unit.toString(), '$5');
+            $.$mol_assert_equal(String(unit), '$5');
+        },
+        'arithmetic'() {
+            var usd1 = new $.$mol_unit_money_usd(2);
+            var usd2 = new $.$mol_unit_money_usd(3);
+            var rur = new $.$mol_unit_money_rur(2);
+            $.$mol_assert_equal($.$mol_unit.summ(usd1, usd2).toString(), '$5');
+            $.$mol_assert_equal(usd1.mult(2).toString(), '$4');
+        },
+    });
+})($ || ($ = {}));
+//unit.test.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        $.$mol_test({
+            'handle clicks by default'() {
+                let clicked = false;
+                const clicker = $$.$mol_button.make({
+                    event_click: (event) => { clicked = true; },
+                });
+                const element = clicker.dom_tree();
+                const event = $.$mol_dom_context.document.createEvent('mouseevent');
+                event.initEvent('click', true, true);
+                element.dispatchEvent(event);
+                $.$mol_assert_ok(clicked);
+            },
+            'no handle clicks if disabled'() {
+                let clicked = false;
+                const clicker = $$.$mol_button.make({
+                    event_click: (event) => { clicked = true; },
+                    enabled: () => false,
+                });
+                const element = clicker.dom_tree();
+                const event = $.$mol_dom_context.document.createEvent('mouseevent');
+                event.initEvent('click', true, true);
+                element.dispatchEvent(event);
+                $.$mol_assert_not(clicked);
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//button.test.js.map
 ;
 "use strict";
 var $;
