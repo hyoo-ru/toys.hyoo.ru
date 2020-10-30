@@ -10,8 +10,8 @@ $hyoo_toys_catalog $mol_page
 		<= Logo $mol_image
 			uri \hyoo/toys/toys_logo.svg
 			event * click?val <=> event_top?val null
-		<= Title -
-		<= Tools -
+		<= Title
+		<= Tools
 	tools /
 		<= Filter_title $mol_search
 			query?val <=> filter_title?val \
@@ -47,7 +47,7 @@ $hyoo_toys_catalog $mol_page
 									<= toy_reviews_prefix @ \Reviews: 
 									<= toy_reviews!id 0
 			<= Toy_title!id $mol_dimmer
-				needle <= filter_title -
+				needle <= filter_title
 				haystack <= toy_title!id \
 			<= Toy_type!id $mol_view
 				sub /
