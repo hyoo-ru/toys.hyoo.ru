@@ -1,5 +1,4 @@
 {
-	"$hyoo_toys_catalog_source_hint": "Исходные коды",
 	"$hyoo_toys_catalog_toy_reviews_prefix": "Отзывы: ",
 	"$hyoo_toys_catalog_toy_size_prefix": "Размер: ",
 	"$hyoo_toys_details_buy": "Купить за ",
@@ -13,6 +12,7 @@
 	"$hyoo_toys_sort_option_size": "Сортировать по размеру",
 	"$hyoo_toys_sort_option_title": "Сортировать по названию",
 	"$hyoo_toys_title": "Игрушки для всей семьи",
+	"$mol_link_source_hint": "Исходные коды",
 	"$mol_search_clear_hint": "Очистить",
 	"$mol_search_hint": "Поиск..",
 	"$mol_select_hint": "Поиск..",

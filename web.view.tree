@@ -5,6 +5,7 @@ $mol_scroll $mol_view
 		^
 		scrollTop <= scroll_top?val 0
 		scrollLeft <= scroll_left?val 0
+		tabIndex <= tabindex -1
 	event *
 		^
 		scroll?event <=> event_scroll?event null
@@ -14,14 +15,15 @@ $mol_book2 $mol_scroll
 	minimal_width 0
 	Placeholder $mol_view
 
-$mol_hotkey $mol_plugin
-	event *
+$mol_speck $mol_view
+	attr *
 		^
-		keydown?event <=> keydown?event null
-	key *
-	mod_ctrl false
-	mod_alt false
-	mod_shift false
+		mol_theme \$mol_theme_accent
+	style *
+		^
+		minHeight \1em
+	sub /
+		<= value null
 
 $mol_button $mol_view
 	enabled true
@@ -37,9 +39,10 @@ $mol_button $mol_view
 		disabled <= disabled false
 		role \button
 		tabindex <= tab_index 0
-		title <= hint \
+		title <= hint_or_error <= hint \
 	sub /$mol_view_content
 		<= title
+	Speck $mol_speck
 
 $mol_page $mol_view
 	sub /
@@ -57,33 +60,22 @@ $mol_page $mol_view
 		<= Foot $mol_view
 			sub <= foot /$mol_view
 
-$mol_button_typed $mol_button
-
-$mol_button_minor $mol_button_typed
-
-$mol_check $mol_button_minor
+$mol_link $mol_view
+	dom_name \a
 	attr *
 		^
-		mol_check_checked <= checked?val false
-		aria-checked <= checked?val false
-		role \checkbox
-	sub /
-		<= Icon null
-		<= label /
-			<= Title $mol_view
-				sub /
-					<= title \
-
-$mol_switch $mol_view
-	minimal_height 40
-	Option!id $mol_check
-		checked?val <=> option_checked!id?val false
-		label <= option_label!id / <= option_title!id \
-		enabled <= option_enabled!id <= enabled true
-	value?val null
-	options *
-	keys /string
-	sub <= items /$mol_check
+		href <= uri \
+		title <= hint \
+		target <= target \_self
+		download <= file_name \
+		mol_link_current <= current false
+		mol_theme <= theme null
+	sub /$mol_view_content
+		<= title
+	arg *
+	event *
+		^
+		click?event <=> click?event <=> event_click?event null
 
 $mol_image $mol_view
 	dom_name \img
@@ -93,6 +85,15 @@ $mol_image $mol_view
 		alt <= title
 
 $mol_bar $mol_view
+
+$mol_hotkey $mol_plugin
+	event *
+		^
+		keydown?event <=> keydown?event null
+	key *
+	mod_ctrl false
+	mod_alt false
+	mod_shift false
 
 $mol_meter $mol_plugin
 	zoom 1
@@ -131,11 +132,76 @@ $mol_pop_bubble $mol_scroll
 		mol_pop_align <= align \
 		tabindex 0
 
-$mol_dimmer $mol_view
+$mol_button_typed $mol_button
+
+$mol_button_minor $mol_button_typed
+
+$mol_string $mol_view
+	dom_name \input
+	enabled true
+	minimal_height 40
+	autocomplete false
+	field *
+		^
+		disabled <= disabled false
+		value <= value_changed?val <=> value?val \
+		placeholder <= hint \
+		type <= type?val \text
+		spellcheck <= spellcheck false
+		autocomplete <= autocomplete_native \
+	attr *
+		^
+		maxlength <= length_max Infinity
+	event *
+		^
+		input?event <=> event_change?event null
+		keydown?event <=> event_key_press?event null
+	plugins /
+		<= Submit $mol_hotkey
+			key * enter?event <=> submit?event null
+
+$mol_svg $mol_view
+	dom_name \svg
+	dom_name_space \http://www.w3.org/2000/svg
+	font_size 16
+	font_family \
+
+$mol_svg_root $mol_svg
+	dom_name \svg
+	attr *
+		^
+		viewBox <= view_box \0 0 100 100
+		preserveAspectRatio <= aspect \xMidYMid
+
+$mol_svg_path $mol_svg
+	dom_name \path
+	attr *
+		^
+		d <= geometry \
+
+
+$mol_icon $mol_svg_root
+	view_box \0 0 24 24
+	minimal_width 16
+	minimal_height 16
+	sub /
+		<= Path $mol_svg_path
+			geometry <= path \
+
+$mol_icon_chevron $mol_icon path \M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z
+
+$mol_paragraph $mol_view
+	line_height 24
+	letter_width 8
+
+$mol_dimmer $mol_paragraph
 	haystack \
 	needle \
 	sub <= parts /$mol_view_content
-	Low!id $mol_view
+	Low!id $mol_paragraph
+		sub /
+			<= string!id \
+	High!id $mol_paragraph
 		sub /
 			<= string!id \
 
@@ -170,62 +236,6 @@ $mol_list $mol_view
 	view_window /
 		0
 		0
-
-$mol_string $mol_view
-	dom_name \input
-	enabled true
-	debounce 0
-	minimal_height 40
-	autocomplete false
-	field *
-		^
-		disabled <= disabled false
-		value <= value_changed?val <=> value?val \
-		placeholder <= hint \
-		type <= type?val \text
-		spellcheck <= spellcheck false
-		autocomplete <= autocomplete_native \
-	attr *
-		^
-		maxlength <= length_max Infinity
-	event *
-		^
-		input?event <=> event_change?event null
-		keydown?event <=> event_key_press?event null
-	plugins /
-		<= Submit $mol_hotkey
-			key * enter?event <=> submit?event null
-
-$mol_svg $mol_view
-	dom_name \svg
-	dom_name_space \http://www.w3.org/2000/svg
-	text_width?text 0
-	font_size 16
-	font_family \
-
-$mol_svg_root $mol_svg
-	dom_name \svg
-	attr *
-		^
-		viewBox <= view_box \0 0 100 100
-		preserveAspectRatio <= aspect \xMidYMid
-
-$mol_svg_path $mol_svg
-	dom_name \path
-	attr *
-		^
-		d <= geometry \
-
-
-$mol_icon $mol_svg_root
-	view_box \0 0 24 24
-	minimal_width 16
-	minimal_height 16
-	sub /
-		<= Path $mol_svg_path
-			geometry <= path \
-
-$mol_icon_chevron $mol_icon path \M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z
 
 $mol_select $mol_pop
 	dictionary *
@@ -285,24 +295,12 @@ $mol_search $mol_bar
 			event_click?val <=> event_clear?val null
 			hint <= clear_hint @ \Clear
 
-$mol_link $mol_view
-	dom_name \a
-	attr *
-		^
-		href <= uri \
-		title <= hint \
-		target <= target \_self
-		download <= file_name \
-		mol_link_current <= current false
-		mol_theme <= theme null
-	sub /$mol_view_content
-		<= title
-	arg *
-	event *
-		^
-		click?event <=> click?event <=> event_click?event null
-
 $mol_icon_github_circle $mol_icon path \M12,2C6.48,2 2,6.48 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12C22,6.48 17.52,2 12,2Z
+
+$mol_link_source $mol_link
+	hint @ \Source code
+	sub /
+		<= Icon $mol_icon_github_circle
 
 $mol_row $mol_view
 
@@ -331,16 +329,13 @@ $hyoo_toys_catalog $mol_page
 		<= Logo $mol_image
 			uri \hyoo/toys/toys_logo.svg
 			event * click?val <=> event_top?val null
-		<= Title -
-		<= Tools -
+		<= Title
+		<= Tools
 	tools /
 		<= Filter_title $mol_search
 			query?val <=> filter_title?val \
-		<= Source $mol_link
+		<= Source_link $mol_link_source
 			uri \https://github.com/hyoo-ru/toys.hyoo.ru
-			hint <= source_hint @ \Source code
-			sub /
-				<= Source_icon $mol_icon_github_circle
 	-
 	body /
 		<= Goods $mol_row
@@ -371,7 +366,7 @@ $hyoo_toys_catalog $mol_page
 									<= toy_reviews_prefix @ \Reviews: 
 									<= toy_reviews!id 0
 			<= Toy_title!id $mol_dimmer
-				needle <= filter_title -
+				needle <= filter_title
 				haystack <= toy_title!id \
 			<= Toy_type!id $mol_view
 				sub /
@@ -438,6 +433,36 @@ $hyoo_toys_details $mol_page
 										<= reviews 0
 		<= Description $mol_filler
 
+$mol_check $mol_button_minor
+	attr *
+		^
+		mol_check_checked <= checked?val false
+		aria-checked <= checked?val false
+		role \checkbox
+	sub /
+		<= Icon null
+		<= label /
+			<= Title $mol_view
+				sub /
+					<= title \
+
+$mol_switch $mol_view
+	minimal_height 40
+	Option!id $mol_switch_option
+		checked?val <=> option_checked!id?val false
+		label <= option_label!id / <= option_title!id \
+		enabled <= option_enabled!id <= enabled true
+	value?val null
+	options *
+	keys /string
+	sub <= items /$mol_check
+
+$mol_switch_option $mol_check
+	minimal_height 24
+	attr *
+		^
+		mol_theme <= theme \
+
 $hyoo_toys $mol_book2
 	attr * mol_theme \$mol_theme_dark
 	title @ \Toys for all
@@ -478,3 +503,39 @@ $hyoo_toys $mol_book2
 		sort_key <= sort_key
 	Details!toy $hyoo_toys_details
 		toy <= toy_current null
+
+$mol_view_tree_test_attributes_super $mol_view
+	some *
+		a 0
+		b 2
+
+$mol_view_tree_test_attributes $mol_view_tree_test_attributes_super
+	some *
+		^
+		a 1
+
+$mol_view_tree_test_binding $mol_view
+	value?val <=> task_title_new?val \123
+	enabled <= head_complete_enabled false
+
+$mol_view_tree_test_binding_right $mol_view
+	Test $mol_view_tree_test_binding_right_test
+		width?v => outer_width?v
+
+$mol_view_tree_test_binding_right_test $mol_view
+	width?val 0
+
+$mol_view_tree_test_simple $mol_view
+	some 1
+	bool true
+	str \test
+	arr /
+	arr_string /string
+
+$mol_view_tree_test_attributes_subcomponent $mol_view
+	- Comment
+	Page!index $mol_view_tree_test_attributes_subcomponent_page
+		Sub <= page!index null
+
+$mol_view_tree_test_attributes_subcomponent_page $mol_view
+	Sub null
