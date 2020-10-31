@@ -6054,6 +6054,7 @@ var $;
             obj.options = () => this.suggests();
             obj.Trigger_icon = () => null;
             obj.submit = (event) => this.submit(event);
+            obj.No_options = () => null;
             return obj;
         }
         Clear_icon() {
