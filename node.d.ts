@@ -1954,6 +1954,7 @@ declare namespace $ {
         hint(): string;
         filter_hint(): string;
         submit(event?: any): any;
+        enabled(): boolean;
     }
 }
 
@@ -2000,6 +2001,7 @@ declare namespace $ {
         suggests_showed(): boolean;
         suggests(): readonly string[];
         submit(event?: any): any;
+        enabled(): boolean;
         Suggest(): $$.$mol_select;
         Clear_icon(): $mol_icon_cross;
         clear_hint(): string;
