@@ -27,7 +27,7 @@ $mol_speck $mol_view
 
 $mol_button $mol_view
 	enabled true
-	minimal_height 32
+	minimal_height 40
 	click?event null
 	event_click?event null
 	event *
@@ -139,7 +139,7 @@ $mol_button_minor $mol_button_typed
 $mol_string $mol_view
 	dom_name \input
 	enabled true
-	minimal_height 32
+	minimal_height 40
 	autocomplete false
 	field *
 		^
