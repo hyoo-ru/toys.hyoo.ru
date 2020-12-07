@@ -17,9 +17,11 @@ $.$mol = $  // deprecated
 
 ;
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 Error.stackTraceLimit = Infinity;
-module.exports;
+var $;
+(function ($) {
+})($ || ($ = {}));
+module.exports = $;
 //mol.js.map
 ;
 "use strict";
@@ -40,9 +42,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    let $$;
-    (function ($$_1) {
-    })($$ = $.$$ || ($.$$ = {}));
     $.$mol_ambient_ref = Symbol('$mol_ambient_ref');
     function $mol_ambient(overrides) {
         return Object.setPrototypeOf(overrides, this || $);
@@ -8412,10 +8411,6 @@ var $;
 "use strict";
 var $;
 (function ($_1) {
-    let $$;
-    (function ($$) {
-        let $;
-    })($$ = $_1.$$ || ($_1.$$ = {}));
     function $mol_test(set) {
         for (let name in set) {
             const code = set[name];
@@ -8429,7 +8424,7 @@ var $;
     $_1.$mol_test_all = [];
     async function $mol_test_run() {
         for (var test of $_1.$mol_test_all) {
-            let context = Object.create($$);
+            let context = Object.create($_1.$$);
             for (let mock of $_1.$mol_test_mocks)
                 await mock(context);
             await test(context);
@@ -8918,13 +8913,12 @@ var $;
         catch (error) {
             if (!ErrorRight)
                 return error;
+            $.$mol_fail = fail;
             if (typeof ErrorRight === 'string') {
-                if (error.message !== ErrorRight)
-                    throw error;
+                $mol_assert_equal(error.message, ErrorRight);
             }
             else {
-                if (!(error instanceof ErrorRight))
-                    throw error;
+                $mol_assert_ok(error instanceof ErrorRight);
             }
             return error;
         }
