@@ -400,7 +400,7 @@ var $;
                 while (true) {
                     const a_next = a_iter.next();
                     const b_next = b_iter.next();
-                    if (a_next.done !== a_next.done)
+                    if (a_next.done !== b_next.done)
                         return result = false;
                     if (a_next.done)
                         break;
@@ -2383,7 +2383,7 @@ var $;
         },
         'only groups'() {
             const regexp = $.$mol_regexp.from({ dog: '@' });
-            $.$mol_assert_like([...regexp.parse('#')], []);
+            $.$mol_assert_like([...regexp.parse('#')], [{ 0: '#' }]);
             $.$mol_assert_like([...regexp.parse('@')], [{ dog: '@' }]);
         },
         'catch skipped'() {
@@ -2468,10 +2468,10 @@ var $;
         },
         'variants'() {
             const { begin, or, end } = $.$mol_regexp;
-            const sexism = $.$mol_regexp.from([begin, 'sex = ', [{ sex: 'male' }, or, { sex: 'female' }], end]);
+            const sexism = $.$mol_regexp.from([begin, 'sex = ', { sex: ['male', or, 'female'] }, end]);
             $.$mol_assert_like([...sexism.parse('sex = male')], [{ sex: 'male' }]);
             $.$mol_assert_like([...sexism.parse('sex = female')], [{ sex: 'female' }]);
-            $.$mol_assert_like([...sexism.parse('sex = malefemale')], []);
+            $.$mol_assert_like([...sexism.parse('sex = malefemale')], [{ 0: 'sex = malefemale' }]);
         },
         'force after'() {
             const { letter, force_after } = $.$mol_regexp;
@@ -2484,6 +2484,13 @@ var $;
             const regexp = $.$mol_regexp.from([letter, forbid_after('.')]);
             $.$mol_assert_equal(regexp.exec('x.'), null);
             $.$mol_assert_equal(regexp.exec('x5')[0], 'x');
+        },
+        'byte except'() {
+            const { byte_except, letter, tab } = $.$mol_regexp;
+            const name = byte_except(letter, tab);
+            $.$mol_assert_equal(name.exec('a'), null);
+            $.$mol_assert_equal(name.exec('\t'), null);
+            $.$mol_assert_equal(name.exec('(')[0], '(');
         },
     });
 })($ || ($ = {}));
