@@ -26,7 +26,7 @@ namespace $.$$ {
 
 		search( event : KeyboardEvent ) {
 			event.preventDefault()
-			this.Catalog().Filter_title().Suggest().Filter().focused( true )
+			this.Catalog().Filter_title().Query().focused( true )
 		}
 
 		@ $mol_mem
