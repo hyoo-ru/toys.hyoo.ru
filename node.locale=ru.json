@@ -13,9 +13,5 @@
 	"$hyoo_toys_sort_option_title": "Сортировать по названию",
 	"$hyoo_toys_title": "Игрушки для всей семьи",
 	"$mol_link_source_hint": "Исходные коды",
-	"$mol_search_clear_hint": "Очистить",
-	"$mol_search_hint": "Поиск..",
-	"$mol_select_Filter_hint": "Фильтр..",
-	"$mol_select_hint": "Выбрать..",
-	"$mol_select_no_options_message": "Нет вариантов"
+	"$mol_search_hint": "Поиск.."
 }

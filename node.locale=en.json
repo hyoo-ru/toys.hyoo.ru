@@ -13,9 +13,5 @@
 	"$hyoo_toys_sort_option_title": "Sort by title",
 	"$hyoo_toys_title": "Toys for all",
 	"$mol_link_source_hint": "Source code",
-	"$mol_search_clear_hint": "Clear",
-	"$mol_search_hint": "Search...",
-	"$mol_select_Filter_hint": "Filter..",
-	"$mol_select_hint": "Pick..",
-	"$mol_select_no_options_message": "No options"
+	"$mol_search_hint": "Search..."
 }
