@@ -2244,7 +2244,7 @@ var $;
             var unit = new $.$mol_unit_money_usd(5);
             $.$mol_assert_equal(unit.valueOf(), 5);
             $.$mol_assert_equal(unit * 2, 10);
-            $.$mol_assert_equal(unit + '', '5');
+            $.$mol_assert_equal(unit + '', '$5');
             $.$mol_assert_equal(`${unit}`, '$5');
             $.$mol_assert_equal(unit.toString(), '$5');
             $.$mol_assert_equal(String(unit), '$5');
