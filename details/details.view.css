@@ -19,6 +19,7 @@
 [hyoo_toys_details_main] {
 	display: flex;
 	flex-wrap: wrap;
+	flex: none;
 }
 
 [hyoo_toys_details_info] {
