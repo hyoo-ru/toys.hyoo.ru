@@ -840,6 +840,8 @@ var $;
             this.sub_from = from;
         }
         affect(quant) {
+            if (this.cursor === $mol_wire_cursor.final)
+                return false;
             if (this.cursor >= quant)
                 return false;
             this.cursor = quant;
@@ -2718,8 +2720,11 @@ var $;
         }
     }
     $.$mol_after_work = $mol_after_work;
+    if (typeof requestIdleCallback !== 'function') {
+        $.$mol_after_work = $mol_after_timeout;
+    }
 })($ || ($ = {}));
-//mol/after/work/work.web.ts
+//mol/after/work/work.ts
 ;
 "use strict";
 var $;
