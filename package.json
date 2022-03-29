@@ -221,9 +221,9 @@
     "$mol_maybe"
   ],
   "dependencies": {
+    "colorette": "*",
     "jsdom": "*",
     "node-fetch": "*",
-    "colorette": "*",
     "chokidar": "*"
   }
 }

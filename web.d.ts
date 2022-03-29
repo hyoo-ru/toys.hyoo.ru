@@ -341,17 +341,14 @@ declare namespace $ {
         cache: Result | Error | Promise<Result | Error>;
         get args(): Args;
         result(): Result | undefined;
-        persistent(): boolean;
         field(): string;
         constructor(id: string, task: (this: Host, ...args: Args) => Result, host?: Host | undefined, ...args: Args);
-        destructor(): void;
         plan(): void;
         reap(): void;
         toString(): any;
         toJSON(): any;
         get $(): any;
         emit(quant?: $mol_wire_cursor): void;
-        commit(): void;
         refresh(): void;
         put(next: Result | Error | Promise<Result | Error>): Result | Error | Promise<Result | Error>;
         sync(): Awaited<Result>;
@@ -359,10 +356,13 @@ declare namespace $ {
     }
     class $mol_wire_fiber_temp<Host, Args extends readonly unknown[], Result> extends $mol_wire_fiber<Host, Args, Result> {
         static getter<Host, Args extends readonly unknown[], Result>(task: (this: Host, ...args: Args) => Result): (host: Host, args: Args) => $mol_wire_fiber_temp<Host, [...Args], Result>;
+        commit(): void;
     }
     class $mol_wire_fiber_persist<Host, Args extends readonly unknown[], Result> extends $mol_wire_fiber<Host, Args, Result> {
         static getter<Host, Args extends readonly unknown[], Result>(task: (this: Host, ...args: Args) => Result, keys: number): (host: Host, args: Args) => $mol_wire_fiber_persist<Host, [...Args], Result>;
-        recall(...args: Args): Result;
+        recall(...args: Args): Error | Result | Promise<Error | Result>;
+        commit(): void;
+        destructor(): void;
     }
 }
 
@@ -724,6 +724,19 @@ declare namespace $ {
 
 declare namespace $ {
     function $mol_style_sheet<Component extends $mol_view, Config extends $mol_style_guard<Component, Config>>(Component: new () => Component, config0: Config): string;
+}
+
+declare namespace $ {
+    class $mol_plugin extends $mol_view {
+        dom_node(next?: Element): Element;
+        attr_static(): {
+            [key: string]: string | number | boolean;
+        };
+        event(): {
+            [key: string]: (event: Event) => void;
+        };
+        render(): void;
+    }
 }
 
 declare namespace $ {
@@ -1288,19 +1301,6 @@ declare namespace $.$$ {
         align_vert(): "suspense" | "top" | "bottom";
         align_hor(): "suspense" | "left" | "right";
         keydown(event: KeyboardEvent): void;
-    }
-}
-
-declare namespace $ {
-    class $mol_plugin extends $mol_view {
-        dom_node(next?: Element): Element;
-        attr_static(): {
-            [key: string]: string | number | boolean;
-        };
-        event(): {
-            [key: string]: (event: Event) => void;
-        };
-        render(): void;
     }
 }
 

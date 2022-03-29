@@ -23,20 +23,24 @@ interface $node {
 declare var $node: $node;
 
 declare namespace $ {
-}
-
-declare namespace $ {
-    let $mol_report_bugsnag: string;
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    function $mol_offline(uri?: string): void;
-}
-
-declare namespace $ {
+    type $mol_log3_event<Fields> = {
+        [key in string]: unknown;
+    } & {
+        time?: string;
+        place: unknown;
+        message: string;
+    } & Fields;
+    type $mol_log3_logger<Fields, Res = void> = (this: $, event: $mol_log3_event<Fields>) => Res;
+    let $mol_log3_come: $mol_log3_logger<{}>;
+    let $mol_log3_done: $mol_log3_logger<{}>;
+    let $mol_log3_fail: $mol_log3_logger<{}>;
+    let $mol_log3_warn: $mol_log3_logger<{
+        hint: string;
+    }>;
+    let $mol_log3_rise: $mol_log3_logger<{}>;
+    let $mol_log3_area: $mol_log3_logger<{}, () => void>;
+    function $mol_log3_area_lazy(this: $, event: $mol_log3_event<{}>): () => void;
+    let $mol_log3_stack: (() => void)[];
 }
 
 declare namespace $ {
@@ -90,6 +94,78 @@ declare namespace $ {
         toString(): any;
         toJSON(): any;
     }
+}
+
+declare namespace $ {
+    function $mol_deprecated(message: string): <Method extends (this: Host, ...args: readonly any[]) => any, Host extends { [key in Field]: Method; }, Field extends keyof Host>(host: Host, field: Field, descr: TypedPropertyDescriptor<Method>) => void;
+}
+
+declare namespace $ {
+    const $mol_tree_convert: unique symbol;
+    type $mol_tree_path = Array<string | number | null>;
+    type $mol_tree_hack = (input: $mol_tree, context: $mol_tree_context) => readonly $mol_tree[];
+    type $mol_tree_context = Record<string, $mol_tree_hack>;
+    type $mol_tree_library = Record<string, $mol_tree_context>;
+    class $mol_tree extends $mol_object2 {
+        readonly type: string;
+        readonly data: string;
+        readonly sub: readonly $mol_tree[];
+        readonly baseUri: string;
+        readonly row: number;
+        readonly col: number;
+        readonly length: number;
+        constructor(config?: Partial<$mol_tree>);
+        static values(str: string, baseUri?: string): $mol_tree[];
+        clone(config?: Partial<$mol_tree>): $mol_tree;
+        make(config: Partial<$mol_tree>): $mol_tree;
+        make_data(value: string, sub?: readonly $mol_tree[]): $mol_tree;
+        make_struct(type: string, sub?: readonly $mol_tree[]): $mol_tree;
+        static fromString(str: string, baseUri?: string): $mol_tree;
+        static fromJSON(json: any, baseUri?: string): $mol_tree;
+        get uri(): string;
+        toString(prefix?: string): string;
+        toJSON(): any;
+        get value(): string;
+        insert(value: $mol_tree, ...path: $mol_tree_path): $mol_tree;
+        select(...path: $mol_tree_path): $mol_tree;
+        filter(path: string[], value?: string): $mol_tree;
+        transform(visit: (stack: $mol_tree[], sub: () => $mol_tree[]) => $mol_tree | null, stack?: $mol_tree[]): $mol_tree | null;
+        hack(context: $mol_tree_context): $mol_tree;
+        error(message: string): Error;
+    }
+}
+
+declare namespace $ {
+    function $mol_log3_node_make(level: keyof Console, output: 'stdout' | 'stderr', type: string, color: keyof typeof $node.colorette): (this: $, event: $mol_log3_event<{}>) => () => void;
+}
+
+declare namespace $ {
+    function $mol_env(): Record<string, string | undefined>;
+}
+
+declare namespace $ {
+}
+
+/// <reference types="node" />
+declare namespace $ {
+    function $mol_exec(this: $, dir: string, command: string, ...args: string[]): import("child_process").SpawnSyncReturns<Buffer>;
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    let $mol_report_bugsnag: string;
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    function $mol_offline(uri?: string): void;
+}
+
+declare namespace $ {
 }
 
 declare namespace $ {
@@ -359,17 +435,14 @@ declare namespace $ {
         cache: Result | Error | Promise<Result | Error>;
         get args(): Args;
         result(): Result | undefined;
-        persistent(): boolean;
         field(): string;
         constructor(id: string, task: (this: Host, ...args: Args) => Result, host?: Host | undefined, ...args: Args);
-        destructor(): void;
         plan(): void;
         reap(): void;
         toString(): any;
         toJSON(): any;
         get $(): any;
         emit(quant?: $mol_wire_cursor): void;
-        commit(): void;
         refresh(): void;
         put(next: Result | Error | Promise<Result | Error>): Result | Error | Promise<Result | Error>;
         sync(): Awaited<Result>;
@@ -377,10 +450,13 @@ declare namespace $ {
     }
     class $mol_wire_fiber_temp<Host, Args extends readonly unknown[], Result> extends $mol_wire_fiber<Host, Args, Result> {
         static getter<Host, Args extends readonly unknown[], Result>(task: (this: Host, ...args: Args) => Result): (host: Host, args: Args) => $mol_wire_fiber_temp<Host, [...Args], Result>;
+        commit(): void;
     }
     class $mol_wire_fiber_persist<Host, Args extends readonly unknown[], Result> extends $mol_wire_fiber<Host, Args, Result> {
         static getter<Host, Args extends readonly unknown[], Result>(task: (this: Host, ...args: Args) => Result, keys: number): (host: Host, args: Args) => $mol_wire_fiber_persist<Host, [...Args], Result>;
-        recall(...args: Args): Result;
+        recall(...args: Args): Error | Result | Promise<Error | Result>;
+        commit(): void;
+        destructor(): void;
     }
 }
 
@@ -722,6 +798,19 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_plugin extends $mol_view {
+        dom_node(next?: Element): Element;
+        attr_static(): {
+            [key: string]: string | number | boolean;
+        };
+        event(): {
+            [key: string]: (event: Event) => void;
+        };
+        render(): void;
+    }
+}
+
+declare namespace $ {
     function $mol_style_define<Component extends $mol_view, Config extends $mol_style_guard<Component, Config>>(Component: new () => Component, config: Config): HTMLStyleElement | null;
 }
 
@@ -1031,70 +1120,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    type $mol_log3_event<Fields> = {
-        [key in string]: unknown;
-    } & {
-        time?: string;
-        place: unknown;
-        message: string;
-    } & Fields;
-    type $mol_log3_logger<Fields, Res = void> = (this: $, event: $mol_log3_event<Fields>) => Res;
-    let $mol_log3_come: $mol_log3_logger<{}>;
-    let $mol_log3_done: $mol_log3_logger<{}>;
-    let $mol_log3_fail: $mol_log3_logger<{}>;
-    let $mol_log3_warn: $mol_log3_logger<{
-        hint: string;
-    }>;
-    let $mol_log3_rise: $mol_log3_logger<{}>;
-    let $mol_log3_area: $mol_log3_logger<{}, () => void>;
-    function $mol_log3_area_lazy(this: $, event: $mol_log3_event<{}>): () => void;
-    let $mol_log3_stack: (() => void)[];
-}
-
-declare namespace $ {
-    function $mol_deprecated(message: string): <Method extends (this: Host, ...args: readonly any[]) => any, Host extends { [key in Field]: Method; }, Field extends keyof Host>(host: Host, field: Field, descr: TypedPropertyDescriptor<Method>) => void;
-}
-
-declare namespace $ {
-    const $mol_tree_convert: unique symbol;
-    type $mol_tree_path = Array<string | number | null>;
-    type $mol_tree_hack = (input: $mol_tree, context: $mol_tree_context) => readonly $mol_tree[];
-    type $mol_tree_context = Record<string, $mol_tree_hack>;
-    type $mol_tree_library = Record<string, $mol_tree_context>;
-    class $mol_tree extends $mol_object2 {
-        readonly type: string;
-        readonly data: string;
-        readonly sub: readonly $mol_tree[];
-        readonly baseUri: string;
-        readonly row: number;
-        readonly col: number;
-        readonly length: number;
-        constructor(config?: Partial<$mol_tree>);
-        static values(str: string, baseUri?: string): $mol_tree[];
-        clone(config?: Partial<$mol_tree>): $mol_tree;
-        make(config: Partial<$mol_tree>): $mol_tree;
-        make_data(value: string, sub?: readonly $mol_tree[]): $mol_tree;
-        make_struct(type: string, sub?: readonly $mol_tree[]): $mol_tree;
-        static fromString(str: string, baseUri?: string): $mol_tree;
-        static fromJSON(json: any, baseUri?: string): $mol_tree;
-        get uri(): string;
-        toString(prefix?: string): string;
-        toJSON(): any;
-        get value(): string;
-        insert(value: $mol_tree, ...path: $mol_tree_path): $mol_tree;
-        select(...path: $mol_tree_path): $mol_tree;
-        filter(path: string[], value?: string): $mol_tree;
-        transform(visit: (stack: $mol_tree[], sub: () => $mol_tree[]) => $mol_tree | null, stack?: $mol_tree[]): $mol_tree | null;
-        hack(context: $mol_tree_context): $mol_tree;
-        error(message: string): Error;
-    }
-}
-
-declare namespace $ {
-    function $mol_log3_node_make(level: keyof Console, output: 'stdout' | 'stderr', type: string, color: keyof typeof $node.colorette): (this: $, event: $mol_log3_event<{}>) => () => void;
-}
-
-declare namespace $ {
     class $mol_file_node extends $mol_file {
         static absolute(path: string): $mol_file_node;
         static relative(path: string): $mol_file_node;
@@ -1329,19 +1354,6 @@ declare namespace $.$$ {
         align_vert(): "suspense" | "top" | "bottom";
         align_hor(): "suspense" | "left" | "right";
         keydown(event: KeyboardEvent): void;
-    }
-}
-
-declare namespace $ {
-    class $mol_plugin extends $mol_view {
-        dom_node(next?: Element): Element;
-        attr_static(): {
-            [key: string]: string | number | boolean;
-        };
-        event(): {
-            [key: string]: (event: Event) => void;
-        };
-        render(): void;
     }
 }
 
@@ -2275,18 +2287,6 @@ declare namespace $.$$ {
         filter_popular(next?: boolean): boolean;
         sort_key(next?: string): string;
     }
-}
-
-declare namespace $ {
-    function $mol_env(): Record<string, string | undefined>;
-}
-
-declare namespace $ {
-}
-
-/// <reference types="node" />
-declare namespace $ {
-    function $mol_exec(this: $, dir: string, command: string, ...args: string[]): import("child_process").SpawnSyncReturns<Buffer>;
 }
 
 export = $;
