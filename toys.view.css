@@ -41,6 +41,5 @@
 }
 
 [hyoo_toys_filter_popular][mol_check_checked] {
-	background: var(--mol_theme_current);
-	color: var(--mol_theme_text);
+	color: var(--mol_theme_current);
 }
