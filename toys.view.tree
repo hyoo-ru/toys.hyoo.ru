@@ -8,7 +8,6 @@ $hyoo_toys $mol_book2
 			key * F?event <=> search?event null
 	Filters $mol_page
 		title @ \Filters
-		minimal_width 200
 		body /
 			<= Filter_type $mol_switch
 				value?val <=> filter_type?val \all
