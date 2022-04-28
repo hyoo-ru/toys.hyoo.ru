@@ -7823,7 +7823,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("hyoo/toys/toys.view.css", ":root {\n\t--mol_skin_accent: #d45e9f;\n}\n\n[hyoo_toys][mol_theme=\"$mol_theme_dark\"] {\n\t--mol_theme_focus: #d45e9f;\n}\n\n[hyoo_toys] [mol_theme=\"$mol_theme_base\"] {\n\t--mol_theme_back: #398ccb;\n\t--mol_theme_text: black;\n}\n\n[hyoo_toys] [mol_theme=\"$mol_theme_accent\"] {\n\t--mol_theme_back: #d45e9f;\n}\n\n[hyoo_toys_filters] {\n\tflex: 0 0 20rem;\t\n}\n\n[hyoo_toys_filter_type] {\n\tflex-direction: column;\n\tflex: none;\n\tpadding: .75rem;\n}\n\n[hyoo_toys_filter_size] {\n\tflex: none;\n\tpadding: .75rem;\n}\n\n[hyoo_toys_sort] {\n\tflex-direction: column;\n\tflex: none;\n\tpadding: .75rem;\n}\n\n[hyoo_toys_filter_popular] {\n\tmargin: .75rem;\n}\n\n[hyoo_toys_filter_popular][mol_check_checked] {\n\tbackground: var(--mol_theme_current);\n\tcolor: var(--mol_theme_text);\n}\n");
+    $mol_style_attach("hyoo/toys/toys.view.css", ":root {\n\t--mol_skin_accent: #d45e9f;\n}\n\n[hyoo_toys][mol_theme=\"$mol_theme_dark\"] {\n\t--mol_theme_focus: #d45e9f;\n}\n\n[hyoo_toys] [mol_theme=\"$mol_theme_base\"] {\n\t--mol_theme_back: #398ccb;\n\t--mol_theme_text: black;\n}\n\n[hyoo_toys] [mol_theme=\"$mol_theme_accent\"] {\n\t--mol_theme_back: #d45e9f;\n}\n\n[hyoo_toys_filters] {\n\tflex: 0 0 20rem;\t\n}\n\n[hyoo_toys_filter_type] {\n\tflex-direction: column;\n\tflex: none;\n\tpadding: .75rem;\n}\n\n[hyoo_toys_filter_size] {\n\tflex: none;\n\tpadding: .75rem;\n}\n\n[hyoo_toys_sort] {\n\tflex-direction: column;\n\tflex: none;\n\tpadding: .75rem;\n}\n\n[hyoo_toys_filter_popular] {\n\tmargin: .75rem;\n}\n\n[hyoo_toys_filter_popular][mol_check_checked] {\n\tcolor: var(--mol_theme_current);\n}\n");
 })($ || ($ = {}));
 //hyoo/toys/-css/toys.view.css.ts
 ;
