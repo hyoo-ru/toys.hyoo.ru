@@ -7643,7 +7643,6 @@ var $;
         Filters() {
             const obj = new this.$.$mol_page();
             obj.title = () => this.$.$mol_locale.text('$hyoo_toys_Filters_title');
-            obj.minimal_width = () => 200;
             obj.body = () => [
                 this.Filter_type(),
                 this.Filter_size(),
