@@ -215,12 +215,15 @@
     "$mol_filler_filler.view.tree",
     "$mol_filler_-view.tree_filler.view.tree.ts",
     "$mol_switch",
-    "$mol_switch_switch.view.tree",
-    "$mol_switch_-view.tree_switch.view.tree.ts",
+    "$mol_check_list",
     "$mol_check",
     "$mol_check_-view.tree_check.view.tree.ts",
     "$mol_check_check.view.tree",
-    "$mol_maybe"
+    "$mol_maybe",
+    "$mol_check_list_list.view.tree",
+    "$mol_check_list_-view.tree_list.view.tree.ts",
+    "$mol_switch_-view.tree_switch.view.tree.ts",
+    "$mol_switch_switch.view.tree"
   ],
   "dependencies": {
     "colorette": "*",

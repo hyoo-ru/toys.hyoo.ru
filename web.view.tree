@@ -418,17 +418,20 @@ $mol_check $mol_button_minor
 				sub /
 					<= title \
 
-$mol_switch $mol_view
+$mol_check_list $mol_view
 	Option!id $mol_check
 		checked?val <=> option_checked!id?val false
-		label <= option_label!id / <= option_title!id \
+		label <= option_label!id /
+			<= option_title!id \
 		enabled <= option_enabled!id <= enabled true
 		hint <= option_hint!id \
 		minimal_height 24
-	value?val null
 	options *
 	keys /string
 	sub <= items /$mol_check
+
+$mol_switch $mol_check_list
+	value?val \
 
 $hyoo_toys $mol_book2
 	attr * mol_theme \$mol_theme_dark
