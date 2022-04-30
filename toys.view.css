@@ -1,4 +1,4 @@
-:root {
+/* :root {
 	--mol_skin_accent: #d45e9f;
 }
 
@@ -14,7 +14,7 @@
 [hyoo_toys] [mol_theme="$mol_theme_accent"] {
 	--mol_theme_back: #d45e9f;
 }
-
+ */
 [hyoo_toys_filters] {
 	flex: 0 0 20rem;	
 }
