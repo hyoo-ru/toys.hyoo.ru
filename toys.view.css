@@ -1,20 +1,3 @@
-/* :root {
-	--mol_skin_accent: #d45e9f;
-}
-
-[hyoo_toys][mol_theme="$mol_theme_dark"] {
-	--mol_theme_focus: #d45e9f;
-}
-
-[hyoo_toys] [mol_theme="$mol_theme_base"] {
-	--mol_theme_back: #398ccb;
-	--mol_theme_text: black;
-}
-
-[hyoo_toys] [mol_theme="$mol_theme_accent"] {
-	--mol_theme_back: #d45e9f;
-}
- */
 [hyoo_toys_filters] {
 	flex: 0 0 20rem;	
 }
