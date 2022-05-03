@@ -2190,7 +2190,7 @@ declare namespace $ {
         plugins(): readonly any[];
         Filters(): $mol_page;
         Catalog(): $$.$hyoo_toys_catalog;
-        Details(toy: any): $$.$hyoo_toys_details;
+        Details(id: any): $$.$hyoo_toys_details;
         search(event?: any): any;
         Hotkey(): $$.$mol_hotkey;
         filter_type(val?: any): string;
