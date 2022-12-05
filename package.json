@@ -164,7 +164,7 @@
   ],
   "dependencies": {
     "jsdom": "*",
-    "node-fetch": "*",
+    "undici": "*",
     "chokidar": "*"
   }
 }
