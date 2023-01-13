@@ -17,6 +17,10 @@
 	flex: 1000 1 auto;
 }
 
+[hyoo_toys_catalog_body] {
+	padding: 0;
+}
+
 [hyoo_toys_catalog_filter_title] {
 	align-self: stretch;
 }

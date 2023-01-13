@@ -5,22 +5,15 @@
 [hyoo_toys_filter_type] {
 	flex-direction: column;
 	flex: none;
-	padding: .75rem;
 }
 
 [hyoo_toys_filter_size] {
 	flex: none;
-	padding: .75rem;
 }
 
 [hyoo_toys_sort] {
 	flex-direction: column;
 	flex: none;
-	padding: .75rem;
-}
-
-[hyoo_toys_filter_popular] {
-	margin: .75rem;
 }
 
 [hyoo_toys_filter_popular][mol_check_checked] {

@@ -8,7 +8,7 @@ $hyoo_toys_details $mol_page
 			sub /
 				<= Close_icon $mol_icon_cross
 	body /
-		<= Main $mol_view
+		<= Main $mol_row
 			sub /
 				<= Image $mol_view
 					sub /
