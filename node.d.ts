@@ -2228,7 +2228,7 @@ declare namespace $ {
         Reviews(): $mol_view;
         Parameters(): $mol_view;
         Info(): $mol_view;
-        Main(): $mol_view;
+        Main(): $mol_row;
         Description(): $mol_filler;
     }
 }

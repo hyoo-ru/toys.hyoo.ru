@@ -3840,6 +3840,7 @@ var $;
                     shrink: 1,
                     basis: per(100),
                 },
+                padding: $mol_gap.block,
             },
             Foot: {
                 display: 'flex',
@@ -3855,6 +3856,10 @@ var $;
                 },
                 boxShadow: `0 -0.5rem 0.5rem -0.5rem hsla(0,0%,0%,.25)`,
                 zIndex: 1,
+                padding: $mol_gap.block,
+                ':empty': {
+                    display: 'none',
+                },
             },
         });
     })($$ = $.$$ || ($.$$ = {}));
@@ -6807,7 +6812,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("mol/row/row.view.css", "[mol_row] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: flex-start;\n\talign-content: flex-start;\n\tjustify-content: flex-start;\n\tpadding: .375rem;\n\tflex: 0 0 auto;\n\tbox-sizing: border-box;\n\tmax-width: 100%;\n}\n\n[mol_row] > * {\n\tmargin: .375rem;\n\tmax-width: 100%;\n}\n");
+    $mol_style_attach("mol/row/row.view.css", "[mol_row] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: flex-start;\n\talign-content: flex-start;\n\tjustify-content: flex-start;\n\tpadding: var(--mol_gap_block);\n\tgap: var(--mol_gap_block);\n\tflex: 0 0 auto;\n\tbox-sizing: border-box;\n\tmax-width: 100%;\n}\n\n[mol_row] > * {\n\tmax-width: 100%;\n}\n");
 })($ || ($ = {}));
 //mol/row/-css/row.view.css.ts
 ;
@@ -7194,7 +7199,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("hyoo/toys/catalog/catalog.view.css", "[hyoo_toys_catalog] {\n\tflex: 1 0 40rem;\n}\n\n[hyoo_toys_catalog_logo] {\n\tbox-shadow: none;\n\theight: 1.5rem;\n\talign-self: center;\n\tflex: none;\n}\n\n[hyoo_toys_catalog_title] {\n\tflex: 1 1 auto;\n}\n\n[hyoo_toys_catalog_tools] {\n\tflex: 1000 1 auto;\n}\n\n[hyoo_toys_catalog_filter_title] {\n\talign-self: stretch;\n}\n\n[hyoo_toys_catalog_goods] {\n\talign-items: stretch;\n\tmin-height: 1rem;\n}\n\n[hyoo_toys_catalog_toy_card] {\n\tdisplay: block;\n\tflex: 1 1 18rem;\n\tmargin: 0;\n\tpadding: .5rem;\n}\n\n[hyoo_toys_catalog_toy_image] {\n    width: 5.5rem;\n\theight: 5.5rem;\n    margin: .5rem;\n}\n\n[hyoo_toys_catalog_toy_title] {\n\tdisplay: block;\n\tmargin: 0 .5rem;\n\tfont-weight: bolder;\n}\n\n[hyoo_toys_catalog_toy_type] {\n\tdisplay: block;\n\tmargin: 0 .5rem;\n}\n\n[hyoo_toys_catalog_toy_option] {\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items:flex-start;\n\tflex-wrap: wrap;\n}\n\n[hyoo_toys_catalog_toy_info] {\n\tmargin: .5rem;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n[hyoo_toys_catalog_toy_price] {\n\tfont-size: 1.5em;\n}\n\n[hyoo_toys_catalog_toy_reviews] {\n}\n");
+    $mol_style_attach("hyoo/toys/catalog/catalog.view.css", "[hyoo_toys_catalog] {\n\tflex: 1 0 40rem;\n}\n\n[hyoo_toys_catalog_logo] {\n\tbox-shadow: none;\n\theight: 1.5rem;\n\talign-self: center;\n\tflex: none;\n}\n\n[hyoo_toys_catalog_title] {\n\tflex: 1 1 auto;\n}\n\n[hyoo_toys_catalog_tools] {\n\tflex: 1000 1 auto;\n}\n\n[hyoo_toys_catalog_body] {\n\tpadding: 0;\n}\n\n[hyoo_toys_catalog_filter_title] {\n\talign-self: stretch;\n}\n\n[hyoo_toys_catalog_goods] {\n\talign-items: stretch;\n\tmin-height: 1rem;\n}\n\n[hyoo_toys_catalog_toy_card] {\n\tdisplay: block;\n\tflex: 1 1 18rem;\n\tmargin: 0;\n\tpadding: .5rem;\n}\n\n[hyoo_toys_catalog_toy_image] {\n    width: 5.5rem;\n\theight: 5.5rem;\n    margin: .5rem;\n}\n\n[hyoo_toys_catalog_toy_title] {\n\tdisplay: block;\n\tmargin: 0 .5rem;\n\tfont-weight: bolder;\n}\n\n[hyoo_toys_catalog_toy_type] {\n\tdisplay: block;\n\tmargin: 0 .5rem;\n}\n\n[hyoo_toys_catalog_toy_option] {\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items:flex-start;\n\tflex-wrap: wrap;\n}\n\n[hyoo_toys_catalog_toy_info] {\n\tmargin: .5rem;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n[hyoo_toys_catalog_toy_price] {\n\tfont-size: 1.5em;\n}\n\n[hyoo_toys_catalog_toy_reviews] {\n}\n");
 })($ || ($ = {}));
 //hyoo/toys/catalog/-css/catalog.view.css.ts
 ;
@@ -7528,7 +7533,7 @@ var $;
             return obj;
         }
         Main() {
-            const obj = new this.$.$mol_view();
+            const obj = new this.$.$mol_row();
             obj.sub = () => [
                 this.Image(),
                 this.Info()
@@ -8055,7 +8060,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("hyoo/toys/toys.view.css", "[hyoo_toys_filters] {\n\tflex: 0 0 20rem;\t\n}\n\n[hyoo_toys_filter_type] {\n\tflex-direction: column;\n\tflex: none;\n\tpadding: .75rem;\n}\n\n[hyoo_toys_filter_size] {\n\tflex: none;\n\tpadding: .75rem;\n}\n\n[hyoo_toys_sort] {\n\tflex-direction: column;\n\tflex: none;\n\tpadding: .75rem;\n}\n\n[hyoo_toys_filter_popular] {\n\tmargin: .75rem;\n}\n\n[hyoo_toys_filter_popular][mol_check_checked] {\n\tcolor: var(--mol_theme_current);\n}\n");
+    $mol_style_attach("hyoo/toys/toys.view.css", "[hyoo_toys_filters] {\n\tflex: 0 0 20rem;\t\n}\n\n[hyoo_toys_filter_type] {\n\tflex-direction: column;\n\tflex: none;\n}\n\n[hyoo_toys_filter_size] {\n\tflex: none;\n}\n\n[hyoo_toys_sort] {\n\tflex-direction: column;\n\tflex: none;\n}\n\n[hyoo_toys_filter_popular][mol_check_checked] {\n\tcolor: var(--mol_theme_current);\n}\n");
 })($ || ($ = {}));
 //hyoo/toys/-css/toys.view.css.ts
 ;
