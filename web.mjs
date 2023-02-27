@@ -3055,7 +3055,7 @@ var $;
             const cut = {};
             for (const key in dict) {
                 if (except.indexOf(key) >= 0)
-                    continue;
+                    break;
                 cut[key] = dict[key];
             }
             return cut;
@@ -3522,7 +3522,6 @@ var $;
                 justifyContent: 'space-between',
                 flex: 'none',
                 margin: 0,
-                overflow: 'hidden',
                 background: {
                     color: $mol_theme.card,
                 },
