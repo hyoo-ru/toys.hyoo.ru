@@ -2117,9 +2117,20 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $mol_filler extends $mol_view {
-        minimal_height(): number;
-        sub(): readonly any[];
+    class $mol_filler extends $mol_paragraph {
+        min_symbols(): number;
+        sub(): readonly string[];
+        filler_lines(): readonly string[];
+    }
+}
+
+declare namespace $ {
+    function $mol_array_lottery<Value>(list: readonly Value[]): Value;
+}
+
+declare namespace $.$$ {
+    class $mol_filler extends $.$mol_filler {
+        filler_lines(): string[];
     }
 }
 
@@ -2154,7 +2165,7 @@ declare namespace $ {
         Parameters(): $mol_view;
         Info(): $mol_view;
         Main(): $mol_row;
-        Description(): $mol_filler;
+        Description(): $$.$mol_filler;
     }
 }
 
