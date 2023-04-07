@@ -1262,12 +1262,30 @@ declare namespace $ {
             decoding: string;
             crossOrigin: any;
         };
+        attr(): {
+            width: number;
+            height: number;
+        };
+        event(): {
+            load: (next?: any) => any;
+        };
         minimal_width(): number;
         minimal_height(): number;
         uri(): string;
         loading(): string;
         decoding(): string;
         cors(): any;
+        natural_width(next?: any): number;
+        natural_height(next?: any): number;
+        load(next?: any): any;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_image extends $.$mol_image {
+        natural_width(next?: null): number;
+        natural_height(next?: null): number;
+        load(): void;
     }
 }
 
@@ -2092,7 +2110,7 @@ declare namespace $ {
         body(): readonly any[];
         Toy_card(id: any): $$.$mol_link;
         event_top(val?: any): any;
-        Logo(): $mol_image;
+        Logo(): $$.$mol_image;
         filter_title(val?: any): string;
         Filter_title(): $$.$mol_search;
         Source_link(): $mol_link_source;
@@ -2101,7 +2119,7 @@ declare namespace $ {
         toy_arg(id: any): {};
         toy_image(id: any): string;
         toy_image_filter(id: any): string;
-        Toy_image(id: any): $mol_image;
+        Toy_image(id: any): $$.$mol_image;
         toy_price(id: any): $mol_unit_money;
         Toy_price(id: any): $$.$mol_cost;
         toy_size_prefix(): {} | null;
@@ -2210,7 +2228,7 @@ declare namespace $ {
         Close(): $$.$mol_link;
         photo_uri(): string;
         photo_filter(): string;
-        Photo(): $mol_image;
+        Photo(): $$.$mol_image;
         Image(): $mol_view;
         buy(): {} | null;
         price(): $mol_unit_money;
@@ -2250,14 +2268,16 @@ declare namespace $ {
     class $mol_check extends $mol_button_minor {
         attr(): {
             mol_check_checked: boolean;
-            "aria-checked": boolean;
+            "aria-checked": string;
             role: string;
             disabled: boolean;
             tabindex: number;
             title: string;
         };
         sub(): readonly $mol_view_content[];
-        checked(val?: any): boolean;
+        checked(next?: any): boolean;
+        aria_checked(): string;
+        aria_role(): string;
         Icon(): any;
         title(): string;
         Title(): $mol_view;
@@ -2273,6 +2293,7 @@ declare namespace $.$$ {
         click(next?: Event): void;
         sub(): readonly $mol_view_content[];
         label(): readonly any[];
+        aria_checked(): string;
     }
 }
 
