@@ -1309,8 +1309,8 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    function $mol_huggingface_run(this: $, space: string, method: string | number, ...data: readonly any[]): readonly string[];
-    function $mol_huggingface_async(space: string, method: number, ...data: readonly any[]): Promise<[string]> & {
+    function $mol_huggingface_run(this: $, space: string, method: string | number, ...data: readonly any[]): any[] | readonly string[];
+    function $mol_huggingface_async(space: string, method: number, ...data: readonly any[]): Promise<any[]> & {
         destructor: () => void;
     };
 }
@@ -1328,7 +1328,7 @@ declare namespace $ {
         static lang(next?: string): string;
         static source(lang: string): any;
         static texts(lang: string, next?: $mol_locale_dict): $mol_locale_dict;
-        static text(key: string): {} | null;
+        static text(key: string): string;
         static warn(key: string): null;
     }
 }
@@ -2139,7 +2139,7 @@ declare namespace $ {
         nav_focused(component?: any): any;
         Nav(): $$.$mol_nav;
         suggests_showed(val?: any): boolean;
-        hint(): {} | null;
+        hint(): string;
         submit(event?: any): any;
         enabled(): boolean;
         keyboard(): string;
@@ -2183,7 +2183,7 @@ declare namespace $ {
 
 declare namespace $ {
     class $mol_link_source extends $mol_link {
-        hint(): {} | null;
+        hint(): string;
         sub(): readonly any[];
         Icon(): $mol_icon_github_circle;
     }
@@ -2248,10 +2248,10 @@ declare namespace $ {
         Toy_image(id: any): $$.$mol_image;
         toy_price(id: any): $mol_unit_money;
         Toy_price(id: any): $$.$mol_cost;
-        toy_size_prefix(): {} | null;
+        toy_size_prefix(): string;
         toy_size(id: any): string;
         Toy_size(id: any): $mol_view;
-        toy_reviews_prefix(): {} | null;
+        toy_reviews_prefix(): string;
         toy_reviews(id: any): number;
         Toy_reviews(id: any): $mol_view;
         Toy_info(id: any): $mol_view;
@@ -2356,17 +2356,17 @@ declare namespace $ {
         photo_filter(): string;
         Photo(): $$.$mol_image;
         Image(): $mol_view;
-        buy(): {} | null;
+        buy(): string;
         price(): $mol_unit_money;
         Price(): $$.$mol_cost;
         Buy_button(): $mol_button_major;
         Buy_link(): $$.$mol_link;
         type(): string;
         Type(): $mol_view;
-        size_prefix(): {} | null;
+        size_prefix(): string;
         size(): string;
         Size(): $mol_view;
-        reviews_prefix(): {} | null;
+        reviews_prefix(): string;
         reviews(): number;
         Reviews(): $mol_view;
         Parameters(): $mol_view;
@@ -2484,28 +2484,28 @@ declare namespace $ {
         search(event?: any): any;
         Hotkey(): $$.$mol_hotkey;
         filter_type(val?: any): string;
-        filter_type_option_all(): {} | null;
+        filter_type_option_all(): string;
         filter_type_options(): {
-            all: {} | null;
+            all: string;
         };
         Filter_type(): $$.$mol_switch;
         filter_size(val?: any): string;
-        filter_size_option_all(): {} | null;
+        filter_size_option_all(): string;
         filter_size_options(): {
-            all: {} | null;
+            all: string;
         };
         Filter_size(): $$.$mol_switch;
         filter_popular(val?: any): boolean;
-        filter_popular_title(): {} | null;
+        filter_popular_title(): string;
         Filter_popular(): $$.$mol_check;
         sort_key(val?: any): string;
-        sort_option_price(): {} | null;
-        sort_option_size(): {} | null;
-        sort_option_title(): {} | null;
+        sort_option_price(): string;
+        sort_option_size(): string;
+        sort_option_title(): string;
         sort_items(): {
-            price: {} | null;
-            size: {} | null;
-            title: {} | null;
+            price: string;
+            size: string;
+            title: string;
         };
         Sort(): $$.$mol_switch;
         toys(): readonly any[];
@@ -2529,11 +2529,11 @@ declare namespace $.$$ {
         search(event: KeyboardEvent): void;
         filter_type(next?: string): string;
         filter_type_options(): {
-            all: {} | null;
+            all: string;
         };
         filter_size(next?: string): string;
         filter_size_options(): {
-            all: {} | null;
+            all: string;
         };
         filter_popular(next?: boolean): boolean;
         sort_key(next?: string): string;
