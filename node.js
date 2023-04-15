@@ -3591,7 +3591,7 @@ var $;
             return next;
         }
         static link(next) {
-            var params = {};
+            const params = {};
             var prev = this.dict();
             for (var key in prev) {
                 params[key] = prev[key];
@@ -3602,11 +3602,11 @@ var $;
             return this.make_link(params);
         }
         static make_link(next) {
-            var chunks = [];
-            for (var key in next) {
-                if (null == next[key])
-                    continue;
-                chunks.push([key].concat(next[key]).map(encodeURIComponent).join('='));
+            const chunks = [];
+            for (const key in next) {
+                if (next[key] !== null) {
+                    chunks.push([key, next[key]].map(encodeURIComponent).join('='));
+                }
             }
             return chunks.join(' ');
         }
@@ -3624,8 +3624,8 @@ var $;
             return new this.constructor(this.prefix + postfix + '.');
         }
         link(next) {
-            var prefix = this.prefix;
-            var dict = {};
+            const prefix = this.prefix;
+            const dict = {};
             for (var key in next) {
                 dict[prefix + key] = next[key];
             }
@@ -4561,9 +4561,9 @@ var $;
                     const def = this.lang_default();
                     if (lang === def)
                         throw error;
-                    return {};
                 }
             }
+            return {};
         }
         static text(key) {
             const lang = this.lang();
@@ -4760,7 +4760,6 @@ var $;
 var $;
 (function ($) {
     const { rem } = $mol_style_unit;
-    const { scale } = $mol_style_func;
     $mol_style_define($mol_link, {
         textDecoration: 'none',
         color: $mol_theme.control,
@@ -6696,7 +6695,7 @@ var $;
                 });
                 const regexp = new $mol_regexp(`(?:${chunks.join('|')})`, flags, groups);
                 const validator = new RegExp('^' + regexp.source + '$', flags);
-                regexp.generate = params => {
+                regexp.generate = (params) => {
                     for (let option in source) {
                         if (option in params) {
                             if (typeof params[option] === 'boolean') {
