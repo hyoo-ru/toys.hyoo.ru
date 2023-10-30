@@ -28,31 +28,38 @@
 [hyoo_toys_catalog_goods] {
 	align-items: stretch;
 	min-height: 1rem;
+	padding: .325rem;
 }
 
 [hyoo_toys_catalog_toy_card] {
-	display: block;
-	flex: 1 1 18rem;
-	margin: 0;
-	padding: .5rem;
+	flex-direction: column;
+	flex: 1 1 10rem;
+	width: 10rem;
+	margin: .325rem;
+	padding: 0;
 	background: var(--mol_theme_card);
+	gap: 0;
+	align-self: flex-end;
 }
 
 [hyoo_toys_catalog_toy_image] {
-    width: 5.5rem;
-	height: 5.5rem;
-    margin: .5rem;
+	flex: 0 0 14rem;
+	width: 100%;
+	aspect-ratio: 1;
+}
+
+[hyoo_toys_catalog_toy_main] {
+	padding: .5rem .75rem;
+	flex-grow: 1;
 }
 
 [hyoo_toys_catalog_toy_title] {
 	display: block;
-	margin: 0 .5rem;
-	font-weight: bolder;
+	text-shadow: 0 0;
 }
 
 [hyoo_toys_catalog_toy_type] {
 	display: block;
-	margin: 0 .5rem;
 }
 
 [hyoo_toys_catalog_toy_option] {
@@ -63,7 +70,7 @@
 }
 
 [hyoo_toys_catalog_toy_info] {
-	margin: .5rem;
+	margin: .5rem .75rem;
 	display: flex;
 	flex-direction: column;
 }
