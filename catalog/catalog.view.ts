@@ -38,14 +38,13 @@ namespace $.$$ {
 
 		@ $mol_mem
 		toys_filtered_by_title() {
-			const filter = this.filter_title().toLowerCase()
+			
+			const filter = this.filter_title()
 			const toys = this.toys_filtered_by_size()
-
+			
 			if( !filter ) return toys
 
-			return toys.filter( toy => {
-				return toy.title().toLowerCase().match( filter )
-			})
+			return toys.filter( $mol_match_text( filter, toy => [ toy.title(), toy.type() ] ) )
 		}
 		
 		@ $mol_mem
