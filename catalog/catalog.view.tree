@@ -1,5 +1,4 @@
 $hyoo_toys_catalog $mol_page
-	minimal_width 400
 	toys /
 	toy!id $hyoo_toys_toy
 	filter_type \

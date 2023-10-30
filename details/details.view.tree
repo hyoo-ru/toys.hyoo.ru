@@ -1,5 +1,4 @@
 $hyoo_toys_details $mol_page
-	minimal_width 600
 	toy $hyoo_toys_toy
 	tools /
 		<= Close $mol_link
