@@ -320,7 +320,6 @@ $mol_cost $mol_view
 				<= postfix \
 
 $hyoo_toys_catalog $mol_page
-	minimal_width 400
 	toys /
 	toy!id $hyoo_toys_toy
 	filter_type \
@@ -512,7 +511,6 @@ $mol_filler $mol_paragraph
 		\Donec vel. 
 
 $hyoo_toys_details $mol_page
-	minimal_width 600
 	toy $hyoo_toys_toy
 	tools /
 		<= Close $mol_link

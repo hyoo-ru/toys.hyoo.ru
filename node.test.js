@@ -7339,9 +7339,6 @@ var $;
 var $;
 (function ($) {
     class $hyoo_toys_catalog extends $mol_page {
-        minimal_width() {
-            return 400;
-        }
         toys() {
             return [];
         }
@@ -7980,9 +7977,6 @@ var $;
 var $;
 (function ($) {
     class $hyoo_toys_details extends $mol_page {
-        minimal_width() {
-            return 600;
-        }
         toy() {
             const obj = new this.$.$hyoo_toys_toy();
             return obj;

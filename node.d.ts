@@ -2166,7 +2166,6 @@ declare namespace $ {
 
 declare namespace $ {
     class $hyoo_toys_catalog extends $mol_page {
-        minimal_width(): number;
         toys(): readonly any[];
         toy(id: any): $hyoo_toys_toy;
         filter_type(): string;
@@ -2282,7 +2281,6 @@ declare namespace $ {
 
 declare namespace $ {
     class $hyoo_toys_details extends $mol_page {
-        minimal_width(): number;
         toy(): $hyoo_toys_toy;
         tools(): readonly any[];
         body(): readonly any[];
