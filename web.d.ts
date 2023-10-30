@@ -2134,6 +2134,27 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_card extends $mol_list {
+        attr(): Record<string, any>;
+        rows(): readonly $mol_view[];
+        status(): string;
+        content(): readonly $mol_view_content[];
+        Content(): $mol_view;
+        status_text(): string;
+        Status(): $mol_view;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_card extends $.$mol_card {
+        rows(): readonly $mol_view[];
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
     class $mol_filler extends $mol_paragraph {
         min_symbols(): number;
         sub(): readonly string[];
@@ -2179,7 +2200,7 @@ declare namespace $ {
         reviews(): number;
         Reviews(): $mol_view;
         Parameters(): $mol_view;
-        Info(): $mol_view;
+        Info(): $$.$mol_card;
         Main(): $mol_row;
         Description(): $$.$mol_filler;
     }

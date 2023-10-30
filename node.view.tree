@@ -382,6 +382,19 @@ $mol_button_major $mol_button_typed
 		^
 		mol_theme \$mol_theme_accent
 
+$mol_card $mol_list
+	attr *
+		^
+		mol_card_status_type <= status \
+	rows /$mol_view
+		<= Content $mol_view
+			sub <= content /$mol_view_content
+				<= title
+		<= Status $mol_view
+			minimal_height 30
+			sub /
+				<= status_text <= status \
+
 $mol_filler $mol_paragraph
 	min_symbols 7000
 	sub <= filler_lines /string
@@ -531,10 +544,10 @@ $hyoo_toys_details $mol_page
 							uri <= photo_uri \
 							style *
 								filter <= photo_filter \
-				<= Info $mol_view
+				<= Info $mol_card
 					sub /
 						<= Buy_link $mol_link
-							uri \http://github.com/nin-jin/toys.hyoo.ru
+							uri \http://boosty.to/hyoo
 							sub /
 								<= Buy_button $mol_button_major
 									sub /

@@ -7811,6 +7811,82 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_card extends $mol_list {
+        attr() {
+            return {
+                ...super.attr(),
+                mol_card_status_type: this.status()
+            };
+        }
+        rows() {
+            return [
+                this.Content(),
+                this.Status()
+            ];
+        }
+        status() {
+            return "";
+        }
+        content() {
+            return [
+                this.title()
+            ];
+        }
+        Content() {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => this.content();
+            return obj;
+        }
+        status_text() {
+            return this.status();
+        }
+        Status() {
+            const obj = new this.$.$mol_view();
+            obj.minimal_height = () => 30;
+            obj.sub = () => [
+                this.status_text()
+            ];
+            return obj;
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $mol_card.prototype, "Content", null);
+    __decorate([
+        $mol_mem
+    ], $mol_card.prototype, "Status", null);
+    $.$mol_card = $mol_card;
+})($ || ($ = {}));
+//mol/card/-view.tree/card.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_card extends $.$mol_card {
+            rows() {
+                return [
+                    this.Content(),
+                    ...this.status_text() ? [this.Status()] : [],
+                ];
+            }
+        }
+        $$.$mol_card = $mol_card;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//mol/card/card.view.ts
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/card/card.view.css", "[mol_card] {\n\tbackground: var(--mol_theme_card);\n\tcolor: var(--mol_theme_text);\n\tborder-radius: var(--mol_gap_round);\n\tdisplay: flex;\n\tflex: 0 1 auto;\n\tflex-direction: column;\n\tposition: relative;\n\t/* overflow: hidden; */\n}\n\n[mol_card_content] {\n\tflex: 1 1 auto;\n\tborder-radius: var(--mol_gap_round);\n\tmargin: 0;\n\tpadding: var(--mol_gap_block);\n}\n\n[mol_card_status] {\n\tbackground: var(--mol_theme_line);\n\ttext-transform: capitalize;\n\tpadding: var(--mol_gap_text);\n\tmargin: 0;\n}\n\n[mol_card_status] {\n\tbackground: var(--mol_theme_line);\n}\n");
+})($ || ($ = {}));
+//mol/card/-css/card.view.css.ts
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_filler extends $mol_paragraph {
         min_symbols() {
             return 7000;
@@ -8071,7 +8147,7 @@ var $;
         }
         Buy_link() {
             const obj = new this.$.$mol_link();
-            obj.uri = () => "http://github.com/nin-jin/toys.hyoo.ru";
+            obj.uri = () => "http://boosty.to/hyoo";
             obj.sub = () => [
                 this.Buy_button()
             ];
@@ -8125,7 +8201,7 @@ var $;
             return obj;
         }
         Info() {
-            const obj = new this.$.$mol_view();
+            const obj = new this.$.$mol_card();
             obj.sub = () => [
                 this.Buy_link(),
                 this.Parameters()
@@ -8230,7 +8306,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("hyoo/toys/details/details.view.css", "[hyoo_toys_details] {\n\tflex: 0 0 40rem;\n}\n\n[hyoo_toys_details_body] {\n\tpadding: 0;\n}\n\n[hyoo_toys_details_image] {\n\tflex: 1 1 20rem;\n\tmargin: .5rem;\n}\n\n[hyoo_toys_details_photo] {\n\twidth: 100%;\n\tdisplay: block;\n}\n\n[hyoo_toys_details_main] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tflex: none;\n}\n\n[hyoo_toys_details_info] {\n\tflex: 1000 1 auto;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n[hyoo_toys_details_description] {\n\tdisplay: block;\n\tmargin: .5rem;\n\tmax-width: 60rem;\n}\n\n[hyoo_toys_details_price] {\n\tmargin: .5rem;\n}\n\n[hyoo_toys_details_parameters] {\n\tmargin: .5rem;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n[hyoo_toys_details_buy_link] {\n\tmargin: .5rem;\n\tpadding: 0;\n\tfont-size: 1.5em;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n");
+    $mol_style_attach("hyoo/toys/details/details.view.css", "[hyoo_toys_details] {\n\tflex: 0 0 40rem;\n}\n\n[hyoo_toys_details_image] {\n\tflex: 1 1 20rem;\n}\n\n[hyoo_toys_details_photo] {\n\twidth: 100%;\n\tdisplay: block;\n}\n\n[hyoo_toys_details_main] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tflex: none;\n}\n\n[hyoo_toys_details_info] {\n\tflex: 1000 1 auto;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n[hyoo_toys_details_description] {\n\tdisplay: block;\n\tmax-width: 60rem;\n}\n\n[hyoo_toys_details_price] {\n\tmargin: .5rem;\n}\n\n[hyoo_toys_details_parameters] {\n\tpadding: .75rem;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n[hyoo_toys_details_buy_link] {\n\tpadding: 0;\n\tfont-size: 1.5em;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n[hyoo_toys_details_buy_button] {\n\tjustify-content: center;\n}\n");
 })($ || ($ = {}));
 //hyoo/toys/details/-css/details.view.css.ts
 ;
