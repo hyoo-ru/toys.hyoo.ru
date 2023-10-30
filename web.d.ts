@@ -2293,6 +2293,7 @@ declare namespace $ {
         filter_popular(val?: any): boolean;
         filter_popular_title(): string;
         Filter_popular(): $$.$mol_check;
+        Filter_flags(): $$.$mol_list;
         sort_key(val?: any): string;
         sort_option_price(): string;
         sort_option_size(): string;

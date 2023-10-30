@@ -7891,7 +7891,7 @@ var $;
             obj.body = () => [
                 this.Filter_type(),
                 this.Filter_size(),
-                this.Filter_popular(),
+                this.Filter_flags(),
                 this.Sort()
             ];
             return obj;
@@ -7977,6 +7977,13 @@ var $;
             obj.title = () => this.filter_popular_title();
             return obj;
         }
+        Filter_flags() {
+            const obj = new this.$.$mol_list();
+            obj.rows = () => [
+                this.Filter_popular()
+            ];
+            return obj;
+        }
         sort_key(val) {
             if (val !== undefined)
                 return val;
@@ -8047,6 +8054,9 @@ var $;
     __decorate([
         $mol_mem
     ], $hyoo_toys.prototype, "Filter_popular", null);
+    __decorate([
+        $mol_mem
+    ], $hyoo_toys.prototype, "Filter_flags", null);
     __decorate([
         $mol_mem
     ], $hyoo_toys.prototype, "sort_key", null);
@@ -8206,7 +8216,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("hyoo/toys/toys.view.css", "[hyoo_toys_filters] {\n\tflex: 0 0 20rem;\t\n}\n\n[hyoo_toys_filter_type] {\n\tflex-direction: column;\n\tflex: none;\n}\n\n[hyoo_toys_filter_size] {\n\tflex: none;\n}\n\n[hyoo_toys_sort] {\n\tflex-direction: column;\n\tflex: none;\n}\n\n[hyoo_toys_filter_popular][mol_check_checked] {\n\tcolor: var(--mol_theme_current);\n}\n");
+    $mol_style_attach("hyoo/toys/toys.view.css", "[hyoo_toys_filters] {\n\tflex: 0 0 20rem;\t\n}\n\n[hyoo_toys_filters_body] {\n\tgap: .75rem;\n\tpadding: .75rem 0;\n}\n\n[hyoo_toys_filters_body] > * {\n\tpadding: .75rem;\n\tbackground: var(--mol_theme_card);\n}\n\n[hyoo_toys_filter_type] {\n\tflex-direction: column;\n\tflex: none;\n}\n\n[hyoo_toys_filter_size] {\n\tflex: none;\n}\n\n[hyoo_toys_sort] {\n\tflex-direction: column;\n\tflex: none;\n}\n\n[hyoo_toys_filter_popular][mol_check_checked] {\n\tcolor: var(--mol_theme_current);\n}\n");
 })($ || ($ = {}));
 //hyoo/toys/-css/toys.view.css.ts
 ;
