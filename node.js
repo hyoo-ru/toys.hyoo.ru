@@ -7241,18 +7241,80 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $mol_row extends $mol_view {
+    class $mol_gallery extends $mol_view {
+        sub() {
+            return this.items();
+        }
+        Side(id) {
+            const obj = new this.$.$mol_gallery();
+            obj.style = () => ({
+                flexGrow: this.side_size(id)
+            });
+            obj.items = () => this.side_items(id);
+            return obj;
+        }
+        items() {
+            return [];
+        }
+        side_size(id) {
+            return "1";
+        }
+        side_items(id) {
+            return [];
+        }
     }
-    $.$mol_row = $mol_row;
+    __decorate([
+        $mol_mem_key
+    ], $mol_gallery.prototype, "Side", null);
+    $.$mol_gallery = $mol_gallery;
 })($ || ($ = {}));
-//mol/row/-view.tree/row.view.tree.ts
+//mol/gallery/-view.tree/gallery.view.tree.ts
 ;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("mol/row/row.view.css", "[mol_row] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: flex-start;\n\talign-content: flex-start;\n\tjustify-content: flex-start;\n\tpadding: var(--mol_gap_block);\n\tgap: var(--mol_gap_block);\n\tflex: 0 0 auto;\n\tbox-sizing: border-box;\n\tmax-width: 100%;\n}\n\n[mol_row] > * {\n\tmax-width: 100%;\n}\n");
+    var $$;
+    (function ($$) {
+        class $mol_gallery extends $.$mol_gallery {
+            sub() {
+                const items = this.items();
+                if (items.length <= 3)
+                    return items;
+                return [
+                    this.Side(0),
+                    this.Side(1),
+                ];
+            }
+            side_items(id) {
+                const items = this.items();
+                const middle = items.length % 2
+                    ? Math.ceil(items.length / 3)
+                    : items.length / 2;
+                return id
+                    ? items.slice(middle)
+                    : items.slice(0, middle);
+            }
+            side_size(id) {
+                return String(this.side_items(id).length);
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $mol_gallery.prototype, "sub", null);
+        __decorate([
+            $mol_mem_key
+        ], $mol_gallery.prototype, "side_items", null);
+        $$.$mol_gallery = $mol_gallery;
+    })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
-//mol/row/-css/row.view.css.ts
+//mol/gallery/gallery.view.ts
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/gallery/gallery.view.css", "[mol_gallery] {\n\tflex-wrap: wrap;\n\tflex: 1 1 auto;\n\talign-items: stretch;\n    align-content: stretch;\n}\n");
+})($ || ($ = {}));
+//mol/gallery/-css/gallery.view.css.ts
 ;
 "use strict";
 var $;
@@ -7386,11 +7448,13 @@ var $;
         }
         Toy_card(id) {
             const obj = new this.$.$mol_link();
-            obj.minimal_width = () => 192;
+            obj.minimal_width = () => 64;
             obj.minimal_height = () => 168;
             obj.arg = () => this.toy_arg(id);
             obj.sub = () => [
-                this.Toy_content(id)
+                this.Toy_main(id),
+                this.Toy_image(id),
+                this.Toy_info(id)
             ];
             return obj;
         }
@@ -7426,8 +7490,8 @@ var $;
             return [];
         }
         Goods() {
-            const obj = new this.$.$mol_row();
-            obj.sub = () => this.toy_cards();
+            const obj = new this.$.$mol_gallery();
+            obj.items = () => this.toy_cards();
             return obj;
         }
         toy_arg(id) {
@@ -7440,7 +7504,6 @@ var $;
             const obj = new this.$.$mol_dimmer();
             obj.needle = () => this.filter_title();
             obj.haystack = () => this.toy_title(id);
-            obj.minimal_height = () => 24;
             return obj;
         }
         toy_type(id) {
@@ -7450,7 +7513,14 @@ var $;
             const obj = new this.$.$mol_dimmer();
             obj.needle = () => this.filter_title();
             obj.haystack = () => this.toy_type(id);
-            obj.minimal_height = () => 24;
+            return obj;
+        }
+        Toy_main(id) {
+            const obj = new this.$.$mol_list();
+            obj.rows = () => [
+                this.Toy_title(id),
+                this.Toy_type(id)
+            ];
             return obj;
         }
         toy_image(id) {
@@ -7514,24 +7584,6 @@ var $;
             ];
             return obj;
         }
-        Toy_option(id) {
-            const obj = new this.$.$mol_view();
-            obj.minimal_height = () => 104;
-            obj.sub = () => [
-                this.Toy_image(id),
-                this.Toy_info(id)
-            ];
-            return obj;
-        }
-        Toy_content(id) {
-            const obj = new this.$.$mol_list();
-            obj.rows = () => [
-                this.Toy_title(id),
-                this.Toy_type(id),
-                this.Toy_option(id)
-            ];
-            return obj;
-        }
     }
     __decorate([
         $mol_mem_key
@@ -7565,6 +7617,9 @@ var $;
     ], $hyoo_toys_catalog.prototype, "Toy_type", null);
     __decorate([
         $mol_mem_key
+    ], $hyoo_toys_catalog.prototype, "Toy_main", null);
+    __decorate([
+        $mol_mem_key
     ], $hyoo_toys_catalog.prototype, "Toy_image", null);
     __decorate([
         $mol_mem_key
@@ -7581,12 +7636,6 @@ var $;
     __decorate([
         $mol_mem_key
     ], $hyoo_toys_catalog.prototype, "Toy_info", null);
-    __decorate([
-        $mol_mem_key
-    ], $hyoo_toys_catalog.prototype, "Toy_option", null);
-    __decorate([
-        $mol_mem_key
-    ], $hyoo_toys_catalog.prototype, "Toy_content", null);
     $.$hyoo_toys_catalog = $hyoo_toys_catalog;
 })($ || ($ = {}));
 //hyoo/toys/catalog/-view.tree/catalog.view.tree.ts
@@ -7795,7 +7844,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("hyoo/toys/catalog/catalog.view.css", "[hyoo_toys_catalog] {\n\tflex: 1 0 40rem;\n}\n\n[hyoo_toys_catalog_logo] {\n\tbox-shadow: none;\n\theight: 1.5rem;\n\talign-self: center;\n\tflex: none;\n}\n\n[hyoo_toys_catalog_title] {\n\tflex: 1 1 auto;\n}\n\n[hyoo_toys_catalog_tools] {\n\tflex: 1000 1 auto;\n}\n\n[hyoo_toys_catalog_body] {\n\tpadding: 0;\n}\n\n[hyoo_toys_catalog_filter_title] {\n\talign-self: stretch;\n}\n\n[hyoo_toys_catalog_goods] {\n\talign-items: stretch;\n\tmin-height: 1rem;\n}\n\n[hyoo_toys_catalog_toy_card] {\n\tdisplay: block;\n\tflex: 1 1 18rem;\n\tmargin: 0;\n\tpadding: .5rem;\n\tbackground: var(--mol_theme_card);\n}\n\n[hyoo_toys_catalog_toy_image] {\n    width: 5.5rem;\n\theight: 5.5rem;\n    margin: .5rem;\n}\n\n[hyoo_toys_catalog_toy_title] {\n\tdisplay: block;\n\tmargin: 0 .5rem;\n\tfont-weight: bolder;\n}\n\n[hyoo_toys_catalog_toy_type] {\n\tdisplay: block;\n\tmargin: 0 .5rem;\n}\n\n[hyoo_toys_catalog_toy_option] {\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items:flex-start;\n\tflex-wrap: wrap;\n}\n\n[hyoo_toys_catalog_toy_info] {\n\tmargin: .5rem;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n[hyoo_toys_catalog_toy_price] {\n\tfont-size: 1.5em;\n}\n\n[hyoo_toys_catalog_toy_reviews] {\n}\n");
+    $mol_style_attach("hyoo/toys/catalog/catalog.view.css", "[hyoo_toys_catalog] {\n\tflex: 1 0 40rem;\n}\n\n[hyoo_toys_catalog_logo] {\n\tbox-shadow: none;\n\theight: 1.5rem;\n\talign-self: center;\n\tflex: none;\n}\n\n[hyoo_toys_catalog_title] {\n\tflex: 1 1 auto;\n}\n\n[hyoo_toys_catalog_tools] {\n\tflex: 1000 1 auto;\n}\n\n[hyoo_toys_catalog_body] {\n\tpadding: 0;\n}\n\n[hyoo_toys_catalog_filter_title] {\n\talign-self: stretch;\n}\n\n[hyoo_toys_catalog_goods] {\n\talign-items: stretch;\n\tmin-height: 1rem;\n\tpadding: .325rem;\n}\n\n[hyoo_toys_catalog_toy_card] {\n\tflex-direction: column;\n\tflex: 1 1 10rem;\n\twidth: 10rem;\n\tmargin: .325rem;\n\tpadding: 0;\n\tbackground: var(--mol_theme_card);\n\tgap: 0;\n\talign-self: flex-end;\n}\n\n[hyoo_toys_catalog_toy_image] {\n\tflex: 0 0 14rem;\n\twidth: 100%;\n\taspect-ratio: 1;\n}\n\n[hyoo_toys_catalog_toy_main] {\n\tpadding: .5rem .75rem;\n\tflex-grow: 1;\n}\n\n[hyoo_toys_catalog_toy_title] {\n\tdisplay: block;\n\ttext-shadow: 0 0;\n}\n\n[hyoo_toys_catalog_toy_type] {\n\tdisplay: block;\n}\n\n[hyoo_toys_catalog_toy_option] {\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items:flex-start;\n\tflex-wrap: wrap;\n}\n\n[hyoo_toys_catalog_toy_info] {\n\tmargin: .5rem .75rem;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n[hyoo_toys_catalog_toy_price] {\n\tfont-size: 1.5em;\n}\n\n[hyoo_toys_catalog_toy_reviews] {\n}\n");
 })($ || ($ = {}));
 //hyoo/toys/catalog/-css/catalog.view.css.ts
 ;
@@ -7896,6 +7945,22 @@ var $;
     $mol_style_attach("mol/card/card.view.css", "[mol_card] {\n\tbackground: var(--mol_theme_card);\n\tcolor: var(--mol_theme_text);\n\tborder-radius: var(--mol_gap_round);\n\tdisplay: flex;\n\tflex: 0 1 auto;\n\tflex-direction: column;\n\tposition: relative;\n\t/* overflow: hidden; */\n}\n\n[mol_card_content] {\n\tflex: 1 1 auto;\n\tborder-radius: var(--mol_gap_round);\n\tmargin: 0;\n\tpadding: var(--mol_gap_block);\n}\n\n[mol_card_status] {\n\tbackground: var(--mol_theme_line);\n\ttext-transform: capitalize;\n\tpadding: var(--mol_gap_text);\n\tmargin: 0;\n}\n\n[mol_card_status] {\n\tbackground: var(--mol_theme_line);\n}\n");
 })($ || ($ = {}));
 //mol/card/-css/card.view.css.ts
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_row extends $mol_view {
+    }
+    $.$mol_row = $mol_row;
+})($ || ($ = {}));
+//mol/row/-view.tree/row.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/row/row.view.css", "[mol_row] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: flex-start;\n\talign-content: flex-start;\n\tjustify-content: flex-start;\n\tpadding: var(--mol_gap_block);\n\tgap: var(--mol_gap_block);\n\tflex: 0 0 auto;\n\tbox-sizing: border-box;\n\tmax-width: 100%;\n}\n\n[mol_row] > * {\n\tmax-width: 100%;\n}\n");
+})($ || ($ = {}));
+//mol/row/-css/row.view.css.ts
 ;
 "use strict";
 var $;

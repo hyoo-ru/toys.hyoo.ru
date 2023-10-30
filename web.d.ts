@@ -2006,7 +2006,20 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $mol_row extends $mol_view {
+    class $mol_gallery extends $mol_view {
+        sub(): readonly $mol_view[];
+        Side(id: any): $$.$mol_gallery;
+        items(): readonly $mol_view[];
+        side_size(id: any): string;
+        side_items(id: any): readonly $mol_view[];
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_gallery extends $.$mol_gallery {
+        sub(): readonly $mol_view[];
+        side_items(id: number): $mol_view[];
+        side_size(id: number): string;
     }
 }
 
@@ -2056,12 +2069,13 @@ declare namespace $ {
         Filter_title(): $$.$mol_search;
         Source_link(): $mol_link_source;
         toy_cards(): readonly any[];
-        Goods(): $mol_row;
+        Goods(): $$.$mol_gallery;
         toy_arg(id: any): Record<string, any>;
         toy_title(id: any): string;
         Toy_title(id: any): $$.$mol_dimmer;
         toy_type(id: any): string;
         Toy_type(id: any): $$.$mol_dimmer;
+        Toy_main(id: any): $$.$mol_list;
         toy_image(id: any): string;
         toy_image_filter(id: any): string;
         Toy_image(id: any): $$.$mol_image;
@@ -2074,8 +2088,6 @@ declare namespace $ {
         toy_reviews(id: any): number;
         Toy_reviews(id: any): $mol_view;
         Toy_info(id: any): $mol_view;
-        Toy_option(id: any): $mol_view;
-        Toy_content(id: any): $$.$mol_list;
     }
 }
 
@@ -2152,6 +2164,14 @@ declare namespace $ {
 declare namespace $.$$ {
     class $mol_card extends $.$mol_card {
         rows(): readonly $mol_view[];
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_row extends $mol_view {
     }
 }
 

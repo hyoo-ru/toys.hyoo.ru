@@ -304,7 +304,12 @@ $mol_link_source $mol_link
 	sub /
 		<= Icon $mol_icon_github_circle
 
-$mol_row $mol_view
+$mol_gallery $mol_view
+	sub <= items /$mol_view
+	Side* $mol_gallery
+		style *
+			flexGrow <= side_size* \1
+		items <= side_items* /$mol_view
 
 $mol_cost $mol_view
 	value null
@@ -339,43 +344,38 @@ $hyoo_toys_catalog $mol_page
 			uri \https://github.com/hyoo-ru/toys.hyoo.ru
 	-
 	body /
-		<= Goods $mol_row
-			sub <= toy_cards /
+		<= Goods $mol_gallery
+			items <= toy_cards /
 	-
 	Toy_card!id $mol_link
-		minimal_width 192
+		minimal_width 64
 		minimal_height 168
 		arg <= toy_arg!id *
 		sub /
-			<= Toy_content!id $mol_list rows /
+			<= Toy_main!id $mol_list rows /
 				<= Toy_title!id $mol_dimmer
 					needle <= filter_title
 					haystack <= toy_title!id \
-					minimal_height 24
 				<= Toy_type!id $mol_dimmer
 					needle <= filter_title
 					haystack <= toy_type!id \
-					minimal_height 24
-				<= Toy_option!id $mol_view
-					minimal_height 104
-					sub /
-						<= Toy_image!id $mol_image
-							uri <= toy_image!id \
-							style *
-								filter <= toy_image_filter!id \
-						<= Toy_info!id $mol_view
-							sub /
-								<= Toy_price!id $mol_cost
-									value <= toy_price!id $mol_unit_money
-										valueOf 0
-								<= Toy_size!id $mol_view
-									sub /
-										<= toy_size_prefix @ \Size: 
-										<= toy_size!id \
-								<= Toy_reviews!id $mol_view
-									sub /
-										<= toy_reviews_prefix @ \Reviews: 
-										<= toy_reviews!id 0
+			<= Toy_image!id $mol_image
+				uri <= toy_image!id \
+				style *
+					filter <= toy_image_filter!id \
+			<= Toy_info!id $mol_view
+				sub /
+					<= Toy_price!id $mol_cost
+						value <= toy_price!id $mol_unit_money
+							valueOf 0
+					<= Toy_size!id $mol_view
+						sub /
+							<= toy_size_prefix @ \Size: 
+							<= toy_size!id \
+					<= Toy_reviews!id $mol_view
+						sub /
+							<= toy_reviews_prefix @ \Reviews: 
+							<= toy_reviews!id 0
 
 $mol_button_major $mol_button_typed
 	attr *
@@ -394,6 +394,8 @@ $mol_card $mol_list
 			minimal_height 30
 			sub /
 				<= status_text <= status \
+
+$mol_row $mol_view
 
 $mol_filler $mol_paragraph
 	min_symbols 7000
