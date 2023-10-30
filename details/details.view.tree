@@ -15,10 +15,10 @@ $hyoo_toys_details $mol_page
 							uri <= photo_uri \
 							style *
 								filter <= photo_filter \
-				<= Info $mol_view
+				<= Info $mol_card
 					sub /
 						<= Buy_link $mol_link
-							uri \http://github.com/nin-jin/toys.hyoo.ru
+							uri \http://boosty.to/hyoo
 							sub /
 								<= Buy_button $mol_button_major
 									sub /

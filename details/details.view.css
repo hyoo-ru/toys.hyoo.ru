@@ -2,13 +2,8 @@
 	flex: 0 0 40rem;
 }
 
-[hyoo_toys_details_body] {
-	padding: 0;
-}
-
 [hyoo_toys_details_image] {
 	flex: 1 1 20rem;
-	margin: .5rem;
 }
 
 [hyoo_toys_details_photo] {
@@ -30,7 +25,6 @@
 
 [hyoo_toys_details_description] {
 	display: block;
-	margin: .5rem;
 	max-width: 60rem;
 }
 
@@ -39,15 +33,17 @@
 }
 
 [hyoo_toys_details_parameters] {
-	margin: .5rem;
+	padding: .75rem;
 	display: flex;
 	flex-direction: column;
 }
 
 [hyoo_toys_details_buy_link] {
-	margin: .5rem;
 	padding: 0;
 	font-size: 1.5em;
 	display: flex;
 	flex-direction: column;
+}
+[hyoo_toys_details_buy_button] {
+	justify-content: center;
 }
