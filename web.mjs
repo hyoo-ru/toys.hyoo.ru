@@ -6776,9 +6776,7 @@ var $;
             obj.minimal_height = () => 168;
             obj.arg = () => this.toy_arg(id);
             obj.sub = () => [
-                this.Toy_option(id),
-                this.Toy_title(id),
-                this.Toy_type(id)
+                this.Toy_content(id)
             ];
             return obj;
         }
@@ -6820,6 +6818,27 @@ var $;
         }
         toy_arg(id) {
             return {};
+        }
+        toy_title(id) {
+            return "";
+        }
+        Toy_title(id) {
+            const obj = new this.$.$mol_dimmer();
+            obj.needle = () => this.filter_title();
+            obj.haystack = () => this.toy_title(id);
+            obj.minimal_height = () => 24;
+            return obj;
+        }
+        toy_type(id) {
+            return "";
+        }
+        Toy_type(id) {
+            const obj = new this.$.$mol_view();
+            obj.minimal_height = () => 24;
+            obj.sub = () => [
+                this.toy_type(id)
+            ];
+            return obj;
         }
         toy_image(id) {
             return "";
@@ -6884,28 +6903,19 @@ var $;
         }
         Toy_option(id) {
             const obj = new this.$.$mol_view();
+            obj.minimal_height = () => 104;
             obj.sub = () => [
                 this.Toy_image(id),
                 this.Toy_info(id)
             ];
             return obj;
         }
-        toy_title(id) {
-            return "";
-        }
-        Toy_title(id) {
-            const obj = new this.$.$mol_dimmer();
-            obj.needle = () => this.filter_title();
-            obj.haystack = () => this.toy_title(id);
-            return obj;
-        }
-        toy_type(id) {
-            return "";
-        }
-        Toy_type(id) {
-            const obj = new this.$.$mol_view();
-            obj.sub = () => [
-                this.toy_type(id)
+        Toy_content(id) {
+            const obj = new this.$.$mol_list();
+            obj.rows = () => [
+                this.Toy_title(id),
+                this.Toy_type(id),
+                this.Toy_option(id)
             ];
             return obj;
         }
@@ -6936,6 +6946,12 @@ var $;
     ], $hyoo_toys_catalog.prototype, "Goods", null);
     __decorate([
         $mol_mem_key
+    ], $hyoo_toys_catalog.prototype, "Toy_title", null);
+    __decorate([
+        $mol_mem_key
+    ], $hyoo_toys_catalog.prototype, "Toy_type", null);
+    __decorate([
+        $mol_mem_key
     ], $hyoo_toys_catalog.prototype, "Toy_image", null);
     __decorate([
         $mol_mem_key
@@ -6957,10 +6973,7 @@ var $;
     ], $hyoo_toys_catalog.prototype, "Toy_option", null);
     __decorate([
         $mol_mem_key
-    ], $hyoo_toys_catalog.prototype, "Toy_title", null);
-    __decorate([
-        $mol_mem_key
-    ], $hyoo_toys_catalog.prototype, "Toy_type", null);
+    ], $hyoo_toys_catalog.prototype, "Toy_content", null);
     $.$hyoo_toys_catalog = $hyoo_toys_catalog;
 })($ || ($ = {}));
 //hyoo/toys/catalog/-view.tree/catalog.view.tree.ts

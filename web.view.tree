@@ -347,31 +347,35 @@ $hyoo_toys_catalog $mol_page
 		minimal_height 168
 		arg <= toy_arg!id *
 		sub /
-			<= Toy_option!id $mol_view
-				sub /
-					<= Toy_image!id $mol_image
-						uri <= toy_image!id \
-						style *
-							filter <= toy_image_filter!id \
-					<= Toy_info!id $mol_view
-						sub /
-							<= Toy_price!id $mol_cost
-								value <= toy_price!id $mol_unit_money
-									valueOf 0
-							<= Toy_size!id $mol_view
-								sub /
-									<= toy_size_prefix @ \Size: 
-									<= toy_size!id \
-							<= Toy_reviews!id $mol_view
-								sub /
-									<= toy_reviews_prefix @ \Reviews: 
-									<= toy_reviews!id 0
-			<= Toy_title!id $mol_dimmer
-				needle <= filter_title
-				haystack <= toy_title!id \
-			<= Toy_type!id $mol_view
-				sub /
-					<= toy_type!id \
+			<= Toy_content!id $mol_list rows /
+				<= Toy_title!id $mol_dimmer
+					needle <= filter_title
+					haystack <= toy_title!id \
+					minimal_height 24
+				<= Toy_type!id $mol_view
+					minimal_height 24
+					sub /
+						<= toy_type!id \
+				<= Toy_option!id $mol_view
+					minimal_height 104
+					sub /
+						<= Toy_image!id $mol_image
+							uri <= toy_image!id \
+							style *
+								filter <= toy_image_filter!id \
+						<= Toy_info!id $mol_view
+							sub /
+								<= Toy_price!id $mol_cost
+									value <= toy_price!id $mol_unit_money
+										valueOf 0
+								<= Toy_size!id $mol_view
+									sub /
+										<= toy_size_prefix @ \Size: 
+										<= toy_size!id \
+								<= Toy_reviews!id $mol_view
+									sub /
+										<= toy_reviews_prefix @ \Reviews: 
+										<= toy_reviews!id 0
 
 $mol_button_major $mol_button_typed
 	attr *

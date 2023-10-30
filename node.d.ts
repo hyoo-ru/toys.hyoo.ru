@@ -2184,6 +2184,10 @@ declare namespace $ {
         toy_cards(): readonly any[];
         Goods(): $mol_row;
         toy_arg(id: any): Record<string, any>;
+        toy_title(id: any): string;
+        Toy_title(id: any): $$.$mol_dimmer;
+        toy_type(id: any): string;
+        Toy_type(id: any): $mol_view;
         toy_image(id: any): string;
         toy_image_filter(id: any): string;
         Toy_image(id: any): $$.$mol_image;
@@ -2197,10 +2201,7 @@ declare namespace $ {
         Toy_reviews(id: any): $mol_view;
         Toy_info(id: any): $mol_view;
         Toy_option(id: any): $mol_view;
-        toy_title(id: any): string;
-        Toy_title(id: any): $$.$mol_dimmer;
-        toy_type(id: any): string;
-        Toy_type(id: any): $mol_view;
+        Toy_content(id: any): $$.$mol_list;
     }
 }
 
