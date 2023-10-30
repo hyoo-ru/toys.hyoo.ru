@@ -352,10 +352,10 @@ $hyoo_toys_catalog $mol_page
 					needle <= filter_title
 					haystack <= toy_title!id \
 					minimal_height 24
-				<= Toy_type!id $mol_view
+				<= Toy_type!id $mol_dimmer
+					needle <= filter_title
+					haystack <= toy_type!id \
 					minimal_height 24
-					sub /
-						<= toy_type!id \
 				<= Toy_option!id $mol_view
 					minimal_height 104
 					sub /

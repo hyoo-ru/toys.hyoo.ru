@@ -2187,7 +2187,7 @@ declare namespace $ {
         toy_title(id: any): string;
         Toy_title(id: any): $$.$mol_dimmer;
         toy_type(id: any): string;
-        Toy_type(id: any): $mol_view;
+        Toy_type(id: any): $$.$mol_dimmer;
         toy_image(id: any): string;
         toy_image_filter(id: any): string;
         Toy_image(id: any): $$.$mol_image;
@@ -2203,6 +2203,10 @@ declare namespace $ {
         Toy_option(id: any): $mol_view;
         Toy_content(id: any): $$.$mol_list;
     }
+}
+
+declare namespace $ {
+    function $mol_match_text<Variant>(query: string, values: (variant: Variant) => string[]): (variant: Variant) => boolean;
 }
 
 declare namespace $ {

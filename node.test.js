@@ -7439,11 +7439,10 @@ var $;
             return "";
         }
         Toy_type(id) {
-            const obj = new this.$.$mol_view();
+            const obj = new this.$.$mol_dimmer();
+            obj.needle = () => this.filter_title();
+            obj.haystack = () => this.toy_type(id);
             obj.minimal_height = () => 24;
-            obj.sub = () => [
-                this.toy_type(id)
-            ];
             return obj;
         }
         toy_image(id) {
@@ -7587,6 +7586,22 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    function $mol_match_text(query, values) {
+        const tags = query.toLowerCase().trim().split(/\s+/).filter(tag => tag);
+        if (tags.length === 0)
+            return () => true;
+        return (variant) => {
+            const vals = values(variant);
+            return tags.every(tag => vals.some(val => val.toLowerCase().indexOf(tag) >= 0));
+        };
+    }
+    $.$mol_match_text = $mol_match_text;
+})($ || ($ = {}));
+//mol/match/text.ts
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_state_session extends $mol_object {
         static 'native()';
         static native() {
@@ -7665,13 +7680,11 @@ var $;
                 return $mol_state_arg.value('title', next) || '';
             }
             toys_filtered_by_title() {
-                const filter = this.filter_title().toLowerCase();
+                const filter = this.filter_title();
                 const toys = this.toys_filtered_by_size();
                 if (!filter)
                     return toys;
-                return toys.filter(toy => {
-                    return toy.title().toLowerCase().match(filter);
-                });
+                return toys.filter($mol_match_text(filter, toy => [toy.title(), toy.type()]));
             }
             toys_filtered_by_popularity() {
                 const filter = this.filter_popular();
@@ -8861,7 +8874,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("hyoo/toys/toys.view.css", "[hyoo_toys_filters] {\n\tflex: 0 0 20rem;\t\n}\n\n[hyoo_toys_filters_body] {\n\tgap: .75rem;\n\tpadding: .75rem 0;\n}\n\n[hyoo_toys_filters_body] > * {\n\tpadding: .75rem;\n\tbackground: var(--mol_theme_card);\n}\n\n[hyoo_toys_filter_type] {\n\tflex-direction: column;\n\tflex: none;\n}\n\n[hyoo_toys_filter_size] {\n\tflex: none;\n}\n\n[hyoo_toys_sort] {\n\tflex-direction: column;\n\tflex: none;\n}\n\n[hyoo_toys_filter_popular][mol_check_checked] {\n\tcolor: var(--mol_theme_current);\n}\n");
+    $mol_style_attach("hyoo/toys/toys.view.css", "[hyoo_toys_filters] {\n\tflex: 0 0 15rem;\t\n}\n\n[hyoo_toys_filters_body] {\n\tgap: .75rem;\n\tpadding: .75rem 0;\n}\n\n[hyoo_toys_filters_body] > * {\n\tpadding: .75rem;\n\tbackground: var(--mol_theme_card);\n}\n\n[hyoo_toys_filter_type] {\n\tflex-direction: column;\n\tflex: none;\n}\n\n[hyoo_toys_filter_size] {\n\tflex: none;\n}\n\n[hyoo_toys_sort] {\n\tflex-direction: column;\n\tflex: none;\n}\n\n[hyoo_toys_filter_popular][mol_check_checked] {\n\tcolor: var(--mol_theme_current);\n}\n");
 })($ || ($ = {}));
 //hyoo/toys/-css/toys.view.css.ts
 ;
