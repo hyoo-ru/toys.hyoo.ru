@@ -17,9 +17,10 @@ $hyoo_toys $mol_book2
 				value?val <=> filter_size?val \all
 				options <= filter_size_options *
 					all <= filter_size_option_all @ \All sizes
-			<= Filter_popular $mol_check
-				checked?val <=> filter_popular?val false
-				title <= filter_popular_title @ \Only popular
+			<= Filter_flags $mol_list rows /
+				<= Filter_popular $mol_check
+					checked?val <=> filter_popular?val false
+					title <= filter_popular_title @ \Only popular
 			<= Sort $mol_switch
 				value?val <=> sort_key?val \price
 				options <= sort_items *
