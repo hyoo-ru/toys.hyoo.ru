@@ -35,6 +35,7 @@
 	flex: 1 1 18rem;
 	margin: 0;
 	padding: .5rem;
+	background: var(--mol_theme_card);
 }
 
 [hyoo_toys_catalog_toy_image] {
