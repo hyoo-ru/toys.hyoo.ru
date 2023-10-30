@@ -28,14 +28,14 @@
 [hyoo_toys_catalog_goods] {
 	align-items: stretch;
 	min-height: 1rem;
-	padding: .325rem;
+	padding: .375rem;
 }
 
 [hyoo_toys_catalog_toy_card] {
 	flex-direction: column;
 	flex: 1 1 10rem;
 	width: 10rem;
-	margin: .325rem;
+	margin: .375rem;
 	padding: 0;
 	background: var(--mol_theme_card);
 	gap: 0;
