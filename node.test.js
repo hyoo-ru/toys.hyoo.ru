@@ -883,11 +883,15 @@ var $;
 (function ($) {
     $.$mol_key_store = new WeakMap();
     function $mol_key(value) {
+        if (typeof value === 'bigint')
+            return value.toString() + 'n';
         if (!value)
             return JSON.stringify(value);
         if (typeof value !== 'object' && typeof value !== 'function')
             return JSON.stringify(value);
         return JSON.stringify(value, (field, value) => {
+            if (typeof value === 'bigint')
+                return value.toString() + 'n';
             if (!value)
                 return value;
             if (typeof value !== 'object' && typeof value !== 'function')
@@ -7930,7 +7934,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("hyoo/toys/catalog/catalog.view.css", "[hyoo_toys_catalog] {\n\tflex: 1 0 40rem;\n}\n\n[hyoo_toys_catalog_logo] {\n\tbox-shadow: none;\n\theight: 1.5rem;\n\talign-self: center;\n\tflex: none;\n}\n\n[hyoo_toys_catalog_title] {\n\tflex: 1 1 auto;\n}\n\n[hyoo_toys_catalog_tools] {\n\tflex: 1000 1 auto;\n}\n\n[hyoo_toys_catalog_body] {\n\tpadding: 0;\n}\n\n[hyoo_toys_catalog_filter_title] {\n\talign-self: stretch;\n}\n\n[hyoo_toys_catalog_goods] {\n\talign-items: stretch;\n\tmin-height: 1rem;\n\tpadding: .375rem;\n}\n\n[hyoo_toys_catalog_toy_card] {\n\tflex-direction: column;\n\tflex: 1 1 10rem;\n\twidth: 10rem;\n\tmargin: .375rem;\n\tpadding: 0;\n\tbackground: var(--mol_theme_card);\n\tgap: 0;\n\talign-self: flex-end;\n}\n\n[hyoo_toys_catalog_toy_image] {\n\tflex: 0 0 14rem;\n\twidth: 100%;\n\taspect-ratio: 1;\n}\n\n[hyoo_toys_catalog_toy_main] {\n\tpadding: .5rem .75rem;\n\tflex-grow: 1;\n}\n\n[hyoo_toys_catalog_toy_title] {\n\tdisplay: block;\n\ttext-shadow: 0 0;\n}\n\n[hyoo_toys_catalog_toy_type] {\n\tdisplay: block;\n}\n\n[hyoo_toys_catalog_toy_option] {\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items:flex-start;\n\tflex-wrap: wrap;\n}\n\n[hyoo_toys_catalog_toy_info] {\n\tmargin: .5rem .75rem;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n[hyoo_toys_catalog_toy_price] {\n\tfont-size: 1.5em;\n}\n\n[hyoo_toys_catalog_toy_reviews] {\n}\n");
+    $mol_style_attach("hyoo/toys/catalog/catalog.view.css", "[hyoo_toys_catalog] {\n\tflex: 1 0 40rem;\n}\n\n[hyoo_toys_catalog_logo] {\n\tbox-shadow: none;\n\theight: 1.5rem;\n\talign-self: center;\n\tflex: none;\n}\n\n[hyoo_toys_catalog_title] {\n\tflex: 1 1 auto;\n}\n\n[hyoo_toys_catalog_tools] {\n\tflex: 1000 1 auto;\n}\n\n[hyoo_toys_catalog_body_content] {\n\tpadding: 0;\n}\n\n[hyoo_toys_catalog_filter_title] {\n\talign-self: stretch;\n}\n\n[hyoo_toys_catalog_goods] {\n\talign-items: stretch;\n\tmin-height: 1rem;\n\tpadding: .375rem;\n}\n\n[hyoo_toys_catalog_toy_card] {\n\tflex-direction: column;\n\tflex: 1 1 10rem;\n\twidth: 10rem;\n\tmargin: .375rem;\n\tpadding: 0;\n\tbackground: var(--mol_theme_card);\n\tgap: 0;\n\talign-self: flex-end;\n}\n\n[hyoo_toys_catalog_toy_image] {\n\tflex: 0 0 14rem;\n\twidth: 100%;\n\taspect-ratio: 1;\n}\n\n[hyoo_toys_catalog_toy_main] {\n\tpadding: .5rem .75rem;\n\tflex-grow: 1;\n}\n\n[hyoo_toys_catalog_toy_title] {\n\tdisplay: block;\n\ttext-shadow: 0 0;\n}\n\n[hyoo_toys_catalog_toy_type] {\n\tdisplay: block;\n\tcolor: var(--mol_theme_shade);\n}\n\n[hyoo_toys_catalog_toy_option] {\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items:flex-start;\n\tflex-wrap: wrap;\n}\n\n[hyoo_toys_catalog_toy_info] {\n\tmargin: .5rem .75rem;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n[hyoo_toys_catalog_toy_price] {\n\tfont-size: 1.5em;\n\tcolor: var(--mol_theme_text);\n}\n\n[hyoo_toys_catalog_toy_size] {\n\tcolor: var(--mol_theme_shade);\n}\n\n[hyoo_toys_catalog_toy_reviews] {\n\tcolor: var(--mol_theme_shade);\n}\n");
 })($ || ($ = {}));
 //hyoo/toys/catalog/-css/catalog.view.css.ts
 ;
@@ -8545,7 +8549,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("mol/check/check.css", "[mol_check] {\n\tflex: 0 0 auto;\n\tjustify-content: flex-start;\n\talign-content: center;\n\talign-items: flex-start;\n\tborder: none;\n\tfont-weight: inherit;\n\tbox-shadow: none;\n\ttext-align: left;\n\tdisplay: inline-flex;\n\tflex-wrap: nowrap;\n}\n\n[mol_check_title] {\n\tflex-shrink: 1;\n}\n");
+    $mol_style_attach("mol/check/check.css", "[mol_check] {\n\tflex: 0 0 auto;\n\tjustify-content: flex-start;\n\talign-content: center;\n\t/* align-items: flex-start; */\n\tborder: none;\n\tfont-weight: inherit;\n\tbox-shadow: none;\n\ttext-align: left;\n\tdisplay: inline-flex;\n\tflex-wrap: nowrap;\n}\n\n[mol_check_title] {\n\tflex-shrink: 1;\n}\n");
 })($ || ($ = {}));
 //mol/check/-css/check.css.ts
 ;
@@ -9033,7 +9037,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("hyoo/toys/toys.view.css", "[hyoo_toys_filters] {\n\tflex: 0 0 17rem;\t\n}\n\n[hyoo_toys_filters_body] {\n\tgap: .75rem;\n\tpadding: .75rem 0;\n}\n\n[hyoo_toys_filters_body] > * {\n\tpadding: .75rem;\n\tbackground: var(--mol_theme_card);\n}\n\n[hyoo_toys_filter_type] {\n\tflex-direction: column;\n\tflex: none;\n}\n\n[hyoo_toys_filter_size] {\n\tflex: none;\n}\n\n[hyoo_toys_sort] {\n\tflex-direction: column;\n\tflex: none;\n}\n\n[hyoo_toys_filter_popular][mol_check_checked] {\n\tcolor: var(--mol_theme_current);\n}\n");
+    $mol_style_attach("hyoo/toys/toys.view.css", "[hyoo_toys_filters] {\n\tflex: 0 0 17rem;\t\n}\n\n[hyoo_toys_filters_body_content] {\n\tgap: .75rem;\n\tpadding: .75rem 0;\n}\n\n[hyoo_toys_filters_body_content] > * {\n\tpadding: .75rem;\n\tbackground: var(--mol_theme_card);\n}\n\n[hyoo_toys_filter_type] {\n\tflex-direction: column;\n\tflex: none;\n}\n\n[hyoo_toys_filter_size] {\n\tflex: none;\n}\n\n[hyoo_toys_sort] {\n\tflex-direction: column;\n\tflex: none;\n}\n\n[hyoo_toys_filter_popular][mol_check_checked] {\n\tcolor: var(--mol_theme_current);\n}\n");
 })($ || ($ = {}));
 //hyoo/toys/-css/toys.view.css.ts
 ;
@@ -11087,6 +11091,7 @@ var $;
             $mol_assert_equal($mol_key(false), 'false');
             $mol_assert_equal($mol_key(true), 'true');
             $mol_assert_equal($mol_key(0), '0');
+            $mol_assert_equal($mol_key(1n << 64n), '18446744073709551616n');
             $mol_assert_equal($mol_key(''), '""');
         },
         'Array & POJO'() {

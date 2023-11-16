@@ -882,11 +882,15 @@ var $;
 (function ($) {
     $.$mol_key_store = new WeakMap();
     function $mol_key(value) {
+        if (typeof value === 'bigint')
+            return value.toString() + 'n';
         if (!value)
             return JSON.stringify(value);
         if (typeof value !== 'object' && typeof value !== 'function')
             return JSON.stringify(value);
         return JSON.stringify(value, (field, value) => {
+            if (typeof value === 'bigint')
+                return value.toString() + 'n';
             if (!value)
                 return value;
             if (typeof value !== 'object' && typeof value !== 'function')
@@ -3885,15 +3889,77 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    function $mol_log3_area_lazy(event) {
+        const self = this;
+        const stack = self.$mol_log3_stack;
+        const deep = stack.length;
+        let logged = false;
+        stack.push(() => {
+            logged = true;
+            self.$mol_log3_area.call(self, event);
+        });
+        return () => {
+            if (logged)
+                self.console.groupEnd();
+            if (stack.length > deep)
+                stack.length = deep;
+        };
+    }
+    $.$mol_log3_area_lazy = $mol_log3_area_lazy;
+    $.$mol_log3_stack = [];
+})($ || ($ = {}));
+//mol/log3/log3.ts
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_log3_web_make(level, color) {
+        return function $mol_log3_logger(event) {
+            const pending = this.$mol_log3_stack.pop();
+            if (pending)
+                pending();
+            let tpl = '%c';
+            const chunks = Object.values(event);
+            for (let i = 0; i < chunks.length; ++i) {
+                tpl += (typeof chunks[i] === 'string') ? ' ⦙ %s' : ' ⦙ %o';
+            }
+            const style = `color:${color};font-weight:bolder`;
+            this.console[level](tpl, style, ...chunks);
+            const self = this;
+            return () => self.console.groupEnd();
+        };
+    }
+    $.$mol_log3_web_make = $mol_log3_web_make;
+    $.$mol_log3_come = $mol_log3_web_make('info', 'royalblue');
+    $.$mol_log3_done = $mol_log3_web_make('info', 'forestgreen');
+    $.$mol_log3_fail = $mol_log3_web_make('error', 'orangered');
+    $.$mol_log3_warn = $mol_log3_web_make('warn', 'goldenrod');
+    $.$mol_log3_rise = $mol_log3_web_make('log', 'magenta');
+    $.$mol_log3_area = $mol_log3_web_make('group', 'cyan');
+})($ || ($ = {}));
+//mol/log3/log3.web.ts
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_storage extends $mol_object2 {
         static native() {
             return this.$.$mol_dom_context.navigator.storage;
         }
-        static persisted(next) {
+        static persisted(next, cache) {
             $mol_mem_persist();
+            if (cache)
+                return Boolean(next);
             const native = this.native();
-            if (next)
-                native.persist();
+            if (next && !$mol_mem_cached(() => this.persisted())) {
+                native.persist().then(actual => {
+                    setTimeout(() => this.persisted(actual, 'cache'), 5000);
+                    if (actual)
+                        this.$.$mol_log3_rise({ place: this, message: `Persist` });
+                    else
+                        this.$.$mol_log3_fail({ place: this, message: `Non persist` });
+                });
+            }
             return next ?? $mol_wire_sync(native).persisted();
         }
         static estimate() {
@@ -7335,7 +7401,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("hyoo/toys/catalog/catalog.view.css", "[hyoo_toys_catalog] {\n\tflex: 1 0 40rem;\n}\n\n[hyoo_toys_catalog_logo] {\n\tbox-shadow: none;\n\theight: 1.5rem;\n\talign-self: center;\n\tflex: none;\n}\n\n[hyoo_toys_catalog_title] {\n\tflex: 1 1 auto;\n}\n\n[hyoo_toys_catalog_tools] {\n\tflex: 1000 1 auto;\n}\n\n[hyoo_toys_catalog_body] {\n\tpadding: 0;\n}\n\n[hyoo_toys_catalog_filter_title] {\n\talign-self: stretch;\n}\n\n[hyoo_toys_catalog_goods] {\n\talign-items: stretch;\n\tmin-height: 1rem;\n\tpadding: .375rem;\n}\n\n[hyoo_toys_catalog_toy_card] {\n\tflex-direction: column;\n\tflex: 1 1 10rem;\n\twidth: 10rem;\n\tmargin: .375rem;\n\tpadding: 0;\n\tbackground: var(--mol_theme_card);\n\tgap: 0;\n\talign-self: flex-end;\n}\n\n[hyoo_toys_catalog_toy_image] {\n\tflex: 0 0 14rem;\n\twidth: 100%;\n\taspect-ratio: 1;\n}\n\n[hyoo_toys_catalog_toy_main] {\n\tpadding: .5rem .75rem;\n\tflex-grow: 1;\n}\n\n[hyoo_toys_catalog_toy_title] {\n\tdisplay: block;\n\ttext-shadow: 0 0;\n}\n\n[hyoo_toys_catalog_toy_type] {\n\tdisplay: block;\n}\n\n[hyoo_toys_catalog_toy_option] {\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items:flex-start;\n\tflex-wrap: wrap;\n}\n\n[hyoo_toys_catalog_toy_info] {\n\tmargin: .5rem .75rem;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n[hyoo_toys_catalog_toy_price] {\n\tfont-size: 1.5em;\n}\n\n[hyoo_toys_catalog_toy_reviews] {\n}\n");
+    $mol_style_attach("hyoo/toys/catalog/catalog.view.css", "[hyoo_toys_catalog] {\n\tflex: 1 0 40rem;\n}\n\n[hyoo_toys_catalog_logo] {\n\tbox-shadow: none;\n\theight: 1.5rem;\n\talign-self: center;\n\tflex: none;\n}\n\n[hyoo_toys_catalog_title] {\n\tflex: 1 1 auto;\n}\n\n[hyoo_toys_catalog_tools] {\n\tflex: 1000 1 auto;\n}\n\n[hyoo_toys_catalog_body_content] {\n\tpadding: 0;\n}\n\n[hyoo_toys_catalog_filter_title] {\n\talign-self: stretch;\n}\n\n[hyoo_toys_catalog_goods] {\n\talign-items: stretch;\n\tmin-height: 1rem;\n\tpadding: .375rem;\n}\n\n[hyoo_toys_catalog_toy_card] {\n\tflex-direction: column;\n\tflex: 1 1 10rem;\n\twidth: 10rem;\n\tmargin: .375rem;\n\tpadding: 0;\n\tbackground: var(--mol_theme_card);\n\tgap: 0;\n\talign-self: flex-end;\n}\n\n[hyoo_toys_catalog_toy_image] {\n\tflex: 0 0 14rem;\n\twidth: 100%;\n\taspect-ratio: 1;\n}\n\n[hyoo_toys_catalog_toy_main] {\n\tpadding: .5rem .75rem;\n\tflex-grow: 1;\n}\n\n[hyoo_toys_catalog_toy_title] {\n\tdisplay: block;\n\ttext-shadow: 0 0;\n}\n\n[hyoo_toys_catalog_toy_type] {\n\tdisplay: block;\n\tcolor: var(--mol_theme_shade);\n}\n\n[hyoo_toys_catalog_toy_option] {\n\tdisplay: flex;\n\tflex-direction: row;\n\talign-items:flex-start;\n\tflex-wrap: wrap;\n}\n\n[hyoo_toys_catalog_toy_info] {\n\tmargin: .5rem .75rem;\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n[hyoo_toys_catalog_toy_price] {\n\tfont-size: 1.5em;\n\tcolor: var(--mol_theme_text);\n}\n\n[hyoo_toys_catalog_toy_size] {\n\tcolor: var(--mol_theme_shade);\n}\n\n[hyoo_toys_catalog_toy_reviews] {\n\tcolor: var(--mol_theme_shade);\n}\n");
 })($ || ($ = {}));
 //hyoo/toys/catalog/-css/catalog.view.css.ts
 ;
@@ -7940,7 +8006,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("mol/check/check.css", "[mol_check] {\n\tflex: 0 0 auto;\n\tjustify-content: flex-start;\n\talign-content: center;\n\talign-items: flex-start;\n\tborder: none;\n\tfont-weight: inherit;\n\tbox-shadow: none;\n\ttext-align: left;\n\tdisplay: inline-flex;\n\tflex-wrap: nowrap;\n}\n\n[mol_check_title] {\n\tflex-shrink: 1;\n}\n");
+    $mol_style_attach("mol/check/check.css", "[mol_check] {\n\tflex: 0 0 auto;\n\tjustify-content: flex-start;\n\talign-content: center;\n\t/* align-items: flex-start; */\n\tborder: none;\n\tfont-weight: inherit;\n\tbox-shadow: none;\n\ttext-align: left;\n\tdisplay: inline-flex;\n\tflex-wrap: nowrap;\n}\n\n[mol_check_title] {\n\tflex-shrink: 1;\n}\n");
 })($ || ($ = {}));
 //mol/check/-css/check.css.ts
 ;
@@ -8475,7 +8541,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("hyoo/toys/toys.view.css", "[hyoo_toys_filters] {\n\tflex: 0 0 17rem;\t\n}\n\n[hyoo_toys_filters_body] {\n\tgap: .75rem;\n\tpadding: .75rem 0;\n}\n\n[hyoo_toys_filters_body] > * {\n\tpadding: .75rem;\n\tbackground: var(--mol_theme_card);\n}\n\n[hyoo_toys_filter_type] {\n\tflex-direction: column;\n\tflex: none;\n}\n\n[hyoo_toys_filter_size] {\n\tflex: none;\n}\n\n[hyoo_toys_sort] {\n\tflex-direction: column;\n\tflex: none;\n}\n\n[hyoo_toys_filter_popular][mol_check_checked] {\n\tcolor: var(--mol_theme_current);\n}\n");
+    $mol_style_attach("hyoo/toys/toys.view.css", "[hyoo_toys_filters] {\n\tflex: 0 0 17rem;\t\n}\n\n[hyoo_toys_filters_body_content] {\n\tgap: .75rem;\n\tpadding: .75rem 0;\n}\n\n[hyoo_toys_filters_body_content] > * {\n\tpadding: .75rem;\n\tbackground: var(--mol_theme_card);\n}\n\n[hyoo_toys_filter_type] {\n\tflex-direction: column;\n\tflex: none;\n}\n\n[hyoo_toys_filter_size] {\n\tflex: none;\n}\n\n[hyoo_toys_sort] {\n\tflex-direction: column;\n\tflex: none;\n}\n\n[hyoo_toys_filter_popular][mol_check_checked] {\n\tcolor: var(--mol_theme_current);\n}\n");
 })($ || ($ = {}));
 //hyoo/toys/-css/toys.view.css.ts
 ;
