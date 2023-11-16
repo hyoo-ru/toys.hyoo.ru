@@ -17,7 +17,7 @@
 	flex: 1000 1 auto;
 }
 
-[hyoo_toys_catalog_body] {
+[hyoo_toys_catalog_body_content] {
 	padding: 0;
 }
 
@@ -60,6 +60,7 @@
 
 [hyoo_toys_catalog_toy_type] {
 	display: block;
+	color: var(--mol_theme_shade);
 }
 
 [hyoo_toys_catalog_toy_option] {
@@ -77,7 +78,13 @@
 
 [hyoo_toys_catalog_toy_price] {
 	font-size: 1.5em;
+	color: var(--mol_theme_text);
+}
+
+[hyoo_toys_catalog_toy_size] {
+	color: var(--mol_theme_shade);
 }
 
 [hyoo_toys_catalog_toy_reviews] {
+	color: var(--mol_theme_shade);
 }
