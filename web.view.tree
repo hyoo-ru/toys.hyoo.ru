@@ -64,18 +64,18 @@ $mol_link $mol_view
 
 $mol_image $mol_view
 	dom_name \img
-	field *
+	field *any
 		^
 		src <= uri \
 		alt <= title
 		loading <= loading \eager
 		decoding <= decoding \async
 		crossOrigin <= cors null
-	attr *
+	attr *any
 		^
-		width <= natural_width? 0
-		height <= natural_height? 0
-	event *
+		width <= natural_width 0
+		height <= natural_height 0
+	event *any
 		load? <=> load? null
 	minimal_width 16
 	minimal_height 16
@@ -609,7 +609,7 @@ $mol_switch $mol_check_list
 
 $hyoo_toys $mol_book2
 	attr * mol_theme \$mol_theme_dark
-	toy!id $hyoo_toys_toy
+	toy* $hyoo_toys_toy
 	Placeholder null
 	plugins /
 		<= Hotkey $mol_hotkey
@@ -620,11 +620,11 @@ $hyoo_toys $mol_book2
 		body /
 			<= Filter_type $mol_switch
 				value?val <=> filter_type?val \all
-				options <= filter_type_options *
+				options <= filter_type_options *string
 					all <= filter_type_option_all @ \All types
 			<= Filter_size $mol_switch
 				value?val <=> filter_size?val \all
-				options <= filter_size_options *
+				options <= filter_size_options *string
 					all <= filter_size_option_all @ \All sizes
 			<= Filter_flags $mol_list rows /
 				<= Filter_popular $mol_check
@@ -632,14 +632,14 @@ $hyoo_toys $mol_book2
 					title <= filter_popular_title @ \Only popular
 			<= Sort $mol_switch
 				value?val <=> sort_key?val \price
-				options <= sort_items *
+				options <= sort_items *string
 					price <= sort_option_price @ \Sort by price
 					size <= sort_option_size @ \Sort by size
 					title <= sort_option_title @ \Sort by title
 	Catalog $hyoo_toys_catalog
 		title @ \Toys for all
 		toys <= toys /
-		toy!id <= toy!id -
+		toy* <= toy* -
 		filter_type <= filter_type
 		filter_size <= filter_size
 		filter_popular <= filter_popular
