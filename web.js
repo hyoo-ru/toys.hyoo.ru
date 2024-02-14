@@ -6309,7 +6309,7 @@ var $;
 		}
 		Clear(){
 			const obj = new this.$.$mol_button_minor();
-			(obj.hint) = () => (this.$.$mol_locale.text("$mol_search_Clear_hint"));
+			(obj.hint) = () => ((this.$.$mol_locale.text("$mol_search_Clear_hint")));
 			(obj.click) = (next) => ((this.clear(next)));
 			(obj.sub) = () => ([(this.Clear_icon())]);
 			return obj;
@@ -7716,7 +7716,7 @@ var $;
 		}
 		Filters(){
 			const obj = new this.$.$mol_page();
-			(obj.title) = () => (this.$.$mol_locale.text("$hyoo_toys_Filters_title"));
+			(obj.title) = () => ((this.$.$mol_locale.text("$hyoo_toys_Filters_title")));
 			(obj.body) = () => ([
 				(this.Filter_type()), 
 				(this.Filter_size()), 
@@ -7727,7 +7727,7 @@ var $;
 		}
 		Catalog(){
 			const obj = new this.$.$hyoo_toys_catalog();
-			(obj.title) = () => (this.$.$mol_locale.text("$hyoo_toys_Catalog_title"));
+			(obj.title) = () => ((this.$.$mol_locale.text("$hyoo_toys_Catalog_title")));
 			(obj.toys) = () => ((this.toys()));
 			(obj.toy) = (id) => ((this.toy(id)));
 			(obj.filter_type) = () => ((this.filter_type()));
