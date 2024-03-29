@@ -413,6 +413,7 @@ $hyoo_toys_catalog $mol_page
 							<= toy_reviews!id 0
 
 $mol_button_major $mol_button_minor
+	theme \$mol_theme_base
 
 $mol_card $mol_list
 	attr *
