@@ -26,7 +26,7 @@
 }
 
 [hyoo_toys_catalog_goods] {
-	align-items: stretch;
+	align-items: flex-start;
 	min-height: 1rem;
 	padding: .375rem;
 }
@@ -46,6 +46,8 @@
 	flex: 0 0 14rem;
 	width: 100%;
 	aspect-ratio: 1;
+	object-fit: scale-down;
+	background: white;
 }
 
 [hyoo_toys_catalog_toy_main] {
