@@ -1,5 +1,7 @@
 $hyoo_toys $mol_book2
-	attr * mol_theme \$mol_theme_dark
+	attr *
+		^
+		mol_theme \$mol_theme_dark
 	toy* $hyoo_toys_toy
 	Placeholder null
 	plugins /
