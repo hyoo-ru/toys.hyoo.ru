@@ -64,7 +64,7 @@ namespace $ {
 		
 		@ $mol_mem
 		price() {
-			return new $mol_unit_money_rur( this.data().price )
+			return new $mol_unit_money_rub( this.data().price )
 		}
 		
 		@ $mol_mem
