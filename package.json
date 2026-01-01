@@ -177,6 +177,8 @@
     "$mol_image",
     "$mol_search",
     "$mol_pop",
+    "$mol_follower",
+    "$mol_ghost",
     "$mol_nav",
     "$mol_string",
     "$mol_icon_close",
