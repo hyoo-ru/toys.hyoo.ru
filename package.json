@@ -163,6 +163,7 @@
     "$mol_button",
     "$mol_speck",
     "$mol_button_typed",
+    "$mol_dom_event",
     "$mol_state_session",
     "$mol_list",
     "$mol_support_css",
